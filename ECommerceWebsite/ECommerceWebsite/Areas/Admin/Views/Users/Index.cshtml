@@ -1,0 +1,133 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Users>
+
+<div id="main-content">
+    <div class="page-title">
+        <i class="icon-custom-left"></i>
+        <h2>@Resources.Resource.Admin_UsersLabel <small>@Resources.Resource.Admin_UsersListLabel</small></h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" id="member-finder" class="form-control" placeholder="@Resources.Resource.Admin_SearchAUser">
+                        </div>
+                        <div class="col-md-8 align-right m-t-10">
+                            <span class="c-gray m-r-20">
+                                @Resources.Resource.Admin_FilterBy
+                                <a href="#" class="m-l-10 m-r-5">@Resources.Resource.Admin_DateLabel</a>
+                                <span class="c-gray-light">/</span>
+                                <a href="#" class="m-l-5 m-r-5">@Resources.Resource.Admin_NameLabel</a>
+                                <span class="c-gray-light">/</span>
+                                <a href="#" class="c-blue m-l-5">@Resources.Resource.Admin_CityLabel</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-4 member-entry">
+                                <div class="row member">
+                                    <div class="col-xs-3">
+                                        <img src="/Areas/Admin/assets/img/avatars/avatar1_big.png" alt="avatar 1" class="pull-left img-responsive">
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <h3 class="m-t-0 member-name"><strong>@item.Email</strong></h3>
+                                        <div class="pull-left">
+                                            <p><i class="fa fa-envelope-o c-gray-light p-r-10"></i> @item.Email</p>
+                                            <p><i class="fa fa-facebook c-gray-light p-r-10"></i> facebook.com/jsnow</p>
+                                        </div>
+                                        <div class="pull-right align-right">
+                                            <p><i class="fa fa-calendar c-gray-light p-r-10"></i> @item.RegisterationDate</p>
+                                            <p><i class="fa fa-map-marker c-gray-light p-r-10"></i> New York</p>
+                                            <p>
+                                                <button type="button" onclick="location.href='@Url.Action("Edit", "Users", new { id = item.UserId })'" class="btn btn-sm btn-dark btn-rounded">
+                                                    <i class="fa fa-edit">@Resources.Resource.Edit</i>
+                                                </button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="m-t-30 align-center">
+                        <ul class="pagination">
+                            <li><span><i class="fa fa-angle-left c-gray-light"></i></span></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><span>...</span></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivationCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegisterationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles.RoleTitle)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivationCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles.RoleTitle)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+

@@ -1,0 +1,224 @@
+﻿@model PagedList.IPagedList<ECommerceWebsite.Models.Products>
+
+@using PagedList.Mvc;
+@using Utilities.Helpers
+
+@{
+    ViewBag.Title = Resources.Resource.IndexPageTitle;
+    ViewBag.Description = Resources.Resource.IndexPageDescription;
+}
+
+@section Styles{
+    @*<link href="~/Content/assets/css/plugins.min.css" rel="stylesheet" />
+    <link href="~/assets/css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="~/assets/css/ion.rangeSlider.skinHTML5.css" rel="stylesheet" />
+    <link href="~/assets/css/normalize.css" rel="stylesheet" />
+    <link href="~/assets/css/indexRTL.css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/indexRTL")
+}
+
+<div id="cover"></div>
+
+
+@section Slider
+{
+    <div class="container">
+        <div class="banner-header banner-lbook3 space-30">
+            <img src="~/Images/Product-Slide1.jpg" height="380" width="1860" alt="Banner-header">
+            <div class="text">
+                @*<h3>@Resources.Resource.AllProducts</h3>
+                    <p><a href="/Product/Index" title="Home">@Resources.Resource.Home</a><i class="fa fa-caret-right"></i>@Resources.Resource.AllProducts</p>*@
+            </div>
+        </div>
+    </div>
+}
+
+
+@*@using (Ajax.BeginForm("FilterProducts", "Product", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace }))
+    {*@
+<div class="container">
+    <div id="primary" class="col-xs-12 col-md-9 float-left">
+        @*<div class="wrap-breadcrumb">
+                <div class="ordering">
+                    <div class="float-left">
+                        <span class="col active"></span>
+                        <span class="list"></span>
+                        @{
+                            if (Model.PageNumber == 1)
+                            {
+                                <p class="result-count">Showing 1-@(Model.PageNumber * Model.PageSize) of @ViewBag.NumberOfResults results</p>
+                            }
+                            else
+                            {
+                                <p class="result-count">Showing @((Model.PageNumber - 1) * (Model.PageSize + 1))-@(Model.PageNumber * Model.PageSize) of @ViewBag.NumberOfResults results</p>
+                            }
+                        }
+                    </div>
+
+                    @Html.CheckBox("color2", new { sortOrder = ViewBag.orderByPrice, currentFilter = ViewBag.currentFilter })
+
+                    <p>
+                        Find :
+                        @Html.TextBox("search", ViewBag.currentFilter as string)
+                        <input type="submit" value="Search" onclick="filterProducts()" />
+                    </p>
+
+                    <div class="float-right">
+                        <form action="#" method="get" class="order-by">
+                            <p>Sort by :</p>
+                            <select class="orderby" name="orderby" id="orderby" onchange="filterProducts()">
+                                <option id="opt1">popularity</option>
+                                <option id="opt2" selected="selected">average rating</option>
+                                <option id="opt3">newness</option>
+                                <option id="opt4">price: low to high</option>
+                                <option id="opt5">price: high to low</option>
+                            </select>
+                        </form>
+                        <form action="#" method="get" class="order-by">
+                                <p>Sort by :</p>
+                                @Html.ActionLink("sort", "Index", new { sortOrder = ViewBag.orderByPrice, currentFilter = ViewBag.currentFilter })
+                                <select class="orderby" name="orderby" id="color">
+                                    <option>popularity</option>
+                                    <option selected="selected">average rating</option>
+                                    <option>BC1245 ULTIMATE PANTS</option>
+                                    <option>CE5817 PRIMEKNIT WOOL TEE</option>
+                                    <option>BQ8292 RUN CLIMALITE TEE</option>
+                                </select>
+                            </form>
+
+                        <img id="loading" src="~/Content/assets/images/AjaxLoader.gif" />
+                    </div>
+                </div>
+            </div>*@
+        @*@Html.TextBox("search")
+            <input type="submit" value="Search" onclick="filterProducts()" />*@
+
+        <div class="products ver2 grid_full grid_sidebar hover-shadow furniture">
+            @Html.Action("FilterProducts", "Product")
+            @*<div id="result">
+                    @foreach (var item in Model)
+                    {
+                        <div class="item-inner">
+                            @Html.Partial("_PartialProduct", item)
+                        </div>
+                    }
+                    <!-- End product -->
+                    <!-- End product-content products  -->
+
+                    <div class="pagination-container">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        <div id="myPager">
+
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, search = ViewBag.CurrentSearch }))
+                        </div>
+                    </div>
+                </div>*@
+            <!-- End pagination-container -->
+        </div>
+    </div>
+    <!-- End Primary -->
+
+    <div id="secondary" class="widget-area col-xs-12 col-md-3 float-right" style="direction:rtl;">
+        @Html.Action("ShowCategories", "Product")
+
+        @Html.Action("ShowCategoriesByColor", "Product")
+        <aside class="widget widget_by_price">
+            <h3 class="widget-title">@Resources.Resource.ByPrice</h3>
+
+
+            @*<div class="layout-slider">
+                    <input id="Slider1" type="text" name="price" value="200;800" style="display: none;" onchange="filterProducts()">
+                </div>*@
+
+            <input type="text" id="priceSlider" name="priceSlider" value="" />
+
+
+            @*<a class="link-v1 space-30" id="filter" href="" onclick="filterProducts()" title="filter">filter</a>
+                <button type="button" onclick="filterProducts()">test</button>*@
+
+        </aside>
+
+        @Html.Action("ShowCategoriesByBrand", "Product")
+
+        <aside class="widget widget_feature">
+            <h3 class="widget-title">@Resources.Resource.FeatureProducts</h3>
+            <ul>
+                @foreach (var item in ViewBag.FeatureProducts)
+                {
+                    <li>
+                        <a class="images" href="/Products/@item.ProductId" title="images">
+                            @*<img class="img-responsive" src="~/Images/Products/Thumb/@item.ImageName" alt="@item.ImageName">*@
+                            @{ var imageName = (string)item.ImageName; }
+                            @Html.DrawWebPImage("img-responsive", "", "/Images/Products/Thumb/" + imageName, imageName)
+                        </a>
+                        <div class="text">
+                            <h2>
+                                <a href="/Products/@item.ProductId" title="@item.Title">@item.Title</a>
+                            </h2>
+                            <p>
+                                <span class="price-old">$@item.Fee.ToString("#,0")</span>
+                                @{
+                    var dis = ((double)(100 - item.DiscountPercent) / 100);
+                    var newFee = (((int)(item.Fee * dis)).ToString("#,0"));
+                                }
+                                <span>
+                                    $@newFee
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </aside>
+    </div>
+    <!-- End Secondary -->    
+</div>
+@* }*@
+
+@section Scripts{
+    <script>
+        var availableSizes = "@Resources.Resource.AvailableSizes";
+        var notAvailable = "@Resources.Resource.NotAvailable";
+    </script>
+    @*<script src="~/assets/js/ion.rangeSlider.min.js"></script>
+    <script src="~/Scripts/My Scripts/SelectBrand.js"></script>*@
+    <script src='@Scripts.Url("~/bundles/index")'> </script>
+
+    @*Price Slider*@
+    <script>
+        var minPrice = 0;
+        var maxPrice = 0;
+
+        $("#priceSlider").ionRangeSlider({
+            type: "double",
+            grid: false,
+            min: @ViewBag.MinPrice,
+            max: @ViewBag.MaxPrice,
+            from: @ViewBag.MinPrice,
+            to: @ViewBag.MaxPrice,
+            step: 500000,
+            min_interval: 500000,
+            prettify_enabled: true,
+            prettify: function (num) {
+                return num.toLocaleString();
+            },
+            prefix: "",
+            decorate_both: true,
+            onStart: function (data) {
+                minPrice = data.from;
+                maxPrice = data.to;
+            },
+            onFinish: function (data) {
+                minPrice = data.from;
+                maxPrice = data.to;
+
+                filterProducts();
+            }
+        });
+    </script>
+
+    @*<script src="~/Scripts/My Scripts/SelectCategory.js"></script>
+    <script src="~/Scripts/My Scripts/FilterProducts.js"></script>
+    <script src="~/Scripts/My Scripts/SelectBrandFunc.js"></script>
+    <script src="~/Scripts/My Scripts/AddToWishList.js"></script>*@
+}

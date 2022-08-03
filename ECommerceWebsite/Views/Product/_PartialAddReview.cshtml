@@ -1,0 +1,85 @@
+﻿@model ECommerceWebsite.Models.Product_Reviews
+
+@using (Ajax.BeginForm("AddReview", "Product", FormMethod.Post,
+    new AjaxOptions() { UpdateTargetId = "reviews", OnSuccess = "EmptyInputs" }, new { @class = "form-horizontal", id = "AddReviewForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(p => p.ProductId)
+    @Html.HiddenFor(p => p.ParentId)
+
+    <h3>@Resources.Resource.AddAReview</h3>
+    @*<div class="box">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class=" control-label" for="Name">@Resources.Resource.Name *</label>
+                <input type="text" class="form-control" name="Name" id="Name" placeholder=@Resources.Resource.Name>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                <label class=" control-label" for="Email">@Resources.Resource.Email <span class="color">*</span></label>
+                <input type="text" class="form-control" name="Email" id="Email" placeholder=@Resources.Resource.Email>
+            </div>
+        </div>
+    </div>*@
+    if (Model.ParentId == null)
+    {
+        <div class="box rating">
+            <p>@Resources.Resource.YourRating <span class="color">*</span></p>
+            <ul>
+                <li id="1">
+                    <a onclick="SetRating(1)" title="1 Star">
+                        <input name="Rating" value="1" type="radio" />
+                        <i class="fa fa-star"></i>
+                    </a>
+                </li>
+                <li id="2">
+                    <a onclick="SetRating(2)" title="2 Star">
+                        <input name="Rating" value="2" type="radio" />
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </a>
+                </li>
+                <li id="3">
+                    <a onclick="SetRating(3)" title="3 Star">
+                        <input name="Rating" value="3" type="radio" />
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </a>
+                </li>
+                <li id="4">
+                    <a onclick="SetRating(4)" title="4 Star">
+                        <input name="Rating" value="4" type="radio" />
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </a>
+                </li>
+                <li id="5">
+                    <a onclick="SetRating(5)" class="active" title="5 Star">
+                        <input name="Rating" value="5" type="radio" />
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    }
+    <div class="form-group">
+        <label class=" control-label" for="ReviewText">@Resources.Resource.Review <span class="color">*</span></label>
+        <textarea class="form-control" name="ReviewText" id="ReviewText"></textarea>
+    </div>
+    <button class="button-v1" title=" add tags">@Resources.Resource.SendReview</button>
+}
+
+@*@section Scripts{
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}*@

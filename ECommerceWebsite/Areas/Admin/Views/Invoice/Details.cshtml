@@ -1,0 +1,58 @@
+﻿@model ECommerceWebsite.Models.InvoiceItems
+
+@{
+    ViewBag.Title = @Resources.Resource.Details;
+}
+
+<h2>@Resources.Resource.Details</h2>
+
+<div>
+    <h4>@Resources.Resource.InvoiceItems</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiscountFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiscountFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoices.InvoiceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoices.InvoiceId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

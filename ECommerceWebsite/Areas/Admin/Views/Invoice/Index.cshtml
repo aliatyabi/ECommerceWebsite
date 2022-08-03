@@ -1,0 +1,242 @@
+﻿@*@model IEnumerable<ECommerceWebsite.Models.Invoices>*@
+
+@model PagedList.IPagedList<ECommerceWebsite.Models.Invoices>
+@using PagedList.Mvc;
+
+    @*@{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceNetAmount)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNetAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.InvoiceId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+<div id="main-content">
+    <div class="m-b-20 clearfix">
+        <div class="page-title pull-left">
+            <h3 class="pull-left"><strong>@Resources.Resource.ManageInvoices</strong></h3>
+        </div>
+        <div class="pull-right">
+            <a href="/Admin/Invoice/Create" class="btn btn-success m-t-10"><i class="fa fa-plus p-r-10"></i> @Resources.Resource.AddAnInvoice</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                            <div id="products-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                <div class="row m-t-10"><div class="col-md-6"><div id="products-table_filter" class="dataTables_filter"><label><input type="search" class="form-control" aria-controls="products-table" placeholder="Search an invocie..."></label></div></div><div class="col-md-6"><div class="DTTT_container"><a class="btn btn-default DTTT_button DTTT_button_csv" id="ToolTables_products-table_0"><span>CSV</span><div style="position: absolute; left: 0px; top: 0px; width: 77px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_1" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="77" height="37" name="ZeroClipboard_TableToolsMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=77&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_xls" id="ToolTables_products-table_1"><span>@Resources.Resource.Excel</span><div style="position: absolute; left: 0px; top: 0px; width: 85px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_2" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="85" height="37" name="ZeroClipboard_TableToolsMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=85&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_pdf" id="ToolTables_products-table_2"><span>@Resources.Resource.PDF</span><div style="position: absolute; left: 0px; top: 0px; width: 78px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_3" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="78" height="37" name="ZeroClipboard_TableToolsMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=78&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_print" id="ToolTables_products-table_3" title="View print view"><span>@Resources.Resource.Print</span></a></div></div></div>
+                                <table id="products-table" class="table table-tools table-hover dataTable no-footer" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="ID
+                                                : activate to sort column ascending" aria-sort="ascending">
+                                                <strong>@Resources.Resource.InvoiceId</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Type
+                                                : activate to sort column ascending">
+                                                <strong>@Resources.Resource.TransactionType</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Quantity
+                                                : activate to sort column ascending">
+                                                <strong>@Resources.Resource.Quantity</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Date
+                                                : activate to sort column ascending">
+                                                <strong>@Resources.Resource.Date</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="User
+                                                : activate to sort column ascending">
+                                                <strong>@Resources.Resource.User</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Amount
+                                                : activate to sort column ascending">
+                                                <strong>@Resources.Resource.InvoiceAmount</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Discount
+                                                : activate to sort column ascending">
+                                                <strong>@Resources.Resource.Discount</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Net Amount">
+                                                <strong>@Resources.Resource.InvoiceNetAmount</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Completed">
+                                                <strong>@Resources.Resource.Completed</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Tracking Code">
+                                                <strong>@Resources.Resource.TrackingCode</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Authority">
+                                                <strong>@Resources.Resource.AuthorityCode</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Address">
+                                                <strong>@Resources.Resource.Address</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions">
+                                                <strong>@Resources.Resource.Actions</strong>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{var i = 1; var odd = true;}
+
+                                        @foreach (var item in Model)
+                                        {
+                                            if (i % 2 == 0) { odd = false; } else { odd = true; }
+
+                                            <tr role="row" class="@(odd ? "odd" : "even")">
+                                                @{i = i + 1;}
+                                                <td class="sorting_1">@item.InvoiceId</td>
+                                                <td>
+                                                    @{
+                                                        var transaction = "";
+                                                        if (item.TransactionType == 1) { transaction = @Resources.Resource.Purchase; }
+                                                        if (item.TransactionType == 2) { transaction = @Resources.Resource.Sale; }
+                                                        if (item.TransactionType == 3) { transaction = @Resources.Resource.ReturnOfSales; }
+                                                        if (item.TransactionType == 4) { transaction = @Resources.Resource.BackFromThePurchase; }
+                                                    }
+
+                                                    <strong>@transaction</strong>
+                                                </td>
+                                                @*<td>BG 588 735 457</td>*@
+                                                <td><strong>@item.Quantity</strong></td>
+                                                <td>@item.InvoiceDate</td>
+                                                <td style="padding-left:15px;">@item.Users.Username</td>
+                                                <td style="padding-left:15px;">@item.InvoiceAmount.ToString("0,#")</td>
+                                                <td style="padding-left:30px;">@item.Discount.ToString("0,#")</td>
+                                                <td style="padding-left:50px;"><strong>@item.InvoiceNetAmount.ToString("0,#")</strong></td>
+                                                <td style="padding-left:15px;">@item.Completed</td>
+                                                <td style="padding-left:15px;">@item.TrackingCode</td>
+                                                <td style="padding-left:15px;">@item.Authority</td>
+                                                <td style="padding-left:15px;">
+                                                    @item.Users.UsersInformation.FirstOrDefault().States.StateName-
+                                                    @item.Users.UsersInformation.FirstOrDefault().Cities.CityName-
+                                                    @item.Users.UsersInformation.FirstOrDefault().Address
+                                                </td>
+                                                <td class="text-center ">
+                                                    <a href="/Admin/Invoice/Edit/@item.InvoiceId" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a onclick="deleteInvoice(@item.InvoiceId)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+                                @*<div class="row">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6 align-right">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="products-table_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous disabled" aria-controls="products-table" tabindex="0" id="products-table_previous">
+                                                    <a href="#">@Resources.Resource.Previous</a>
+                                                </li>
+                                                <li class="paginate_button active" aria-controls="products-table" tabindex="0">
+                                                    <a href="#">1</a>
+                                                </li>
+                                                <li class="paginate_button " aria-controls="products-table" tabindex="0">
+                                                    <a href="#">2</a>
+                                                </li>
+                                                <li class="paginate_button next" aria-controls="products-table" tabindex="0" id="products-table_next">
+                                                    <a href="#">@Resources.Resource.Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-responsive" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="modalTitle"></h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/My Scripts/DeleteInvoices.js"></script>
+}

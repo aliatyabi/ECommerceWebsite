@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Features>
+
+@section Styles
+{
+    <link href="~/Areas/Admin/assets/plugins/jstree/src/themes/default/style.css" rel="stylesheet" />
+}
+
+<div id="main-content">
+    <div class="m-b-20 clearfix">
+        <div class="page-title pull-left">
+            <h3 class="pull-left"><strong>@Resources.Resource.ManageFeatures</strong></h3>
+        </div>
+        <div class="pull-right">
+            <a onclick="createFeature()" class="btn btn-success m-t-10"><i class="fa fa-plus p-r-10"></i> @Resources.Resource.AddAFeature</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                            <div id="products-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                <div class="row m-t-10"><div class="col-md-6"><div id="products-table_filter" class="dataTables_filter"><label><input type="search" class="form-control" aria-controls="products-table" placeholder=@Resources.Resource.SearchAFeature></label></div></div><div class="col-md-6"><div class="DTTT_container"><a class="btn btn-default DTTT_button DTTT_button_csv" id="ToolTables_products-table_0"><span>CSV</span><div style="position: absolute; left: 0px; top: 0px; width: 77px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_1" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="77" height="37" name="ZeroClipboard_TableToolsMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=77&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_xls" id="ToolTables_products-table_1"><span>@Resources.Resource.Excel</span><div style="position: absolute; left: 0px; top: 0px; width: 85px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_2" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="85" height="37" name="ZeroClipboard_TableToolsMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=85&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_pdf" id="ToolTables_products-table_2"><span>@Resources.Resource.PDF</span><div style="position: absolute; left: 0px; top: 0px; width: 78px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_3" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="78" height="37" name="ZeroClipboard_TableToolsMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=78&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_print" id="ToolTables_products-table_3" title="View print view"><span>@Resources.Resource.Print</span></a></div></div></div>
+                                
+                                <div id="table">
+                                    @Html.Action("ShowFeaturesList")
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6 align-right">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="products-table_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous disabled" aria-controls="products-table" tabindex="0" id="products-table_previous">
+                                                    <a href="#">@Resources.Resource.Previous</a>
+                                                </li>
+                                                <li class="paginate_button active" aria-controls="products-table" tabindex="0">
+                                                    <a href="#">1</a>
+                                                </li>
+                                                <li class="paginate_button " aria-controls="products-table" tabindex="0">
+                                                    <a href="#">2</a>
+                                                </li>
+                                                <li class="paginate_button next" aria-controls="products-table" tabindex="0" id="products-table_next">
+                                                    <a href="#">@Resources.Resource.Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="modal-responsive" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modalTitle"></h4>
+                </div>
+                <div class="modal-body" id="modalBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+    <script src="~/Scripts/My Scripts/CreateFeature.js"></script>
+}

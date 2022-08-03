@@ -1,0 +1,108 @@
+﻿@model ECommerceWebsite.Models.Products
+
+@*<h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>@Resources.Resource.DeleteProduct</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="col-md-12 m-t-20 m-b-40 align-center">
+                <a href="~/Admin/Products" class="btn btn-default m-r-10 m-t-10"><i class="fa fa-reply"></i> @Resources.Resource.Cancel</a>
+                <button class="btn btn-danger m-t-10" type="submit"><i class="fa fa-check"></i> @Resources.Resource.Delete</button>
+            </div>
+        }
+    </div>*@
+
+<h3>@Resources.Resource.DeleteQuestion</h3>
+<hr />
+<div>
+    <table class="table table-tools table-hover dataTable no-footer" role="grid">
+        <thead>
+            <tr role="row">
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="ID
+                                                : activate to sort column ascending" aria-sort="ascending">
+                    <strong>@Html.DisplayNameFor(model => model.ProductId)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                                : activate to sort column ascending" style="width: 196px;">
+                    <strong>@Html.DisplayNameFor(model => model.Title)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Article
+                                                : activate to sort column ascending" style="width: 196px;">
+                    <strong>@Html.DisplayNameFor(model => model.Article)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Image
+                                                : activate to sort column ascending" style="width: 196px;">
+                    <strong>@Html.DisplayNameFor(model => model.ImageName)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Category
+                                                : activate to sort column ascending" style="width: 178px;">
+                    <strong>@Resources.Resource.CategoryTitle</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Price
+                                                : activate to sort column ascending" style="width: 77px;">
+                    <strong>@Html.DisplayNameFor(model => model.Fee)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Date added
+                                                : activate to sort column ascending" style="width: 143px;">
+                    <strong>@Html.DisplayNameFor(model => model.CreatedDate)</strong>
+                </th>
+                <th style="width: 140px; text-align: center;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Stock
+                                                ">
+                    <strong>@Resources.Resource.Stock</strong>
+                </th>
+                <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Status
+                                                " style="width: 86px;">
+                    <strong>@Html.DisplayNameFor(model => model.Status)</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr role="row">
+                <td>@Model.ProductId</td>
+                <td>@Model.Title</td>
+                <td>@Model.Article</td>
+                <td><img src="~/Images/Products/Thumb/@Model.ImageName" alt="@Model.ImageName" class="img-responsive" /></td>
+                <td>@Model.Product_Categories.CategoryTitle / @Model.Product_Categories1.CategoryTitle / @Model.Product_Categories2.CategoryTitle / @Model.Product_Categories3.CategoryTitle</td>
+                <td><strong>@Model.Fee</strong></td>
+                <td>@Model.CreatedDate</td>
+                <td>Stocktest</td>
+                <td class="text-center">
+                    @{ var cls = ""; var stat = ""; if (Model.Status == 1) { cls = "label-success"; stat = @Resources.Resource.Online; }
+                     else if (Model.Status == 2) { cls = "label-dark"; stat = @Resources.Resource.Offline; }
+                     else { cls = "label-danger"; stat = @Resources.Resource.Draft; } }
+                    <span class="label @cls w-300">@stat</span>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-footer text-center">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">
+                @Resources.Resource.Cancel
+            </button>
+            <button type="submit" class="btn btn-success">
+                @Resources.Resource.OK
+            </button>
+        </div>
+    }
+</div>

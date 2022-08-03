@@ -1,0 +1,77 @@
+﻿@model ECommerceWebsite.Models.Products
+
+@using Utilities.Helpers
+<div class="product" id="productBox_@Model.ProductId">
+    <div class="product-images">
+        <a href="/Products/@Model.ProductId" title="product-images">
+            @*<img class="primary_image" id="primaryImage_@Model.ProductId" src="~/Images/Products/Thumb/@Model.ImageName" alt="@Model.ImageName">
+            @if (Model.Product_Gallery.Count > 1)
+            {
+                <img class="secondary_image" id="secondaryImage_@Model.ProductId" src="~/Images/Products/Thumb/@Model.Product_Gallery.Skip(1).FirstOrDefault().ImageName" alt="@Model.Product_Gallery.Skip(1).FirstOrDefault().ImageName">
+            }*@
+
+            @Html.DrawWebPImage("primary_image", "primaryImage_" + @Model.ProductId, "/Images/Products/Thumb/" + @Model.ImageName, @Model.ImageName)
+            @if (Model.Product_Gallery.Count > 1)
+            {
+                @Html.DrawWebPImage("secondary_image", "secondaryImage_" + @Model.ProductId, "/Images/Products/Thumb/" + @Model.Product_Gallery.Skip(1).FirstOrDefault().ImageName, @Model.Product_Gallery.Skip(1).FirstOrDefault().ImageName)
+            }
+        </a>
+
+        @*<div class="action">
+                <a class="wish" href="javascript:void(0)" onclick="AddToWishList(@Model.ProductId)" title="Wishlist"><i class="icon icon-heart"></i></a>
+                <a class="zoom" href="/Products/@Model.ProductId" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                <ul>
+                        @if(Model.Product_Categories.CategoryTitle.ToLower() == "textiles")
+                        {
+                            foreach (var item in Model)
+                            {
+                                <li><a class="add-cart" href="#" title="Add to cart">@item.Size</a></li>
+                            }
+                        }
+                    </ul>
+                <ul id="sizes_@Model.ProductId">
+                    </ul>
+            </div>*@
+
+    </div>
+
+    <a href="/Products/@Model.ProductId" title="@Model.Title"><p class="product-title">@Model.Title</p></a>
+
+    @if (Model.DiscountPercent != 0)
+    {
+        <p class="product-price-old">@Model.Fee.ToString("#,0") ريال</p>
+    }
+    @{
+        var dis = ((double)(100 - Model.DiscountPercent) / 100);
+        @*<p class="product-price">@(((int)(Model.Fee * dis)).ToString("#,0"))</p>*@
+        if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+        {
+            <p class="product-price" style="direction:rtl;">@MathExtensions.Round((Model.Fee * dis), -4).ToString("#,0") ريال</p>
+        }
+        else
+        {
+            <p class="product-price">@MathExtensions.Round((Model.Fee * dis), -4).ToString("#,0") ريال</p>
+        }
+    }
+
+    <div id="loadingImage_@Model.ProductId" style="display:none">
+        <img src="~/Images/loadingImage.gif" alt="loadingImage" />
+    </div>
+
+    @if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+    {
+        <div id="sizeDiv_@Model.ProductId" style="display:none; position:absolute; margin-top:-10px; left:0; right:0; direction:ltr;">
+            <span id="availableSizes"></span>
+            <ul id="sizes_@Model.ProductId" style="margin-top:5px;"></ul>
+        </div>
+    }
+    else
+    {
+        <div id="sizeDiv_@Model.ProductId" style="display:none; position:absolute; margin-top:-10px; left:0; right:0;">
+            <span id="availableSizes"></span>
+            <ul id="sizes_@Model.ProductId" style="margin-top:5px;"></ul>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,2002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ECommerceWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CityEnName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feature_Values">
+          <Key>
+            <PropertyRef Name="FeatureValueId" />
+          </Key>
+          <Property Name="FeatureValueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeatureId" Type="int" Nullable="false" />
+          <Property Name="FeatureValue" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Features">
+          <Key>
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="FeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FeatureTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="InvoiceItemId" />
+          </Key>
+          <Property Name="InvoiceItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SizeId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="tinyint" Nullable="false" />
+          <Property Name="Fee" Type="int" Nullable="false" />
+          <Property Name="DiscountFee" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="TransactionType" Type="smallint" Nullable="false" />
+          <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="InvoiceAmount" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="int" Nullable="false" />
+          <Property Name="InvoiceNetAmount" Type="int" Nullable="false" />
+          <Property Name="Completed" Type="bit" Nullable="false" />
+          <Property Name="TrackingCode" Type="bigint" />
+          <Property Name="Status" Type="varchar" MaxLength="3" />
+          <Property Name="Authority" Type="bigint" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="NumberOfVisits" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Product_Gallery">
+          <Key>
+            <PropertyRef Name="GalleryId" />
+          </Key>
+          <Property Name="GalleryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ImageName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_Reviews">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="smallint" />
+          <Property Name="ReviewText" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_Sizes">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SizeUK" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SizeIR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SizeGroup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_Tags">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="MetaTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="MetaDescription" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="MetaKeyword" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Article" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="ImageName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fee" Type="int" Nullable="false" />
+          <Property Name="DiscountPercent" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="FurtherSubCategoryId" Type="int" Nullable="false" />
+          <Property Name="FurthestSubCategoryId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Products_Features">
+          <Key>
+            <PropertyRef Name="ProductFeatureId" />
+          </Key>
+          <Property Name="ProductFeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="FeatureValueId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleTitle" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SizeGroups">
+          <Key>
+            <PropertyRef Name="SizeGroup" />
+          </Key>
+          <Property Name="SizeGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sliders">
+          <Key>
+            <PropertyRef Name="SlideId" />
+          </Key>
+          <Property Name="SlideId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SlideTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Link" Type="varchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ClickCount" Type="int" Nullable="false" />
+          <Property Name="NewTab" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateEnName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="SizeId" Type="int" Nullable="false" />
+          <Property Name="WarehouseId" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User_Favourites">
+          <Key>
+            <PropertyRef Name="WishId" />
+          </Key>
+          <Property Name="WishId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ActivationCode" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="RegisterationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersInformation">
+          <Key>
+            <PropertyRef Name="InfoId" />
+          </Key>
+          <Property Name="InfoId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NationalCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tel" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NewsletterMembership" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="WarehouseId" />
+          </Key>
+          <Property Name="WarehouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarehouseName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="Self.States" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feature_Values_Features">
+          <End Role="Features" Type="Self.Features" Multiplicity="1" />
+          <End Role="Feature_Values" Type="Self.Feature_Values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Features">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="Feature_Values">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Invoices1">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Product_Sizes">
+          <End Role="Product_Sizes" Type="Self.Product_Sizes" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Sizes">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Categories_Product_Categories1">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="0..1" />
+          <End Role="Product_Categories1" Type="Self.Product_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product_Categories1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Gallery_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Product_Gallery" Type="Self.Product_Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Product_Gallery">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Reviews_Product_Reviews1">
+          <End Role="Product_Reviews" Type="Self.Product_Reviews" Multiplicity="0..1" />
+          <End Role="Product_Reviews1" Type="Self.Product_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Reviews">
+              <PropertyRef Name="ReviewId" />
+            </Principal>
+            <Dependent Role="Product_Reviews1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Reviews_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Product_Reviews" Type="Self.Product_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Product_Reviews">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Reviews_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Product_Reviews" Type="Self.Product_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Product_Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Sizes_SizeGroups1">
+          <End Role="SizeGroups" Type="Self.SizeGroups" Multiplicity="1" />
+          <End Role="Product_Sizes" Type="Self.Product_Sizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SizeGroups">
+              <PropertyRef Name="SizeGroup" />
+            </Principal>
+            <Dependent Role="Product_Sizes">
+              <PropertyRef Name="SizeGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Tags_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Product_Tags" Type="Self.Product_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Product_Tags">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Features_Feature_Values">
+          <End Role="Feature_Values" Type="Self.Feature_Values" Multiplicity="1" />
+          <End Role="Products_Features" Type="Self.Products_Features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature_Values">
+              <PropertyRef Name="FeatureValueId" />
+            </Principal>
+            <Dependent Role="Products_Features">
+              <PropertyRef Name="FeatureValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Features_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Products_Features" Type="Self.Products_Features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Products_Features">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories1">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories2">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="FurtherSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories3">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="FurthestSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Product_Sizes">
+          <End Role="Product_Sizes" Type="Self.Product_Sizes" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Sizes">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WarehouseId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Favourites_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="User_Favourites" Type="Self.User_Favourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="User_Favourites">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Favourites_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="User_Favourites" Type="Self.User_Favourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Favourites">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="UsersInformation" Type="Self.UsersInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="UsersInformation">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_States">
+          <End Role="States" Type="Self.States" Multiplicity="1" />
+          <End Role="UsersInformation" Type="Self.UsersInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="UsersInformation">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersInformation" Type="Self.UsersInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersInformation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_UsersInformation">
+          <End Role="UsersInformation" Type="Self.UsersInformation" Multiplicity="1" />
+          <End Role="UsersInformation1" Type="Self.UsersInformation" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UsersInformation">
+              <PropertyRef Name="InfoId" />
+            </Principal>
+            <Dependent Role="UsersInformation1">
+              <PropertyRef Name="InfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BestSellers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Brands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetBrandAndCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetSizesStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+          <Parameter Name="SizeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="OrderByFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="OrderByFeeDesc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Rating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ECommerceWebsiteModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feature_Values" EntityType="Self.Feature_Values" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Features" EntityType="Self.Features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Categories" EntityType="Self.Product_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Gallery" EntityType="Self.Product_Gallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Reviews" EntityType="Self.Product_Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Sizes" EntityType="Self.Product_Sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Tags" EntityType="Self.Product_Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products_Features" EntityType="Self.Products_Features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SizeGroups" EntityType="Self.SizeGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sliders" EntityType="Self.Sliders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Favourites" EntityType="Self.User_Favourites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersInformation" EntityType="Self.UsersInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cities_States" Association="Self.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feature_Values_Features" Association="Self.FK_Feature_Values_Features">
+            <End Role="Features" EntitySet="Features" />
+            <End Role="Feature_Values" EntitySet="Feature_Values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Invoices1" Association="Self.FK_InvoiceItems_Invoices1">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Product_Sizes" Association="Self.FK_InvoiceItems_Product_Sizes">
+            <End Role="Product_Sizes" EntitySet="Product_Sizes" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Products" Association="Self.FK_InvoiceItems_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Users" Association="Self.FK_Invoices_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Categories_Product_Categories1" Association="Self.FK_Product_Categories_Product_Categories1">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Product_Categories1" EntitySet="Product_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Gallery_Products" Association="Self.FK_Product_Gallery_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Gallery" EntitySet="Product_Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Reviews_Product_Reviews1" Association="Self.FK_Product_Reviews_Product_Reviews1">
+            <End Role="Product_Reviews" EntitySet="Product_Reviews" />
+            <End Role="Product_Reviews1" EntitySet="Product_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Reviews_Products" Association="Self.FK_Product_Reviews_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Reviews" EntitySet="Product_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Reviews_Users" Association="Self.FK_Product_Reviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Product_Reviews" EntitySet="Product_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Sizes_SizeGroups1" Association="Self.FK_Product_Sizes_SizeGroups1">
+            <End Role="SizeGroups" EntitySet="SizeGroups" />
+            <End Role="Product_Sizes" EntitySet="Product_Sizes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Tags_Products" Association="Self.FK_Product_Tags_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Tags" EntitySet="Product_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Features_Feature_Values" Association="Self.FK_Products_Features_Feature_Values">
+            <End Role="Feature_Values" EntitySet="Feature_Values" />
+            <End Role="Products_Features" EntitySet="Products_Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Features_Products" Association="Self.FK_Products_Features_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Products_Features" EntitySet="Products_Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories" Association="Self.FK_Products_Product_Categories">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories1" Association="Self.FK_Products_Product_Categories1">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories2" Association="Self.FK_Products_Product_Categories2">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories3" Association="Self.FK_Products_Product_Categories3">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Product_Sizes" Association="Self.FK_Stock_Product_Sizes">
+            <End Role="Product_Sizes" EntitySet="Product_Sizes" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Products" Association="Self.FK_Stock_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Warehouses" Association="Self.FK_Stock_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Favourites_Products" Association="Self.FK_User_Favourites_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="User_Favourites" EntitySet="User_Favourites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Favourites_Users" Association="Self.FK_User_Favourites_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Favourites" EntitySet="User_Favourites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_Cities" Association="Self.FK_UsersInformation_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_States" Association="Self.FK_UsersInformation_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_Users" Association="Self.FK_UsersInformation_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_UsersInformation" Association="Self.FK_UsersInformation_UsersInformation">
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+            <End Role="UsersInformation1" EntitySet="UsersInformation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ECommerceWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="States" Relationship="Self.FK_Cities_States" FromRole="Cities" ToRole="States" />
+          <Property Name="CityEnName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersInformation" Relationship="ECommerceWebsiteModel.FK_UsersInformation_Cities" FromRole="Cities" ToRole="UsersInformation" />
+        </EntityType>
+        <EntityType Name="Feature_Values">
+          <Key>
+            <PropertyRef Name="FeatureValueId" />
+          </Key>
+          <Property Name="FeatureValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeatureId" Type="Int32" Nullable="false" />
+          <Property Name="FeatureValue" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Features" Relationship="Self.FK_Feature_Values_Features" FromRole="Feature_Values" ToRole="Features" />
+          <NavigationProperty Name="Products_Features" Relationship="Self.FK_Products_Features_Feature_Values" FromRole="Feature_Values" ToRole="Products_Features" />
+        </EntityType>
+        <EntityType Name="Features">
+          <Key>
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="FeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FeatureTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Feature_Values" Relationship="Self.FK_Feature_Values_Features" FromRole="Features" ToRole="Feature_Values" />
+        </EntityType>
+        <EntityType Name="InvoiceItems">
+          <Key>
+            <PropertyRef Name="InvoiceItemId" />
+          </Key>
+          <Property Name="InvoiceItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Byte" Nullable="false" />
+          <Property Name="Fee" Type="Int32" Nullable="false" />
+          <Property Name="DiscountFee" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_InvoiceItems_Invoices1" FromRole="InvoiceItems" ToRole="Invoices" />
+          <NavigationProperty Name="Product_Sizes" Relationship="Self.FK_InvoiceItems_Product_Sizes" FromRole="InvoiceItems" ToRole="Product_Sizes" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_InvoiceItems_Products" FromRole="InvoiceItems" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="TransactionType" Type="Int16" Nullable="false" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceAmount" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceNetAmount" Type="Int32" Nullable="false" />
+          <Property Name="Completed" Type="Boolean" Nullable="false" />
+          <Property Name="TrackingCode" Type="Int64" />
+          <Property Name="Status" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Authority" Type="Int64" />
+          <NavigationProperty Name="InvoiceItems" Relationship="Self.FK_InvoiceItems_Invoices1" FromRole="Invoices" ToRole="InvoiceItems" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Invoices_Users" FromRole="Invoices" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfVisits" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ImageName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Product_Categories1" Relationship="Self.FK_Product_Categories_Product_Categories1" FromRole="Product_Categories" ToRole="Product_Categories1" />
+          <NavigationProperty Name="Product_Categories2" Relationship="Self.FK_Product_Categories_Product_Categories1" FromRole="Product_Categories1" ToRole="Product_Categories" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Product_Categories" FromRole="Product_Categories" ToRole="Products" />
+          <NavigationProperty Name="Products1" Relationship="Self.FK_Products_Product_Categories1" FromRole="Product_Categories" ToRole="Products" />
+          <NavigationProperty Name="Products2" Relationship="Self.FK_Products_Product_Categories2" FromRole="Product_Categories" ToRole="Products" />
+          <NavigationProperty Name="Products3" Relationship="Self.FK_Products_Product_Categories3" FromRole="Product_Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product_Gallery">
+          <Key>
+            <PropertyRef Name="GalleryId" />
+          </Key>
+          <Property Name="GalleryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Gallery_Products" FromRole="Product_Gallery" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product_Reviews">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int16" />
+          <Property Name="ReviewText" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Product_Reviews1" Relationship="Self.FK_Product_Reviews_Product_Reviews1" FromRole="Product_Reviews" ToRole="Product_Reviews1" />
+          <NavigationProperty Name="Product_Reviews2" Relationship="Self.FK_Product_Reviews_Product_Reviews1" FromRole="Product_Reviews1" ToRole="Product_Reviews" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Reviews_Products" FromRole="Product_Reviews" ToRole="Products" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Product_Reviews_Users" FromRole="Product_Reviews" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Product_Sizes">
+          <Key>
+            <PropertyRef Name="SizeId" />
+          </Key>
+          <Property Name="SizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SizeUK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SizeIR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SizeGroup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="InvoiceItems" Relationship="Self.FK_InvoiceItems_Product_Sizes" FromRole="Product_Sizes" ToRole="InvoiceItems" />
+          <NavigationProperty Name="SizeGroups" Relationship="Self.FK_Product_Sizes_SizeGroups1" FromRole="Product_Sizes" ToRole="SizeGroups" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Product_Sizes" FromRole="Product_Sizes" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Product_Tags">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="MetaTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MetaDescription" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MetaKeyword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Tags_Products" FromRole="Product_Tags" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fee" Type="Int32" Nullable="false" />
+          <Property Name="DiscountPercent" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FurtherSubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="FurthestSubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InvoiceItems" Relationship="Self.FK_InvoiceItems_Products" FromRole="Products" ToRole="InvoiceItems" />
+          <NavigationProperty Name="Product_Categories" Relationship="Self.FK_Products_Product_Categories" FromRole="Products" ToRole="Product_Categories" />
+          <NavigationProperty Name="Product_Categories1" Relationship="Self.FK_Products_Product_Categories1" FromRole="Products" ToRole="Product_Categories" />
+          <NavigationProperty Name="Product_Categories2" Relationship="Self.FK_Products_Product_Categories2" FromRole="Products" ToRole="Product_Categories" />
+          <NavigationProperty Name="Product_Categories3" Relationship="Self.FK_Products_Product_Categories3" FromRole="Products" ToRole="Product_Categories" />
+          <NavigationProperty Name="Product_Gallery" Relationship="Self.FK_Product_Gallery_Products" FromRole="Products" ToRole="Product_Gallery" />
+          <NavigationProperty Name="Product_Reviews" Relationship="Self.FK_Product_Reviews_Products" FromRole="Products" ToRole="Product_Reviews" />
+          <NavigationProperty Name="Product_Tags" Relationship="Self.FK_Product_Tags_Products" FromRole="Products" ToRole="Product_Tags" />
+          <NavigationProperty Name="Products_Features" Relationship="Self.FK_Products_Features_Products" FromRole="Products" ToRole="Products_Features" />
+          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Products" FromRole="Products" ToRole="Stock" />
+          <NavigationProperty Name="User_Favourites" Relationship="Self.FK_User_Favourites_Products" FromRole="Products" ToRole="User_Favourites" />
+          <Property Name="Article" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Products_Features">
+          <Key>
+            <PropertyRef Name="ProductFeatureId" />
+          </Key>
+          <Property Name="ProductFeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="FeatureValueId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Feature_Values" Relationship="Self.FK_Products_Features_Feature_Values" FromRole="Products_Features" ToRole="Feature_Values" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Features_Products" FromRole="Products_Features" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="SizeGroups">
+          <Key>
+            <PropertyRef Name="SizeGroup" />
+          </Key>
+          <Property Name="SizeGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product_Sizes" Relationship="Self.FK_Product_Sizes_SizeGroups1" FromRole="SizeGroups" ToRole="Product_Sizes" />
+        </EntityType>
+        <EntityType Name="Sliders">
+          <Key>
+            <PropertyRef Name="SlideId" />
+          </Key>
+          <Property Name="SlideId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SlideTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClickCount" Type="Int32" Nullable="false" />
+          <Property Name="NewTab" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_Cities_States" FromRole="States" ToRole="Cities" />
+          <Property Name="StateEnName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersInformation" Relationship="ECommerceWebsiteModel.FK_UsersInformation_States" FromRole="States" ToRole="UsersInformation" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="SizeId" Type="Int32" Nullable="false" />
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" />
+          <Property Name="Stock1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product_Sizes" Relationship="Self.FK_Stock_Product_Sizes" FromRole="Stock" ToRole="Product_Sizes" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Stock_Products" FromRole="Stock" ToRole="Products" />
+          <NavigationProperty Name="Warehouses" Relationship="Self.FK_Stock_Warehouses" FromRole="Stock" ToRole="Warehouses" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User_Favourites">
+          <Key>
+            <PropertyRef Name="WishId" />
+          </Key>
+          <Property Name="WishId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_User_Favourites_Products" FromRole="User_Favourites" ToRole="Products" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Favourites_Users" FromRole="User_Favourites" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivationCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="RegisterationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoices_Users" FromRole="Users" ToRole="Invoices" />
+          <NavigationProperty Name="Product_Reviews" Relationship="Self.FK_Product_Reviews_Users" FromRole="Users" ToRole="Product_Reviews" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="User_Favourites" Relationship="Self.FK_User_Favourites_Users" FromRole="Users" ToRole="User_Favourites" />
+          <NavigationProperty Name="UsersInformation" Relationship="Self.FK_UsersInformation_Users" FromRole="Users" ToRole="UsersInformation" />
+        </EntityType>
+        <EntityType Name="UsersInformation">
+          <Key>
+            <PropertyRef Name="InfoId" />
+          </Key>
+          <Property Name="InfoId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UsersInformation_Users" FromRole="UsersInformation" ToRole="Users" />
+          <Property Name="NationalCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="ECommerceWebsiteModel.Gender" Nullable="false" />
+          <Property Name="NewsletterMembership" Type="Boolean" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="ECommerceWebsiteModel.FK_UsersInformation_Cities" FromRole="UsersInformation" ToRole="Cities" />
+          <NavigationProperty Name="States" Relationship="ECommerceWebsiteModel.FK_UsersInformation_States" FromRole="UsersInformation" ToRole="States" />
+          <NavigationProperty Name="UsersInformation1" Relationship="ECommerceWebsiteModel.FK_UsersInformation_UsersInformation" FromRole="UsersInformation" ToRole="UsersInformation1" />
+          <NavigationProperty Name="UsersInformation2" Relationship="ECommerceWebsiteModel.FK_UsersInformation_UsersInformation" FromRole="UsersInformation1" ToRole="UsersInformation" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="WarehouseId" />
+          </Key>
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarehouseName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Stock1" Relationship="Self.FK_Stock_Warehouses" FromRole="Warehouses" ToRole="Stock" />
+        </EntityType>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="Self.States" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feature_Values_Features">
+          <End Role="Features" Type="Self.Features" Multiplicity="1" />
+          <End Role="Feature_Values" Type="Self.Feature_Values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Features">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="Feature_Values">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Features_Feature_Values">
+          <End Role="Feature_Values" Type="Self.Feature_Values" Multiplicity="1" />
+          <End Role="Products_Features" Type="Self.Products_Features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature_Values">
+              <PropertyRef Name="FeatureValueId" />
+            </Principal>
+            <Dependent Role="Products_Features">
+              <PropertyRef Name="FeatureValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Invoices1">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Product_Sizes">
+          <End Role="Product_Sizes" Type="Self.Product_Sizes" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Sizes">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InvoiceItems_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="InvoiceItems" Type="Self.InvoiceItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="InvoiceItems">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Categories_Product_Categories1">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="0..1" />
+          <End Role="Product_Categories1" Type="Self.Product_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Product_Categories1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories1">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories2">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="FurtherSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Product_Categories3">
+          <End Role="Product_Categories" Type="Self.Product_Categories" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="FurthestSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Gallery_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Product_Gallery" Type="Self.Product_Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Product_Gallery">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Reviews_Product_Reviews1">
+          <End Role="Product_Reviews" Type="Self.Product_Reviews" Multiplicity="0..1" />
+          <End Role="Product_Reviews1" Type="Self.Product_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Reviews">
+              <PropertyRef Name="ReviewId" />
+            </Principal>
+            <Dependent Role="Product_Reviews1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Reviews_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Product_Reviews" Type="Self.Product_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Product_Reviews">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Reviews_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Product_Reviews" Type="Self.Product_Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Product_Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Sizes_SizeGroups1">
+          <End Role="SizeGroups" Type="Self.SizeGroups" Multiplicity="1" />
+          <End Role="Product_Sizes" Type="Self.Product_Sizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SizeGroups">
+              <PropertyRef Name="SizeGroup" />
+            </Principal>
+            <Dependent Role="Product_Sizes">
+              <PropertyRef Name="SizeGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Product_Sizes">
+          <End Role="Product_Sizes" Type="Self.Product_Sizes" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_Sizes">
+              <PropertyRef Name="SizeId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="SizeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Tags_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Product_Tags" Type="Self.Product_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Product_Tags">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Features_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Products_Features" Type="Self.Products_Features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Products_Features">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Favourites_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="User_Favourites" Type="Self.User_Favourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="User_Favourites">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="WarehouseId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="WarehouseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Favourites_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="User_Favourites" Type="Self.User_Favourites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="User_Favourites">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersInformation" Type="Self.UsersInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersInformation">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ECommerceWebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.Cities" />
+          <EntitySet Name="Feature_Values" EntityType="Self.Feature_Values" />
+          <EntitySet Name="Features" EntityType="Self.Features" />
+          <EntitySet Name="InvoiceItems" EntityType="Self.InvoiceItems" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="Product_Categories" EntityType="Self.Product_Categories" />
+          <EntitySet Name="Product_Gallery" EntityType="Self.Product_Gallery" />
+          <EntitySet Name="Product_Reviews" EntityType="Self.Product_Reviews" />
+          <EntitySet Name="Product_Sizes" EntityType="Self.Product_Sizes" />
+          <EntitySet Name="Product_Tags" EntityType="Self.Product_Tags" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Products_Features" EntityType="Self.Products_Features" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="SizeGroups" EntityType="Self.SizeGroups" />
+          <EntitySet Name="Sliders" EntityType="Self.Sliders" />
+          <EntitySet Name="States" EntityType="Self.States" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User_Favourites" EntityType="Self.User_Favourites" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="UsersInformation" EntityType="Self.UsersInformation" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" />
+          <AssociationSet Name="FK_Cities_States" Association="Self.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feature_Values_Features" Association="Self.FK_Feature_Values_Features">
+            <End Role="Features" EntitySet="Features" />
+            <End Role="Feature_Values" EntitySet="Feature_Values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Features_Feature_Values" Association="Self.FK_Products_Features_Feature_Values">
+            <End Role="Feature_Values" EntitySet="Feature_Values" />
+            <End Role="Products_Features" EntitySet="Products_Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Invoices1" Association="Self.FK_InvoiceItems_Invoices1">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Product_Sizes" Association="Self.FK_InvoiceItems_Product_Sizes">
+            <End Role="Product_Sizes" EntitySet="Product_Sizes" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InvoiceItems_Products" Association="Self.FK_InvoiceItems_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="InvoiceItems" EntitySet="InvoiceItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_Users" Association="Self.FK_Invoices_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Categories_Product_Categories1" Association="Self.FK_Product_Categories_Product_Categories1">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Product_Categories1" EntitySet="Product_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories" Association="Self.FK_Products_Product_Categories">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories1" Association="Self.FK_Products_Product_Categories1">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories2" Association="Self.FK_Products_Product_Categories2">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Product_Categories3" Association="Self.FK_Products_Product_Categories3">
+            <End Role="Product_Categories" EntitySet="Product_Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Gallery_Products" Association="Self.FK_Product_Gallery_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Gallery" EntitySet="Product_Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Reviews_Product_Reviews1" Association="Self.FK_Product_Reviews_Product_Reviews1">
+            <End Role="Product_Reviews" EntitySet="Product_Reviews" />
+            <End Role="Product_Reviews1" EntitySet="Product_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Reviews_Products" Association="Self.FK_Product_Reviews_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Reviews" EntitySet="Product_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Reviews_Users" Association="Self.FK_Product_Reviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Product_Reviews" EntitySet="Product_Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Sizes_SizeGroups1" Association="Self.FK_Product_Sizes_SizeGroups1">
+            <End Role="SizeGroups" EntitySet="SizeGroups" />
+            <End Role="Product_Sizes" EntitySet="Product_Sizes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Product_Sizes" Association="Self.FK_Stock_Product_Sizes">
+            <End Role="Product_Sizes" EntitySet="Product_Sizes" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Tags_Products" Association="Self.FK_Product_Tags_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Product_Tags" EntitySet="Product_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Features_Products" Association="Self.FK_Products_Features_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Products_Features" EntitySet="Products_Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Products" Association="Self.FK_Stock_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Favourites_Products" Association="Self.FK_User_Favourites_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="User_Favourites" EntitySet="User_Favourites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Warehouses" Association="Self.FK_Stock_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Favourites_Users" Association="Self.FK_User_Favourites_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="User_Favourites" EntitySet="User_Favourites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_Users" Association="Self.FK_UsersInformation_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+          </AssociationSet>
+          <FunctionImport Name="BestSellers" ReturnType="Collection(ECommerceWebsiteModel.BestSellers_Result)" />
+          <FunctionImport Name="Brands" ReturnType="Collection(ECommerceWebsiteModel.Brands_Result)" />
+          <FunctionImport Name="GetBrandAndCategory" ReturnType="Collection(ECommerceWebsiteModel.GetBrandAndCategory_Result)" />
+          <FunctionImport Name="GetSizesStock" ReturnType="Collection(ECommerceWebsiteModel.GetSizesStock_Result)">
+          <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetStock" ReturnType="Collection(Int32)">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+            <Parameter Name="SizeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="OrderByFee" ReturnType="Collection(ECommerceWebsiteModel.OrderByFee_Result)" />
+          <FunctionImport Name="OrderByFeeDesc" ReturnType="Collection(ECommerceWebsiteModel.OrderByFeeDesc_Result)" />
+          <FunctionImport Name="Rating" ReturnType="Collection(ECommerceWebsiteModel.Rating_Result)" />
+          <AssociationSet Name="FK_UsersInformation_Cities" Association="ECommerceWebsiteModel.FK_UsersInformation_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_States" Association="ECommerceWebsiteModel.FK_UsersInformation_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersInformation_UsersInformation" Association="ECommerceWebsiteModel.FK_UsersInformation_UsersInformation">
+            <End Role="UsersInformation" EntitySet="UsersInformation" />
+            <End Role="UsersInformation1" EntitySet="UsersInformation" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="BestSellers_Result">
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Brands_Result">
+          <Property Type="String" Name="CategoryTitle" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetBrandAndCategory_Result">
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Column2" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="GetSizesStock_Result">
+          <Property Type="String" Name="SizeIR" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Stock" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="OrderByFee_Result">
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="Int32" Name="SubCategoryId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="ShortDescription" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Text" Nullable="true" />
+          <Property Type="String" Name="ImageName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Fee" Nullable="false" />
+          <Property Type="Int32" Name="DiscountPercent" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="FurtherSubCategoryId" Nullable="false" />
+          <Property Type="Int32" Name="FurthestSubCategoryId" Nullable="false" />
+          <Property Type="Byte" Name="Status" Nullable="false" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="OrderByFeeDesc_Result">
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="Int32" Name="SubCategoryId" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="ShortDescription" Nullable="false" MaxLength="300" />
+          <Property Type="String" Name="Text" Nullable="true" />
+          <Property Type="String" Name="ImageName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Fee" Nullable="false" />
+          <Property Type="Int32" Name="DiscountPercent" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="FurtherSubCategoryId" Nullable="false" />
+          <Property Type="Int32" Name="FurthestSubCategoryId" Nullable="false" />
+          <Property Type="Byte" Name="Status" Nullable="false" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Rating_Result">
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="Rating" Nullable="true" />
+        </ComplexType>
+        <EnumType Name="Gender">
+          <Member Name="Male" />
+          <Member Name="Female" />
+        </EnumType>
+        <Association Name="FK_UsersInformation_Cities">
+          <End Type="ECommerceWebsiteModel.Cities" Role="Cities" Multiplicity="1" />
+          <End Type="ECommerceWebsiteModel.UsersInformation" Role="UsersInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="UsersInformation">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_States">
+          <End Type="ECommerceWebsiteModel.States" Role="States" Multiplicity="1" />
+          <End Type="ECommerceWebsiteModel.UsersInformation" Role="UsersInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="UsersInformation">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersInformation_UsersInformation">
+          <End Type="ECommerceWebsiteModel.UsersInformation" Role="UsersInformation" Multiplicity="1" />
+          <End Type="ECommerceWebsiteModel.UsersInformation" Role="UsersInformation1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UsersInformation">
+              <PropertyRef Name="InfoId" />
+            </Principal>
+            <Dependent Role="UsersInformation1">
+              <PropertyRef Name="InfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ECommerceWebsiteModelStoreContainer" CdmEntityContainer="ECommerceWebsiteEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Cities">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityEnName" ColumnName="CityEnName" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feature_Values">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Feature_Values">
+              <MappingFragment StoreEntitySet="Feature_Values">
+                <ScalarProperty Name="FeatureValueId" ColumnName="FeatureValueId" />
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+                <ScalarProperty Name="FeatureValue" ColumnName="FeatureValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Features">
+              <MappingFragment StoreEntitySet="Features">
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+                <ScalarProperty Name="FeatureTitle" ColumnName="FeatureTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceItems">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.InvoiceItems">
+              <MappingFragment StoreEntitySet="InvoiceItems">
+                <ScalarProperty Name="InvoiceItemId" ColumnName="InvoiceItemId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="DiscountFee" ColumnName="DiscountFee" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Invoices">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="InvoiceNetAmount" ColumnName="InvoiceNetAmount" />
+                <ScalarProperty Name="Completed" ColumnName="Completed" />
+                <ScalarProperty Name="TrackingCode" ColumnName="TrackingCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="NumberOfVisits" ColumnName="NumberOfVisits" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Categories">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Product_Categories">
+              <MappingFragment StoreEntitySet="Product_Categories">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryTitle" ColumnName="CategoryTitle" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Gallery">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Product_Gallery">
+              <MappingFragment StoreEntitySet="Product_Gallery">
+                <ScalarProperty Name="GalleryId" ColumnName="GalleryId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Reviews">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Product_Reviews">
+              <MappingFragment StoreEntitySet="Product_Reviews">
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ReviewText" ColumnName="ReviewText" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Sizes">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Product_Sizes">
+              <MappingFragment StoreEntitySet="Product_Sizes">
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="SizeUK" ColumnName="SizeUK" />
+                <ScalarProperty Name="SizeIR" ColumnName="SizeIR" />
+                <ScalarProperty Name="SizeGroup" ColumnName="SizeGroup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Tags">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Product_Tags">
+              <MappingFragment StoreEntitySet="Product_Tags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="MetaTitle" ColumnName="MetaTitle" />
+                <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+                <ScalarProperty Name="MetaKeyword" ColumnName="MetaKeyword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Article" ColumnName="Article" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FurtherSubCategoryId" ColumnName="FurtherSubCategoryId" />
+                <ScalarProperty Name="FurthestSubCategoryId" ColumnName="FurthestSubCategoryId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products_Features">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Products_Features">
+              <MappingFragment StoreEntitySet="Products_Features">
+                <ScalarProperty Name="ProductFeatureId" ColumnName="ProductFeatureId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="FeatureValueId" ColumnName="FeatureValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SizeGroups">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.SizeGroups">
+              <MappingFragment StoreEntitySet="SizeGroups">
+                <ScalarProperty Name="SizeGroup" ColumnName="SizeGroup" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sliders">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Sliders">
+              <MappingFragment StoreEntitySet="Sliders">
+                <ScalarProperty Name="SlideId" ColumnName="SlideId" />
+                <ScalarProperty Name="SlideTitle" ColumnName="SlideTitle" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ClickCount" ColumnName="ClickCount" />
+                <ScalarProperty Name="NewTab" ColumnName="NewTab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.States">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateEnName" ColumnName="StateEnName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="Stock1" ColumnName="Stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Favourites">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.User_Favourites">
+              <MappingFragment StoreEntitySet="User_Favourites">
+                <ScalarProperty Name="WishId" ColumnName="WishId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RegisterationDate" ColumnName="RegisterationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersInformation">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.UsersInformation">
+              <MappingFragment StoreEntitySet="UsersInformation">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="NewsletterMembership" ColumnName="NewsletterMembership" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
+                <ScalarProperty Name="InfoId" ColumnName="InfoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="ECommerceWebsiteModel.Warehouses">
+              <MappingFragment StoreEntitySet="Warehouses">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="BestSellers" FunctionName="ECommerceWebsiteModel.Store.BestSellers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.BestSellers_Result">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Brands" FunctionName="ECommerceWebsiteModel.Store.Brands">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.Brands_Result">
+                <ScalarProperty Name="CategoryTitle" ColumnName="CategoryTitle" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetBrandAndCategory" FunctionName="ECommerceWebsiteModel.Store.GetBrandAndCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.GetBrandAndCategory_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetSizesStock" FunctionName="ECommerceWebsiteModel.Store.GetSizesStock">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.GetSizesStock_Result">
+                <ScalarProperty Name="SizeIR" ColumnName="SizeIR" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetStock" FunctionName="ECommerceWebsiteModel.Store.GetStock" />
+          <FunctionImportMapping FunctionImportName="OrderByFee" FunctionName="ECommerceWebsiteModel.Store.OrderByFee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.OrderByFee_Result">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FurtherSubCategoryId" ColumnName="FurtherSubCategoryId" />
+                <ScalarProperty Name="FurthestSubCategoryId" ColumnName="FurthestSubCategoryId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OrderByFeeDesc" FunctionName="ECommerceWebsiteModel.Store.OrderByFeeDesc">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.OrderByFeeDesc_Result">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FurtherSubCategoryId" ColumnName="FurtherSubCategoryId" />
+                <ScalarProperty Name="FurthestSubCategoryId" ColumnName="FurthestSubCategoryId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Rating" FunctionName="ECommerceWebsiteModel.Store.Rating">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ECommerceWebsiteModel.Rating_Result">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,177 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    max-width: 280px;
+}*/
+
+.slide-image{
+    height:300px;
+}
+
+.primary_image {
+    padding-bottom:90px;
+}
+
+.secondary_image {
+    padding-bottom:90px;
+}
+
+.widget.widget_color .black {
+  background: #000000;
+}
+
+.widget.widget_color .white {
+  background: #ffffff;
+}
+
+.widget.widget_color blue {
+  background: #0099ff;
+}
+
+.widget.widget_color .green {
+  background: #008000;
+}
+
+.widget.widget_color .orange {
+  background: #ff6600;
+}
+
+.widget.widget_color .pink {
+  background: #ff99a8;
+}
+
+.widget.widget_color .red {
+  background: #cc0000;
+}
+
+.widget.widget_color .yellow {
+  background: #ffff00;
+}
+
+.widget.widget_color .brown {
+  background: #663300;
+}
+
+.widget.widget_color .gold {
+  background: #ffd700;
+}
+
+.widget.widget_color .grey {
+  background: #808080;
+}
+
+.widget.widget_color .gray {
+  background: #808080;
+}
+
+div.compare {
+    display:none;
+    background-color: beige;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+}
+
+nav.pagination a {
+    line-height : 20px;
+}
+
+
+label.ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on {
+  color: #000;
+  font: 300 18px "Roboto Condensed";
+  text-transform: capitalize;
+}
+
+.widget ul.product-categories li a.categoryHover {
+  color: #bc9e6b;
+  margin-left: 15px;
+}
+
+.widget ul.product-categories li a.categoryHover:before {
+    background: #bc9e6b;
+}
+
+.info-order .product-name .head .qty, .info-order .product-name .head .total{
+    font: 700 16px/50px "Roboto Condensed";
+}
+
+.info-order .product-name .qty{
+    color: #565656;
+}
+
+.info-order .product-name .total{
+    color: #565656;
+}
+
+div.ui-checkbox .ui-btn{
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+
+div.ui-checkbox {
+    margin:0px;
+}
+
+select.orderby {
+    margin-left:-32px;
+}
+
+#itemAdded {
+    color:green;
+    font-size:18px;
+    margin:10px;
+    display:none;
+}
+
+#error {
+    font-size:18px;
+    margin:10px;
+    display:none;
+}
+
+span.plus {
+    cursor: pointer;
+}
+
+span.minus {
+    cursor: pointer;
+}
+
+#danger {
+    font-size: 20px;
+}
+
+.requiredStar {
+    color: red;
+}
+
+.widget.widget_color i {
+    border:none;
+}
+
+#header .search i.icon {
+    margin-top: 10px;
+}
+
+.product-price-old {
+    margin-top: -60px !important;
+}
+
+.h4font {
+    font: 600 18px/20px "yekan";
+}

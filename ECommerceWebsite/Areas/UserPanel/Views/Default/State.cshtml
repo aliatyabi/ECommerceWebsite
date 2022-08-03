@@ -1,0 +1,30 @@
+﻿@model ViewModels.Account.StatesViewModel
+
+@{
+    Layout = null;
+}
+
+@*@Html.DropDownList("StateId")*@
+
+@*@Html.DropDownListFor(model => model.StateId,Model.States,Resources.Resource.StateRequired)*@
+
+@Html.DropDownListFor(model => model.StateId, Model.States, @Resources.Resource.Choose);
+
+@*@Html.DropDownList("StateId",null,"--select state--")*@
+
+&nbsp;&nbsp;&nbsp;
+@Html.ValidationMessageFor(model => model.StateId)
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#StateId').change(function () {
+            var selectedStateId = this.value;
+            $('#CityContainer').load('@Url.Action("City")?id=' + selectedStateId);
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Products>
+
+@if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+{
+    <style>
+        .tab-content.active, .ordering span.tab-content:hover {
+            direction: ltr;
+        }
+    </style>
+}
+
+<div class="container">
+    <div class="furniture owl-nav-ver1">
+        <div class="title-text-v2">
+            <h3>@Resources.Resource.NewArrivals</h3>
+        </div>
+        <ul class="tabs tabs-title">
+            <li class="item active" rel="tab_1">@Resources.Resource.NewArrivals</li>
+            <li class="item" rel="tab_2">@Resources.Resource.BestSeller</li>
+            <li class="item" rel="tab_3">@Resources.Resource.TopRated</li>
+        </ul>
+        <div class="tab-container space-10 ">
+            <div id="tab_1" class="tab-content active" style="display: block;">
+                <div class="product-tab-content products hover-shadow owl-carousel owl-theme owl-responsive-1025 owl-loaded" style="width: 1289px;">
+
+                    @foreach (var item in Model)
+                    {
+                        @Html.Partial("_PartialProduct", item)
+                    }
+                </div>
+            </div>
+            <div id="tab_2" class="tab-content" style="display: block;">
+                <div class="product-tab-content products hover-shadow owl-carousel owl-theme owl-responsive-1025 owl-loaded" style="width: 1289px;">
+                    @if (ViewBag.BestSeller != null)
+                    {
+                        foreach (var item in ViewBag.BestSeller as IEnumerable<ECommerceWebsite.Models.Products>)
+                        {
+                            @Html.Partial("_PartialProduct", item)
+                        }
+                    }
+                </div>
+            </div>
+            <div id="tab_3" class="tab-content" style="display: block;">
+                <div class="product-tab-content products hover-shadow owl-carousel owl-theme owl-responsive-1025 owl-loaded" style="width: 1289px;">
+                    @if (ViewBag.Rating != null)
+                    {
+                        foreach (var item in ViewBag.Rating as IEnumerable<ECommerceWebsite.Models.Products>)
+                        {
+                            @Html.Partial("_PartialProduct", item)
+                        }
+                    }
+                </div>
+            </div>
+            <div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;"><i class="fa fa-angle-left"></i></div><div class="owl-next" style="display: none;"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div></div></div>
+        </div>
+        <!-- End product-tab-content products -->
+    </div>
+    <!-- End tab-content -->
+    <!-- End OurNewProduct -->
+    <div class="box center space-padding-tb-30 space-30">
+        <a class="link-v1 color-brand" href="/Product/Index" title="View All">@Resources.Resource.ViewAll</a>
+    </div>
+    <!-- End viewall -->
+</div>

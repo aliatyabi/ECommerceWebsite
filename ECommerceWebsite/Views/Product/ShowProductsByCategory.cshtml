@@ -1,0 +1,137 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Products>
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
+@section Slider
+{
+    <div class="container">
+        <div class="banner-header banner-lbook3 space-30">
+            <img src="/assets/images/banner-mansory.jpg" alt="Banner-header">
+            <div class="text">
+                <h3>@Resources.Resource.AllProducts</h3>
+                <p><a href="#" title="Home">@Resources.Resource.Home</a><i class="fa fa-caret-right"></i>@Resources.Resource.AllProducts</p>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div id="primary" class="col-xs-12 col-md-9">
+        <div class="wrap-breadcrumb">
+            <div class="ordering">
+                <div class="float-left">
+                    <span class="col active"></span>
+                    <span class="list"></span>
+                    <p class="result-count">@Resources.Resource.Showing 1-12 @Resources.Resource.Of 30 @Resources.Resource.Results</p>
+                </div>
+                <div class="float-right">
+                    <form action="#" method="get" class="order-by">
+                        <p>@Resources.Resource.SortBy</p>
+                        <select class="orderby" name="orderby">
+                            <option>@Resources.Resource.Popularity</option>
+                            <option selected="selected">@Resources.Resource.AverageRating</option>
+                            <option>@Resources.Resource.Newness</option>
+                            <option>@Resources.Resource.PriceLowToHigh</option>
+                            <option>@Resources.Resource.PriceHighToLow</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="products ver2 grid_full grid_sidebar hover-shadow furniture">
+            @foreach (var item in Model)
+            {
+                <div class="item-inner">
+                    @Html.Partial("_PartialProduct", item)
+                </div>
+            }
+            <!-- End product -->
+        </div>
+        <!-- End product-content products  -->
+        <div class="pagination-container">
+            <nav class="pagination align-right">
+                <a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i></a>
+                <span class="page-numbers current">1</span>
+                <a class="page-numbers" href="#">2</a>
+                <a class="page-numbers" href="#">3</a>
+                <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
+            </nav>
+        </div>
+        <!-- End pagination-container -->
+    </div>
+    <!-- End Primary -->
+
+    <div id="secondary" class="widget-area col-xs-12 col-md-3">
+        @Html.Action("ShowCategories", "Product")
+
+        @Html.Action("ShowCategoriesByColor", "Product")
+        <aside class="widget widget_by_price">
+            <h3 class="widget-title">@Resources.Resource.ByPrice</h3>
+            <div class="layout-slider">
+                <span><input id="Slider1" type="text" name="price" value="200;800" style="display: none;"></span>
+            </div>
+            <a class="link-v1 space-30" href="#" title="fillter">@Resources.Resource.Filter</a>
+        </aside>
+
+        @Html.Action("ShowCategoriesByBrand", "Product")
+
+        <aside class="widget widget_feature">
+            <h3 class="widget-title">@Resources.Resource.FeatureProducts</h3>
+            <ul>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="images">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <!-- End Secondary -->
+</div>
+
+
+
+
+
+

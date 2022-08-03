@@ -1,0 +1,33 @@
+﻿@model ECommerceWebsite.Models.Product_Sizes
+
+@{
+    ViewBag.Title = @Resources.Resource.Details;
+}
+
+<h2>@Resources.Resource.Details</h2>
+
+<div>
+    <h4>@Resources.Resource.ProductSizes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeUK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeUK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SizeIR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SizeIR)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SizeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

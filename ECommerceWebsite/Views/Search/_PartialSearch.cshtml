@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Products>
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Post))
+{
+    <div class="input-group">
+        <input type="text" class="form-control control-search" placeholder="@Resources.Resource.SearchAndEnter" id="search" name="search">
+        <button class="button_search" type="submit" data-dismiss="modal">@Resources.Resource.Search</button>
+    </div>
+    <div class="modal-footer text-center">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> @Resources.Resource.Cancel</button>
+        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> @Resources.Resource.Validate</button>
+    </div>
+}

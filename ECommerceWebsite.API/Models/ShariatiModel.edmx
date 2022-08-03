@@ -1,0 +1,687 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShariatiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DiscountD">
+          <Key>
+            <PropertyRef Name="Counter" />
+          </Key>
+          <Property Name="Code" Type="int" />
+          <Property Name="Ean_Code" Type="varchar" MaxLength="50" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="NewCost" Type="float" />
+          <Property Name="Counter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountH">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="FDate" Type="varchar" MaxLength="10" />
+          <Property Name="SDate" Type="varchar" MaxLength="10" />
+          <Property Name="DiscountPercent" Type="int" />
+          <Property Name="SalesType" Type="int" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Barcode" />
+            <PropertyRef Name="Branch" />
+          </Key>
+          <Property Name="Barcode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Import" Type="float" />
+          <Property Name="Export" Type="float" />
+          <Property Name="Stock" Type="float" />
+          <Property Name="Branch" Type="int" Nullable="false" />
+          <Property Name="Send" Type="int" />
+        </EntityType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="Counter" />
+          </Key>
+          <Property Name="Counter" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeNo" Type="int" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Link" Type="int" />
+          <Property Name="NameEng" Type="varchar" MaxLength="255" />
+          <Property Name="value1" Type="varchar" MaxLength="5000" />
+          <Property Name="value2" Type="varchar" MaxLength="5000" />
+          <Property Name="value3" Type="varchar" MaxLength="5000" />
+          <Property Name="value4" Type="varchar" MaxLength="500" />
+          <Property Name="value5" Type="varchar" MaxLength="500" />
+          <Property Name="value6" Type="varchar" MaxLength="500" />
+          <Property Name="value7" Type="varchar" MaxLength="500" />
+          <Property Name="value8" Type="varchar" MaxLength="500" />
+          <Property Name="value9" Type="varchar" MaxLength="500" />
+          <Property Name="value10" Type="varchar" MaxLength="500" />
+          <Property Name="value11" Type="varchar" MaxLength="500" />
+          <Property Name="value12" Type="varchar" MaxLength="500" />
+          <Property Name="value13" Type="varchar" MaxLength="500" />
+          <Property Name="value14" Type="varchar" MaxLength="500" />
+          <Property Name="value15" Type="varchar" MaxLength="500" />
+          <Property Name="Id1" Type="int" />
+          <Property Name="Id2" Type="int" />
+          <Property Name="Id3" Type="int" />
+          <Property Name="Id4" Type="int" />
+          <Property Name="Id5" Type="int" />
+          <Property Name="Id6" Type="int" />
+          <Property Name="Id7" Type="int" />
+          <Property Name="Id8" Type="int" />
+          <Property Name="Id9" Type="int" />
+          <Property Name="Id10" Type="int" />
+          <Property Name="Id11" Type="int" />
+          <Property Name="Id12" Type="int" />
+          <Property Name="Id13" Type="int" />
+          <Property Name="Id14" Type="int" />
+          <Property Name="Id15" Type="int" />
+          <Property Name="Note" Type="varchar" MaxLength="255" />
+          <Property Name="Code1" Type="int" />
+          <Property Name="Code2" Type="int" />
+          <Property Name="Active" Type="int" />
+          <Property Name="Credit" Type="float" />
+          <Property Name="Account" Type="float" />
+          <Property Name="Branch" Type="int" />
+          <Property Name="Pic" Type="image" />
+          <Property Name="OP_Date" Type="varchar" MaxLength="10" />
+          <Property Name="CS_Code" Type="varchar" MaxLength="50" />
+          <Property Name="CS_Send" Type="int" />
+          <Property Name="LU_State" Type="int" />
+          <Property Name="LY_SIT" Type="int" />
+          <Property Name="Send" Type="int" />
+          <Property Name="Issend" Type="int" />
+          <Property Name="KM" Type="int" />
+          <Property Name="IsExported" Type="int" />
+        </EntityType>
+        <EntityType Name="Whs_QTYDocD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Code" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="EAN_Code" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="float" />
+          <Property Name="QtyR" Type="int" />
+          <Property Name="MFee" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Fee" Type="float" />
+          <Property Name="Price" Type="float" />
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Send" Type="int" />
+          <Property Name="TAX" Type="float" />
+          <Property Name="Issend" Type="int" />
+        </EntityType>
+        <EntityType Name="Whs_QTYDocH">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DocNo" Type="varchar" MaxLength="10" />
+          <Property Name="TransType" Type="smallint" />
+          <Property Name="CompanyID" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="DocDate" Type="varchar" MaxLength="10" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Atf" Type="varchar" MaxLength="20" />
+          <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="DocSum" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="DocTime" Type="varchar" MaxLength="50" />
+          <Property Name="StationID" Type="int" />
+          <Property Name="SalesType" Type="int" />
+          <Property Name="Sarbar" Type="float" />
+          <Property Name="ReceivedPrice" Type="float" />
+          <Property Name="PayType" Type="int" />
+          <Property Name="Base" Type="varchar" MaxLength="15" />
+          <Property Name="Branch" Type="int" />
+          <Property Name="Branch2" Type="int" />
+          <Property Name="RelatedCode" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PFishReceived" Type="float" />
+          <Property Name="PFishPay" Type="float" />
+          <Property Name="TAX" Type="float" />
+          <Property Name="RoundX" Type="float" />
+          <Property Name="RoundD" Type="float" />
+          <Property Name="PosTypeID" Type="int" />
+          <Property Name="PosPrice" Type="float" />
+          <Property Name="PI_Code" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CS_Code" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="BN" Type="varchar" MaxLength="50" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="Send" Type="int" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_Fee" Type="float" />
+          <Property Name="P_Qty" Type="int" />
+          <Property Name="ChangeID" Type="int" />
+          <Property Name="Member_Send_status" Type="int" />
+          <Property Name="I_Stat" Type="int" />
+          <Property Name="U_Stat" Type="int" />
+          <Property Name="LU_State" Type="int" />
+          <Property Name="SMS" Type="int" />
+          <Property Name="Chk" Type="int" />
+          <Property Name="EN_DATE" Type="varchar" MaxLength="50" />
+          <Property Name="EN_Date_N" Type="int" />
+          <Property Name="EN_Day" Type="int" />
+          <Property Name="EN_DayofWeek" Type="int" />
+          <Property Name="EN_Month" Type="int" />
+          <Property Name="En_Quarter" Type="int" />
+          <Property Name="En_Week" Type="int" />
+          <Property Name="En_Week_Jan" Type="int" />
+          <Property Name="EN_YEAR" Type="int" />
+          <Property Name="EN_Year_Feb_Base" Type="int" />
+          <Property Name="EN_YEAR_WEEK" Type="int" />
+          <Property Name="PrePaid" Type="int" />
+          <Property Name="Second_Note" Type="varchar" MaxLength="50" />
+          <Property Name="SHIFT_ID" Type="int" />
+          <Property Name="Issend" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Retail.dbo.VW_Para' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_Para">
+          <Key>
+            <PropertyRef Name="Expr1" />
+          </Key>
+          <Property Name="Expr1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Expr2" Type="varchar" MaxLength="500" />
+          <Property Name="Expr3" Type="varchar" MaxLength="500" />
+          <Property Name="Expr4" Type="varchar" MaxLength="500" />
+          <Property Name="Expr5" Type="varchar" MaxLength="500" />
+          <Property Name="Expr6" Type="varchar" MaxLength="500" />
+          <Property Name="Expr7" Type="varchar" MaxLength="500" />
+          <Property Name="Expr8" Type="varchar" MaxLength="500" />
+          <Property Name="Expr9" Type="varchar" MaxLength="500" />
+          <Property Name="Expr10" Type="varchar" MaxLength="500" />
+          <Property Name="Expr11" Type="varchar" MaxLength="500" />
+          <Property Name="Expr12" Type="varchar" MaxLength="500" />
+          <Property Name="Cost" Type="float" />
+        </EntityType>
+        <Association Name="FK_Whs_QTYDocD_Whs_QTYDocH">
+          <End Role="Whs_QTYDocH" Type="Self.Whs_QTYDocH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Whs_QTYDocD" Type="Self.Whs_QTYDocD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Whs_QTYDocH">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Whs_QTYDocD">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShariatiModelStoreContainer">
+          <EntitySet Name="DiscountD" EntityType="Self.DiscountD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountH" EntityType="Self.DiscountH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Whs_QTYDocD" EntityType="Self.Whs_QTYDocD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Whs_QTYDocH" EntityType="Self.Whs_QTYDocH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_Para" EntityType="Self.VW_Para" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_Para].[Expr1] AS [Expr1], 
+    [VW_Para].[Expr2] AS [Expr2], 
+    [VW_Para].[Expr3] AS [Expr3], 
+    [VW_Para].[Expr4] AS [Expr4], 
+    [VW_Para].[Expr5] AS [Expr5], 
+    [VW_Para].[Expr6] AS [Expr6], 
+    [VW_Para].[Expr7] AS [Expr7], 
+    [VW_Para].[Expr8] AS [Expr8], 
+    [VW_Para].[Expr9] AS [Expr9], 
+    [VW_Para].[Expr10] AS [Expr10], 
+    [VW_Para].[Expr11] AS [Expr11], 
+    [VW_Para].[Expr12] AS [Expr12], 
+    [VW_Para].[Cost] AS [Cost]
+    FROM [dbo].[VW_Para] AS [VW_Para]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Whs_QTYDocD_Whs_QTYDocH" Association="Self.FK_Whs_QTYDocD_Whs_QTYDocH">
+            <End Role="Whs_QTYDocH" EntitySet="Whs_QTYDocH" />
+            <End Role="Whs_QTYDocD" EntitySet="Whs_QTYDocD" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShariatiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DiscountD">
+          <Key>
+            <PropertyRef Name="Counter" />
+          </Key>
+          <Property Name="Code" Type="Int32" />
+          <Property Name="Ean_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="NewCost" Type="Double" />
+          <Property Name="Counter" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="DiscountH">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="FDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DiscountPercent" Type="Int32" />
+          <Property Name="SalesType" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Whs_QTYDocD">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Code" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EAN_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="Double" />
+          <Property Name="QtyR" Type="Int32" />
+          <Property Name="MFee" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Fee" Type="Double" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Send" Type="Int32" />
+          <Property Name="TAX" Type="Double" />
+          <Property Name="Issend" Type="Int32" />
+          <NavigationProperty Name="Whs_QTYDocH" Relationship="Self.FK_Whs_QTYDocD_Whs_QTYDocH" FromRole="Whs_QTYDocD" ToRole="Whs_QTYDocH" />
+        </EntityType>
+        <EntityType Name="Whs_QTYDocH">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DocNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TransType" Type="Int16" />
+          <Property Name="CompanyID" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="DocDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Atf" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DocSum" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="DocTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StationID" Type="Int32" />
+          <Property Name="SalesType" Type="Int32" />
+          <Property Name="Sarbar" Type="Double" />
+          <Property Name="ReceivedPrice" Type="Double" />
+          <Property Name="PayType" Type="Int32" />
+          <Property Name="Base" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Branch" Type="Int32" />
+          <Property Name="Branch2" Type="Int32" />
+          <Property Name="RelatedCode" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PFishReceived" Type="Double" />
+          <Property Name="PFishPay" Type="Double" />
+          <Property Name="TAX" Type="Double" />
+          <Property Name="RoundX" Type="Double" />
+          <Property Name="RoundD" Type="Double" />
+          <Property Name="PosTypeID" Type="Int32" />
+          <Property Name="PosPrice" Type="Double" />
+          <Property Name="PI_Code" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CS_Code" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="Send" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_Fee" Type="Double" />
+          <Property Name="P_Qty" Type="Int32" />
+          <Property Name="ChangeID" Type="Int32" />
+          <Property Name="Member_Send_status" Type="Int32" />
+          <Property Name="I_Stat" Type="Int32" />
+          <Property Name="U_Stat" Type="Int32" />
+          <Property Name="LU_State" Type="Int32" />
+          <Property Name="SMS" Type="Int32" />
+          <Property Name="Chk" Type="Int32" />
+          <Property Name="EN_DATE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EN_Date_N" Type="Int32" />
+          <Property Name="EN_Day" Type="Int32" />
+          <Property Name="EN_DayofWeek" Type="Int32" />
+          <Property Name="EN_Month" Type="Int32" />
+          <Property Name="En_Quarter" Type="Int32" />
+          <Property Name="En_Week" Type="Int32" />
+          <Property Name="En_Week_Jan" Type="Int32" />
+          <Property Name="EN_YEAR" Type="Int32" />
+          <Property Name="EN_Year_Feb_Base" Type="Int32" />
+          <Property Name="EN_YEAR_WEEK" Type="Int32" />
+          <Property Name="PrePaid" Type="Int32" />
+          <Property Name="Second_Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SHIFT_ID" Type="Int32" />
+          <Property Name="Issend" Type="Int32" />
+          <NavigationProperty Name="Whs_QTYDocD" Relationship="Self.FK_Whs_QTYDocD_Whs_QTYDocH" FromRole="Whs_QTYDocH" ToRole="Whs_QTYDocD" />
+        </EntityType>
+        <EntityType Name="VW_Para">
+          <Key>
+            <PropertyRef Name="Expr1" />
+          </Key>
+          <Property Name="Expr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Expr2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr11" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Expr12" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="Double" />
+        </EntityType>
+        <Association Name="FK_Whs_QTYDocD_Whs_QTYDocH">
+          <End Role="Whs_QTYDocH" Type="Self.Whs_QTYDocH" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Whs_QTYDocD" Type="Self.Whs_QTYDocD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Whs_QTYDocH">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="Whs_QTYDocD">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ShariatiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DiscountD" EntityType="Self.DiscountD" />
+          <EntitySet Name="DiscountH" EntityType="Self.DiscountH" />
+          <EntitySet Name="Whs_QTYDocD" EntityType="Self.Whs_QTYDocD" />
+          <EntitySet Name="Whs_QTYDocH" EntityType="Self.Whs_QTYDocH" />
+          <EntitySet Name="VW_Para" EntityType="Self.VW_Para" />
+          <AssociationSet Name="FK_Whs_QTYDocD_Whs_QTYDocH" Association="Self.FK_Whs_QTYDocD_Whs_QTYDocH">
+            <End Role="Whs_QTYDocH" EntitySet="Whs_QTYDocH" />
+            <End Role="Whs_QTYDocD" EntitySet="Whs_QTYDocD" />
+          </AssociationSet>
+          <EntitySet Name="Stock" EntityType="ShariatiModel.Stock" />
+          <FunctionImport Name="CreateFactorForWebSales" ReturnType="Collection(ShariatiModel.CreateFactorForWebSales_Result)" />
+          <EntitySet Name="Types" EntityType="ShariatiModel.Types" />
+        </EntityContainer>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Barcode" />
+            <PropertyRef Name="Branch" />
+          </Key>
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Import" Type="Double" />
+          <Property Name="Export" Type="Double" />
+          <Property Name="Stock1" Type="Double" />
+          <Property Name="Branch" Type="Int32" Nullable="false" />
+          <Property Name="Send" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="CreateFactorForWebSales_Result">
+          <Property Type="Decimal" Name="Column1" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Column2" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <EntityType Name="Types">
+          <Key>
+            <PropertyRef Name="Counter" />
+          </Key>
+          <Property Name="Counter" Type="Decimal" Nullable="false" Precision="10" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeNo" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="Int32" />
+          <Property Name="NameEng" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="value1" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="value2" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="value3" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="value4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value5" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value6" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value7" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value8" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value9" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value10" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value11" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value12" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value13" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value14" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="value15" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Id1" Type="Int32" />
+          <Property Name="Id2" Type="Int32" />
+          <Property Name="Id3" Type="Int32" />
+          <Property Name="Id4" Type="Int32" />
+          <Property Name="Id5" Type="Int32" />
+          <Property Name="Id6" Type="Int32" />
+          <Property Name="Id7" Type="Int32" />
+          <Property Name="Id8" Type="Int32" />
+          <Property Name="Id9" Type="Int32" />
+          <Property Name="Id10" Type="Int32" />
+          <Property Name="Id11" Type="Int32" />
+          <Property Name="Id12" Type="Int32" />
+          <Property Name="Id13" Type="Int32" />
+          <Property Name="Id14" Type="Int32" />
+          <Property Name="Id15" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Code1" Type="Int32" />
+          <Property Name="Code2" Type="Int32" />
+          <Property Name="Active" Type="Int32" />
+          <Property Name="Credit" Type="Double" />
+          <Property Name="Account" Type="Double" />
+          <Property Name="Branch" Type="Int32" />
+          <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OP_Date" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CS_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CS_Send" Type="Int32" />
+          <Property Name="LU_State" Type="Int32" />
+          <Property Name="LY_SIT" Type="Int32" />
+          <Property Name="Send" Type="Int32" />
+          <Property Name="Issend" Type="Int32" />
+          <Property Name="KM" Type="Int32" />
+          <Property Name="IsExported" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShariatiModelStoreContainer" CdmEntityContainer="ShariatiEntities">
+          <EntitySetMapping Name="DiscountD">
+            <EntityTypeMapping TypeName="ShariatiModel.DiscountD">
+              <MappingFragment StoreEntitySet="DiscountD">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Ean_Code" ColumnName="Ean_Code" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="NewCost" ColumnName="NewCost" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountH">
+            <EntityTypeMapping TypeName="ShariatiModel.DiscountH">
+              <MappingFragment StoreEntitySet="DiscountH">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="SDate" ColumnName="SDate" />
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="SalesType" ColumnName="SalesType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Whs_QTYDocD">
+            <EntityTypeMapping TypeName="ShariatiModel.Whs_QTYDocD">
+              <MappingFragment StoreEntitySet="Whs_QTYDocD">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EAN_Code" ColumnName="EAN_Code" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="QtyR" ColumnName="QtyR" />
+                <ScalarProperty Name="MFee" ColumnName="MFee" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Send" ColumnName="Send" />
+                <ScalarProperty Name="TAX" ColumnName="TAX" />
+                <ScalarProperty Name="Issend" ColumnName="Issend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Whs_QTYDocH">
+            <EntityTypeMapping TypeName="ShariatiModel.Whs_QTYDocH">
+              <MappingFragment StoreEntitySet="Whs_QTYDocH">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DocNo" ColumnName="DocNo" />
+                <ScalarProperty Name="TransType" ColumnName="TransType" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Atf" ColumnName="Atf" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="DocSum" ColumnName="DocSum" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="DocTime" ColumnName="DocTime" />
+                <ScalarProperty Name="StationID" ColumnName="StationID" />
+                <ScalarProperty Name="SalesType" ColumnName="SalesType" />
+                <ScalarProperty Name="Sarbar" ColumnName="Sarbar" />
+                <ScalarProperty Name="ReceivedPrice" ColumnName="ReceivedPrice" />
+                <ScalarProperty Name="PayType" ColumnName="PayType" />
+                <ScalarProperty Name="Base" ColumnName="Base" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Branch2" ColumnName="Branch2" />
+                <ScalarProperty Name="RelatedCode" ColumnName="RelatedCode" />
+                <ScalarProperty Name="PFishReceived" ColumnName="PFishReceived" />
+                <ScalarProperty Name="PFishPay" ColumnName="PFishPay" />
+                <ScalarProperty Name="TAX" ColumnName="TAX" />
+                <ScalarProperty Name="RoundX" ColumnName="RoundX" />
+                <ScalarProperty Name="RoundD" ColumnName="RoundD" />
+                <ScalarProperty Name="PosTypeID" ColumnName="PosTypeID" />
+                <ScalarProperty Name="PosPrice" ColumnName="PosPrice" />
+                <ScalarProperty Name="PI_Code" ColumnName="PI_Code" />
+                <ScalarProperty Name="CS_Code" ColumnName="CS_Code" />
+                <ScalarProperty Name="BN" ColumnName="BN" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="Send" ColumnName="Send" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="P_Fee" ColumnName="P_Fee" />
+                <ScalarProperty Name="P_Qty" ColumnName="P_Qty" />
+                <ScalarProperty Name="ChangeID" ColumnName="ChangeID" />
+                <ScalarProperty Name="Member_Send_status" ColumnName="Member_Send_status" />
+                <ScalarProperty Name="I_Stat" ColumnName="I_Stat" />
+                <ScalarProperty Name="U_Stat" ColumnName="U_Stat" />
+                <ScalarProperty Name="LU_State" ColumnName="LU_State" />
+                <ScalarProperty Name="SMS" ColumnName="SMS" />
+                <ScalarProperty Name="Chk" ColumnName="Chk" />
+                <ScalarProperty Name="EN_DATE" ColumnName="EN_DATE" />
+                <ScalarProperty Name="EN_Date_N" ColumnName="EN_Date_N" />
+                <ScalarProperty Name="EN_Day" ColumnName="EN_Day" />
+                <ScalarProperty Name="EN_DayofWeek" ColumnName="EN_DayofWeek" />
+                <ScalarProperty Name="EN_Month" ColumnName="EN_Month" />
+                <ScalarProperty Name="En_Quarter" ColumnName="En_Quarter" />
+                <ScalarProperty Name="En_Week" ColumnName="En_Week" />
+                <ScalarProperty Name="En_Week_Jan" ColumnName="En_Week_Jan" />
+                <ScalarProperty Name="EN_YEAR" ColumnName="EN_YEAR" />
+                <ScalarProperty Name="EN_Year_Feb_Base" ColumnName="EN_Year_Feb_Base" />
+                <ScalarProperty Name="EN_YEAR_WEEK" ColumnName="EN_YEAR_WEEK" />
+                <ScalarProperty Name="PrePaid" ColumnName="PrePaid" />
+                <ScalarProperty Name="Second_Note" ColumnName="Second_Note" />
+                <ScalarProperty Name="SHIFT_ID" ColumnName="SHIFT_ID" />
+                <ScalarProperty Name="Issend" ColumnName="Issend" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Para">
+            <EntityTypeMapping TypeName="ShariatiModel.VW_Para">
+              <MappingFragment StoreEntitySet="VW_Para">
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+                <ScalarProperty Name="Expr5" ColumnName="Expr5" />
+                <ScalarProperty Name="Expr6" ColumnName="Expr6" />
+                <ScalarProperty Name="Expr7" ColumnName="Expr7" />
+                <ScalarProperty Name="Expr8" ColumnName="Expr8" />
+                <ScalarProperty Name="Expr9" ColumnName="Expr9" />
+                <ScalarProperty Name="Expr10" ColumnName="Expr10" />
+                <ScalarProperty Name="Expr11" ColumnName="Expr11" />
+                <ScalarProperty Name="Expr12" ColumnName="Expr12" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="ShariatiModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Send" ColumnName="Send" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Stock1" ColumnName="Stock" />
+                <ScalarProperty Name="Export" ColumnName="Export" />
+                <ScalarProperty Name="Import" ColumnName="Import" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="ShariatiModel.Types">
+              <MappingFragment StoreEntitySet="Types">
+                <ScalarProperty Name="IsExported" ColumnName="IsExported" />
+                <ScalarProperty Name="KM" ColumnName="KM" />
+                <ScalarProperty Name="Issend" ColumnName="Issend" />
+                <ScalarProperty Name="Send" ColumnName="Send" />
+                <ScalarProperty Name="LY_SIT" ColumnName="LY_SIT" />
+                <ScalarProperty Name="LU_State" ColumnName="LU_State" />
+                <ScalarProperty Name="CS_Send" ColumnName="CS_Send" />
+                <ScalarProperty Name="CS_Code" ColumnName="CS_Code" />
+                <ScalarProperty Name="OP_Date" ColumnName="OP_Date" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Code2" ColumnName="Code2" />
+                <ScalarProperty Name="Code1" ColumnName="Code1" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Id15" ColumnName="Id15" />
+                <ScalarProperty Name="Id14" ColumnName="Id14" />
+                <ScalarProperty Name="Id13" ColumnName="Id13" />
+                <ScalarProperty Name="Id12" ColumnName="Id12" />
+                <ScalarProperty Name="Id11" ColumnName="Id11" />
+                <ScalarProperty Name="Id10" ColumnName="Id10" />
+                <ScalarProperty Name="Id9" ColumnName="Id9" />
+                <ScalarProperty Name="Id8" ColumnName="Id8" />
+                <ScalarProperty Name="Id7" ColumnName="Id7" />
+                <ScalarProperty Name="Id6" ColumnName="Id6" />
+                <ScalarProperty Name="Id5" ColumnName="Id5" />
+                <ScalarProperty Name="Id4" ColumnName="Id4" />
+                <ScalarProperty Name="Id3" ColumnName="Id3" />
+                <ScalarProperty Name="Id2" ColumnName="Id2" />
+                <ScalarProperty Name="Id1" ColumnName="Id1" />
+                <ScalarProperty Name="value15" ColumnName="value15" />
+                <ScalarProperty Name="value14" ColumnName="value14" />
+                <ScalarProperty Name="value13" ColumnName="value13" />
+                <ScalarProperty Name="value12" ColumnName="value12" />
+                <ScalarProperty Name="value11" ColumnName="value11" />
+                <ScalarProperty Name="value10" ColumnName="value10" />
+                <ScalarProperty Name="value9" ColumnName="value9" />
+                <ScalarProperty Name="value8" ColumnName="value8" />
+                <ScalarProperty Name="value7" ColumnName="value7" />
+                <ScalarProperty Name="value6" ColumnName="value6" />
+                <ScalarProperty Name="value5" ColumnName="value5" />
+                <ScalarProperty Name="value4" ColumnName="value4" />
+                <ScalarProperty Name="value3" ColumnName="value3" />
+                <ScalarProperty Name="value2" ColumnName="value2" />
+                <ScalarProperty Name="value1" ColumnName="value1" />
+                <ScalarProperty Name="NameEng" ColumnName="NameEng" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="TypeNo" ColumnName="TypeNo" />
+                <ScalarProperty Name="Counter" ColumnName="Counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

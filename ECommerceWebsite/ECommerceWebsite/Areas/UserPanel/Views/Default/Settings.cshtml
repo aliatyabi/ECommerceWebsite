@@ -1,0 +1,140 @@
+﻿@model ViewModels.Account.ChangeProfileViewModel
+
+<div class="container container-ver2">
+    <div class="page-login box space-50">
+        <div class="row">
+            <div class="col-md-6 sign-in space-30">
+                <div class="register box space-50">
+                    @if (ViewBag.IsSuccess == null)
+                    {
+                        using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.HiddenFor(model => model.Email)
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.FirstName, Resources.Resource.FirstName, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.FirstName } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.LastName, Resources.Resource.LastName, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.LastName } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.NationalCode, Resources.Resource.NationalCode, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.NationalCode, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.NationalCode } })
+                                @Html.ValidationMessageFor(model => model.NationalCode, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.Tel, Resources.Resource.Telephone, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.Telephone } })
+                                @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.Mobile, Resources.Resource.Mobile, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.Mobile } })
+                                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.Birthday, Resources.Resource.Birthday, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.Birthday } })
+                                @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.Gender, Resources.Resource.Gender, htmlAttributes: new { @class = "control-label" })
+                                <br />
+                                @Html.RadioButtonFor(model => model.Gender, true) @Resources.Resource.Male
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                @Html.RadioButtonFor(model => model.Gender, false) @Resources.Resource.Female
+                                &nbsp;&nbsp;&nbsp;
+                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.State, Resources.Resource.State, htmlAttributes: new { @class = "control-label" })
+                                @*@Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.State } })*@
+                                @Html.Action("State")
+                                @*@Html.ValidationMessageFor(model => model.State, Resources.Resource.StateRequired, new { @class = "text-danger", @id = "stateValidation" })*@
+                            </div>
+
+                            <div class="group box space-20" id="CityContainer">
+                                @Html.LabelFor(model => model.City, Resources.Resource.City, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.City } })
+                                @*@Html.Action("City")*@
+                                @*@Html.ValidationMessageFor(model => model.City, Resources.Resource.CityRequired, new { @class = "text-danger", @id = "cityValidation" })*@
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.Address, Resources.Resource.Address, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.Address } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.Avatar, Resources.Resource.Avatar, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Avatar, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.Avatar } })
+                                @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="group box space-20">
+                                @Html.LabelFor(model => model.NewsletterMembership, Resources.Resource.NewsletterMembership, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.NewsletterMembership, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Resource.NewsletterMembership } })
+                                @Html.ValidationMessageFor(model => model.NewsletterMembership, "", new { @class = "text-danger" })
+                            </div>
+
+                            <button type="submit" class="link-v1 rt">@Resources.Resource.ChangeProfileButton</button>
+                        }
+                    }
+                    else
+                    {
+                        <div class="alert alert-success width:160%">@Resources.Resource.ChangeProfileButton</div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@*<script type="text/javascript">
+        $(function () {
+            $('#StateId').prepend($("<option/>", { value: 0, text: "Select a State" }));
+            $('#CityId').prepend($("<option/>", { value: 0, text: "Select a City" }));
+            $('select').val(0);
+            $('#stateValidation').hide();
+            $('#cityValidation').hide();
+            $(':button').click(function () {
+                if ($('#StateId').val() == '0') {
+                    $('#stateValidation').show();
+                }
+                if ($('#CityId').val() == '0') {
+                    $('#cityValidation').show();
+                }
+            });
+
+            $('#StateId').change(function () {
+                if ($('#StateId').val() == '0') {
+                    $('#stateValidation').show();
+                }
+            });
+
+            $('#CityId').change(function () {
+                if ($('#CityId').val() == '0') {
+                    $('#cityValidation').show();
+                }
+            });
+        });
+    </script>*@

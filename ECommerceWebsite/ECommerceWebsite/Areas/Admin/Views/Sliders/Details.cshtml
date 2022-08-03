@@ -1,0 +1,58 @@
+﻿@model ECommerceWebsite.Models.Sliders
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sliders</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SlideTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SlideTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClickCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClickCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NewTab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NewTab)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SlideId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

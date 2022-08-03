@@ -1,0 +1,909 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Products>
+
+<div class="container">
+    <div class="furniture owl-nav-ver1">
+        <div class="title-text-v2">
+            <h3>New Arrivals</h3>
+        </div>
+        <ul class="tabs tabs-title">
+            <li class="item active" rel="tab_1">NEW ARRIVALS</li>
+            <li class="item" rel="tab_2">BEST SELLER</li>
+            <li class="item" rel="tab_3">TOP RATED</li>
+        </ul>
+        <div class="tab-container space-10 ">
+            <div id="tab_1" class="tab-content active" style="display: block;">
+                <div class="product-tab-content products hover-shadow owl-carousel owl-theme owl-responsive-1025 owl-loaded" style="width: 1289px;">
+
+                    <!-- End item -->
+                    <!-- End item -->
+                    <!-- End item -->
+                    <!-- End item -->
+                    <!-- End item -->
+                    @foreach (var item in Model)
+                    {
+                        @Html.Partial("_PartialProduct", item)
+                    }
+                    @*<div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>
+                    <div class="product">
+                        <div class="product-images">
+                            <a href="#" title="product-images">
+                                <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                            </a>
+                            <div class="action">
+                                <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                            </div>
+                        </div>
+                        <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                        <p class="product-price-old">$700.00</p>
+                        <p class="product-price">$69.90</p>
+
+                    </div>*@
+                </div>
+            </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;"><i class="fa fa-angle-left"></i></div><div class="owl-next" style="display: none;"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div></div></div>
+        </div>
+        <!-- End product-tab-content products -->
+    </div>
+    <!-- End tab-content -->
+    <div id="tab_2" class="tab-content" style="display: none;">
+        <div class="product-tab-content products hover-shadow owl-carousel owl-theme owl-responsive-1025 owl-hidden owl-loaded" style="width: 1289px;">
+
+            <!-- End item -->
+            <!-- End item -->
+            <!-- End item -->
+            <!-- End item -->
+            <!-- End item -->
+            <div class="owl-stage-outer">
+                <div class="owl-stage" style="transform: translate3d(-1309px, 0px, 0px); transition: 0s; width: 3927px;">
+                    <div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;"><i class="fa fa-angle-left"></i></div><div class="owl-next" style="display: none;"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div></div></div>
+        </div>
+        <!-- End product-tab-content products -->
+    </div>
+    <!-- End tab-content -->
+    <div id="tab_3" class="tab-content" style="display: none;">
+        <div class="product-tab-content products hover-shadow owl-carousel owl-theme owl-responsive-1025 owl-hidden owl-loaded" style="width: 1289px;">
+
+            <!-- End item -->
+            <!-- End item -->
+            <!-- End item -->
+            <!-- End item -->
+            <!-- End item -->
+            <div class="owl-stage-outer">
+                <div class="owl-stage" style="transform: translate3d(-1309px, 0px, 0px); transition: 0s; width: 3927px;">
+                    <div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item active" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div><div class="owl-item cloned" style="width: 241.8px; margin-right: 20px;">
+                        <div class="item-inner">
+                            <div class="product">
+                                <div class="product-images">
+                                    <a href="#" title="product-images">
+                                        <img class="primary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                        <img class="secondary_image" src="assets/images/products/furniture/1.jpg" alt="">
+                                    </a>
+                                    <div class="action">
+                                        <a class="wish" href="#" title="Wishlist"><i class="icon icon-heart"></i></a>
+                                        <a class="zoom" href="#" title="Quick view"><i class="icon icon-magnifier-add "></i></a>
+                                        <a class="add-cart" href="#" title="Add to cart"><i class="icon-bag"></i></a>
+                                    </div>
+                                </div>
+                                <a href="#" title="Bouble Fabric Blazer"><p class="product-title">Bouble Fabric Blazer</p></a>
+                                <p class="product-price-old">$700.00</p>
+                                <p class="product-price">$69.90</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;"><i class="fa fa-angle-left"></i></div><div class="owl-next" style="display: none;"><i class="fa fa-angle-right"></i></div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div></div></div>
+        </div>
+        <!-- End product-tab-content products-->
+    </div>
+    <!-- End tab-content -->
+    <!-- End OurNewProduct -->
+    <div class="box center space-padding-tb-30 space-30">
+        <a class="link-v1 color-brand" href="#" title="View All">View All</a>
+    </div>
+    <!-- End viewall -->
+</div>

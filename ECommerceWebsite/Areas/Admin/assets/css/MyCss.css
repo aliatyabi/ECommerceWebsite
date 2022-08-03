@@ -1,0 +1,15 @@
+﻿.media-header .pull-left {
+    background-color : #00A2D9;
+    color : #fff;
+}
+
+.media-header .pull-left a {
+    color : #fff;
+}
+
+.filestyle input{
+    color:red;
+}
+
+
+a.disabled { color: #555555; cursor: default; text-decoration: none; }

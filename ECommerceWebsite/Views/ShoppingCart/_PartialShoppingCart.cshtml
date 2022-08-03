@@ -1,0 +1,250 @@
+﻿@model IEnumerable<ViewModels.ShoppingCart.ShoppingCartViewModel>
+
+@using Utilities.Helpers
+
+@if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+{
+    <style>
+        th {
+            text-align: center;
+        }
+
+            /*th.product-photo{
+            text-align:center;
+        }*/
+
+            th.product-quantity {
+                /*text-align:center;*/
+                width: 300px;
+            }
+
+            th.total-price {
+                width: 200px;
+            }
+
+        /*table.table.cart-table td.product-quantity .quantity .minus, table.table.cart-table td.product-quantity .quantity .plus{
+            right:110px;
+        }
+
+        table.table.cart-table td.product-quantity .quantity .plus{
+            right:10px;
+        }*/
+    </style>
+}
+
+<div class="main-content">
+    <div class="container">
+        <div class="banner-header banner-lbook3">
+            <img src="assets/images/banner-mansory.jpg" alt="Banner-header">
+            <div class="text">
+                <h3>@Resources.Resource.ShoppingCart</h3>
+                <p><a href="#" title=@Resources.Resource.Home>@Resources.Resource.Home</a><i class="fa fa-caret-right"></i>@Resources.Resource.ShoppingCart</p>
+            </div>
+        </div>
+    </div>
+    <div class="cart-box-container">
+        <div class="container container-ver2 space-padding-tb-30">
+            <div class="row head-cart">
+                <div class="col-md-4 space-30">
+                    <div class="item active center">
+                        <p class="icon">01</p>
+                        <h3>@Resources.Resource.ShoppingCart</h3>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+                <div class="col-md-4 space-30">
+                    <div class="item center">
+                        <p class="icon">02</p>
+                        <h3>@Resources.Resource.CheckOut</h3>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+                <div class="col-md-4 space-30">
+                    <div class="item center">
+                        <p class="icon">03</p>
+                        <h3>@Resources.Resource.OrderCompleted</h3>
+                    </div>
+                </div>
+                <!-- End col-md-4 -->
+            </div>
+        </div>
+        <!-- End container -->
+        <div class="container container-ver2">
+            <div class="box cart-container">
+                <table class="table cart-table table-responsive space-80" style="overflow-x:auto;">
+                    <thead>
+                        <tr>
+                            <th class="product-photo">@Resources.Resource.ProductName</th>
+                            @*<th class="produc-name"></th>*@
+                            <th class="produc-price">@Resources.Resource.Size</th>
+                            <th class="produc-price">@Resources.Resource.Price</th>
+                            <th class="product-quantity">@Resources.Resource.Qty</th>
+                            <th class="total-price">@Resources.Resource.Total</th>
+                            <th class="product-remove"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="item_cart">
+                                <td class="product-photo">
+                                    @*<img src="~/Images/Products/Thumb/@item.ImageName" alt="@item.ImageName">*@
+                                    @{ var imageName = (string)item.ImageName; }
+                                    @Html.DrawWebPImage("", "", "/Images/Products/Thumb/" + imageName, imageName)
+                                    <div><a href="/Products/@item.ProductId" title="">@item.ProductName</a></div>
+                                </td>
+                                @*<td class="produc-name"><a href="#" title="">@item.ProductName</a></td>*@
+                                <td class="produc-price" style="direction:ltr;"><a href="/Products/@item.ProductId" title="">@item.Size</a></td>
+                                <td class="produc-price"><input value="@item.DiscountFee.ToString("#,0")" size="9" type="text" readonly></td>
+                                <td class="product-quantity">
+                                    <div id="loadingImage" style="display:none">
+                                        <img src="~/Images/loadingImage.gif" alt="loadingImage" />
+                                    </div>
+                                    <form enctype="multipart/form-data">
+                                        <div class="product-signle-options product_15 clearfix">
+                                            <div class="selector-wrapper size">
+                                                <div class="q">
+                                                    <span class="minus" onclick="DecreaseQuantity(@item.ProductId,@item.SizeId,$('#Qty').val())"><i class="fa fa-minus"></i></span>
+                                                    @{ var i = "Qty_" + @item.ProductId + "_" + @item.SizeId; }
+                                                    <input data-step="1" min="1" max="254" value="@item.Quantity" id="@i" onchange="ChangeQuantity(@item.ProductId,@item.SizeId,$(this).val())" title="Qty" class="qty" size="9" type="text">
+                                                    <span class="plus" onclick="IncreaseQuantity(@item.ProductId,@item.SizeId,$('#Qty').val())"><i class="fa fa-plus"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td class="produc-price"><input value="@item.Price.ToString("#,0") ريال" type="text" readonly></td>
+                                <td class="product-remove"><a class="remove" title="close" onclick="RemoveCartItem(@item.ProductId,@item.SizeId)"><img src="assets/images/icon-delete-cart.png" alt="close"></a></td>
+                            </tr>
+                        }
+                        <tr class="item_cart">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2">
+                                <h2>@Resources.Resource.Total: @Model.Sum(i => i.Price).ToString("#,0") <span>ريال </span></h2>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                @if (ViewBag.NotAvailable != null && ViewBag.NotAvailable == true)
+                {
+                    @Html.Raw(ViewBag.Message);
+                }
+                <div class="box space-30">
+                    <div class="float-left">
+                        <a class="link-v1 lh-50 margin-right-20 space-20" href="/ClearCart" title=@Resources.Resource.ClearShoppingCart>@Resources.Resource.ClearShoppingCart</a>
+                        @*<a class="link-v1 lh-50 space-20" href="#" title="UPDATE SHOPPING CART">UPDATE SHOPPING CART</a>*@
+                    </div>
+                    <!-- End float left -->
+                    <div class="float-right">
+                        <a class="link-v1 lh-50" href="/ShoppingCart/Checkout" title=@Resources.Resource.ContinueShopping>@Resources.Resource.ContinueShopping</a>
+                    </div>
+                    <!-- End float-right -->
+                </div>
+                <!-- End box -->
+                @*<div class="box cart-total space-30">
+                    <div class="row">
+                        <div class="col-md-4 space-30">
+                            <div class="item coupon-code">
+                                <h3 class="title">COUPON CODE</h3>
+                                <p>Enter your coupon code if you have one</p>
+                                <form enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control space-20" id="coundpon">
+                                    </div>
+                                </form>
+                                <a class="link-v1 lh-50 rt" href="#" title="apply coupon">APPLY COUPON*</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 space-30">
+                            <div class="item">
+                                <h3 class="title">ESTIMEDE SHIPPING AND TAX</h3>
+                                <p>Enter your destinetion to get a shipping estimede </p>
+                                <form enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label class=" control-label" for="inputcountry">Country *</label>
+                                        <input type="text" class="form-control space-20" id="inputcountry">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" control-label" for="state">STATE/PROVINCE *</label>
+                                        <input type="text" class="form-control space-20" id="state">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class=" control-label" for="zip-code">ZIP/POSTAL CODE *</label>
+                                        <input type="text" class="form-control space-20" id="zip-code">
+                                    </div>
+                                </form>
+                                <a class="link-v1 lh-50 rt" href="#" title="ESTIMADE">ESTIMADE</a>
+                            </div>
+                        </div>
+                        <!-- End col-md-4 -->
+                        <div class="col-md-4 space-30">
+                            <div class="item">
+                                <h3 class="title">@Resources.Resource.CartTotal</h3>
+                                <p class="box"><span class="float-left">@Resources.Resource.Shipping</span><span class="float-right">$52.00</span></p>
+                                <p class="box space-30"><span class="float-left">@Resources.Resource.SubTotal</span><span class="float-right">$5,200.00</span></p>
+                                <a class="link-v1 lh-50 rt" href="#" title=@Resources.Resource.ProceedToCheckout>@Resources.Resource.ProceedToCheckout</a>
+                            </div>
+                        </div>
+                        <!-- End col-md-4 -->
+                    </div>
+                </div>*@
+                <!-- End box -->
+            </div>
+            <!-- End container -->
+        </div>
+        <!-- End cat-box-container -->
+    </div>
+    @*<div class="container">
+        <div class="newsletter-bottom center">
+            <div class="items">
+                <img class="img-responsive" src="assets/images/newsletter-bottom.jpg" alt="Newsllter">
+                <div class="text">
+                    <h3>Sign Up Special Promotions</h3>
+                    <p>Get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                    <form action="#" method="get" accept-charset="utf-8">
+                        <input type="text" onblur="if (this.value == '') {this.value = 'Enter your email...';}" onfocus="if(this.value != '') {this.value = '';}" value="Enter your email..." class="input-text required-entry validate-email" title="Sign up for our newsletter" id="newsletter" name="email">
+                        <button class="button button1 hover-white" title="Subscribe" type="submit">Join<i class="link-icon-white"></i></button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+    <!-- End newsletter -->
+    @*<footer id="footer" class="footer-v1">
+        <div class="container">
+            <div class="footer-top">
+                <div class="logo-footer">
+                    <a href="#" title="Logo">
+                        <img src="assets/images/logo.png" alt="Logo">
+                    </a>
+                    <p>© Xanadu 2016 | Site by EngoCreative</p>
+                </div>
+                <div class="menu-footer">
+                    <ul>
+                        <li><a href="#" title="About Us">About Us</a></li>
+                        <li><a href="#" title="Advertise">Advertise</a></li>
+                        <li><a href="#" title="Press">Press</a></li>
+                        <li><a href="#" title="Contact Us">Contact Us</a></li>
+                        <li><a href="#" title="Store">Store</a></li>
+                        <li><a href="#" title="Careers">Careers</a></li>
+                    </ul>
+                </div>
+                <!-- End menu-footer -->
+                <div class="social">
+                    <a class="active" title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                    <a title="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                    <a title="youtube" href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a title="google plus" href="#"><i class="fa fa-google-plus"></i></a>
+                </div>
+                <!-- End social -->
+            </div>
+            <!-- End footer-top -->
+        </div>
+        <!-- End container -->
+    </footer>*@
+</div>

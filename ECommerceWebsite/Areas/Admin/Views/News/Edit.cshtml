@@ -1,0 +1,242 @@
+﻿@model ECommerceWebsite.Models.News
+
+@section Styles
+{
+    <link href="~/Areas/Admin/assets/css/MyFileStyleLink.css" rel="stylesheet" />
+    <link href="~/Content/assets/plugins/magnific/magnific-popup.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Edit", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(model => model.NewsId)
+    @Html.HiddenFor(model => model.NumberOfVisits)
+    @Html.HiddenFor(model => model.CreatedDate)
+    @Html.HiddenFor(model => model.ImageName)
+
+    <div id="main-content" class="event">
+        <div class="page-title">
+            <i class="icon-custom-left"></i>
+            <h3><strong>@Resources.Resource.AddOREditNews</strong></h3>
+            <a href="/admin/news/index">
+                <i class="fa fa-angle-left"></i> <span>@Resources.Resource.BackToNewsList</span>
+            </a>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabcordion">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#event_general" data-toggle="tab">@Resources.Resource.NewsText</a></li>
+                        <!--Comments Tab-->
+                        @*<li>
+                                <a href="#event_reviews" data-toggle="tab">
+                                    Comments
+                                    <span class="m-l-10 badge badge-danger">4</span>
+                                </a>
+                            </li>*@
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="event_general">
+                            <div class="row">
+                                <div class="col-md-8 post-column-left">
+
+                                    <div class="form-group">
+                                        <textarea id="editor1" name="Text" class="cke-editor">
+                                            @Model.Text
+                                        </textarea>
+                                    </div>
+
+                                    <!--Comments-->
+                                    @*<div class="form-group">
+                                            <h5>Comment</h5>
+                                            <textarea rows="5" class="form-control valid" placeholder="Optional comment..."></textarea>
+                                        </div>*@
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="post-column-right">
+                                        <div class="form-group">
+                                            <div>
+                                                <h5 class="pull-left m-t-0">@Resources.Resource.Pictures <span class="asterisk">*</span></h5>
+                                                <div class="pull-right">
+                                                    <input type="file" id="imageName" name="imageName" class="filestyle" data-buttonname="btn btn-link" data-size="sm" data-input="false" data-buttontext="Add New" data-iconname="fa fa-plus" />
+                                                </div>
+                                                <div>
+                                                    <a href="~/Images/News/Original/@Model.ImageName" class="magnific" title="">
+                                                        <img src="~/Images/News/Original/@Model.ImageName" id="selectedimage" alt="@Model.Title" class="img-responsive">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h5>@Resources.Resource.Status <span class="asterisk">*</span></h5>
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <div class="form-group">
+                                                        <div class="ui-checkbox">
+                                                            @Html.CheckBoxFor(model => model.IsActive)
+                                                        </div>
+                                                        @*<input data-val="true" data-val-required="The NewTab field is required." id="IsActive" name="IsActive" type="checkbox" />*@
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-11">
+                                                    <strong>@Resources.Resource.Active</strong>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                            </div>
+                                            @*<h5>Status <span class="asterisk">*</span></h5>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-md-1">
+                                                        <div class="ui-checkbox">
+                                                            <input data-val="true" data-val-required="The NewTab field is required." id="IsActive" name="IsActive" type="checkbox" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-11">
+                                                        <div>
+                                                            <h4>Active</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                            @*<div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="ui-radio">
+                                                            <label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on">
+                                                                Active
+                                                                <input type="radio" name="radio-choice-0" checked="">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="ui-radio" style="width:105%">
+                                                            <label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">
+                                                                Deactive
+                                                                <input type="radio" name="radio-choice-0">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                        </div>
+                                        <h3>@Resources.Resource.OptimizeSEO</h3>
+                                        <div class="form-group">
+                                            <h5>@Resources.Resource.Title <span class="asterisk">*</span></h5>
+                                            <input type="text" class="form-control" id="Title" name="Title" value="@Model.Title" />
+                                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            <h5>@Resources.Resource.Description <span class="asterisk">*</span></h5>
+                                            <textarea rows="4" class="form-control" id="ShortDescription" name="ShortDescription" placeholder="@Resources.Resource.Max255Char">@Model.ShortDescription</textarea>
+                                            @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                                        </div>
+                                        @*<div class="form-group">
+                                                <h5>Keywords</h5>
+                                                <textarea rows="6" class="form-control" placeholder="Max 1000 characters..."></textarea>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Begin Comments Tab-->
+                        @*<div class="tab-pane fade" id="event_reviews">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table id="event-review" class="table table-tools table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th style="min-width:70px">
+                                                        <strong>Review ID</strong>
+                                                    </th>
+                                                    <th><strong>Review Date</strong></th>
+                                                    <th><strong>User / Client</strong></th>
+                                                    <th style="width:50%"><strong>Review Content</strong></th>
+                                                    <th class="text-center"><strong>Status</strong></th>
+                                                    <th class="text-center"><strong>Actions</strong></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>03/11/2013</td>
+                                                    <td>John Addams</td>
+                                                    <td>Hawaii has a lot to proud of in Bruno Mars...what a talent. Old soul in a young man. Love the variety and range in his music! Love hearing the old songs that inspired the new songs. I got a tears in my eyes when he got choked up on his encore rendition of I'll remember you, Can't wait to see him on the Grammy's.</td>
+                                                    <td class="text-center">
+                                                        <span class="label label-success w-300">Approved</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="#" data-rel="tooltip" title="" class="edit btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Edit this comment"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" data-rel="tooltip" title="" class="delete btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Delete this comment"><i class="fa fa-times"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>02/11/2013</td>
+                                                    <td>Fred Aster</td>
+                                                    <td>I loved the way he performed every song including the ones that he could only really do the chorus for. I loved how truly moved he was throughout the performance to hear the audience in his hometown singing his songs back to him. He is a big star now - but mark my words - he will stick around for a long time and be an UBER big star! I love Bruno!</td>
+                                                    <td class="text-center">
+                                                        <span class="label label-danger w-300">Rejected</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="#" data-rel="tooltip" title="" class="edit btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Edit this comment"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" data-rel="tooltip" title="" class="delete btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Delete this comment"><i class="fa fa-times"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>01/11/2013</td>
+                                                    <td>Mike Johson</td>
+                                                    <td>Awesome amazing. A voice like butter ...he is so reminiscent of a combo of Elvis And Michael Jackson A fine musician and all around entertainer</td>
+                                                    <td class="text-center">
+                                                        <span class="label label-info w-300">Pending</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="#" data-rel="tooltip" title="" class="edit btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Edit this comment"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" data-rel="tooltip" title="" class="delete btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Delete this comment"><i class="fa fa-times"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>25/10/2013</td>
+                                                    <td>Amanda Taping</td>
+                                                    <td>I would highly recommend the Bruno Mars concert for all age groups. One of the best if not the best concert I have seen in my 62 years of rock and roll.</td>
+                                                    <td class="text-center">
+                                                        <span class="label label-success w-300">Approved</span>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="#" data-rel="tooltip" title="" class="edit btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Edit this comment"><i class="fa fa-pencil"></i></a>
+                                                        <a href="#" data-rel="tooltip" title="" class="delete btn btn-sm btn-icon btn-rounded btn-default" data-original-title="Delete this comment"><i class="fa fa-times"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>*@
+                        <!--End Comments Tab-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Begin Submit Buttons-->
+        <div class="row">
+            <div class="col-md-12 m-t-20 m-b-40 align-center">
+                <a href="~/Admin/News/Index" class="btn btn-default m-r-10 m-t-10"><i class="fa fa-reply"></i> @Resources.Resource.Cancel</a>
+                @*<a href="events.html" class="btn btn-default m-r-10 m-t-10"><i class="fa fa-edit"></i> Save as Draft</a>*@
+                <button type="submit" class="btn btn-danger m-t-10"><i class="fa fa-check"></i> @Resources.Resource.Edit</button>
+            </div>
+        </div>
+        <!--End Submit Buttons-->
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/bootstrap-filestyle.min.js"></script>
+
+    <script src="~/Content/assets/plugins/magnific/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/assets/plugins/cke-editor/ckeditor.js"></script>
+    <script src="~/Content/assets/plugins/cke-editor/adapters/jquery.js"></script>
+    <script src="~/Scripts/My Scripts/ShowImage.js"></script>
+}

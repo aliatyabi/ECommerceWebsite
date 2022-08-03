@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Product_Categories>
+
+<nav class="mega-menu">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <ul class="nav navbar-nav" id="navbar">
+        @if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+        {
+            <li class="level1 dropdown">
+                <a title="Brands">@Resources.Resource.Brands</a>
+                <div class="sub-menu sub-menu-v2 dropdown-menu">
+                    <ul class="menu-level-1">
+                        @foreach (var item in ViewBag.Brands)
+                        {
+                            <li class="level2"><a href="javascript:void(0)" onclick="selectBrand(@item.CategoryTitle)" title="@item.CategoryTitle">@item.CategoryTitle</a></li>
+                            @*<li class="level2"><a href="/Product/Index?brands=@item.CategoryTitle" title="@item.CategoryTitle">@item.CategoryTitle</a></li>*@
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+        @foreach (var item in Model.Where(c => c.ParentId == null))
+        {
+            <li class="level1 dropdown">
+                <a href="javascript:void(0)" onclick="selectCategory(@item.CategoryId, null, null)" title="@item.CategoryTitle">@item.CategoryTitle</a>
+                @*<a href="/Product/Index?categoryId=@item.CategoryId" title="@item.CategoryTitle">@item.CategoryTitle</a>*@
+                <div class="sub-menu sub-menu-v2 dropdown-menu">
+                    <ul class="menu-level-1">
+                        @foreach (var item2 in item.Product_Categories1)
+                        {
+                            <li class="level2">
+                                <a href="javascript:void(0)" onclick="selectCategory(null, @item2.CategoryId, null)" title="@item2.CategoryTitle">@item2.CategoryTitle</a>
+                                @*<a href="/Product/Index?subCategoryId=@item2.CategoryId" title="@item2.CategoryTitle">@item2.CategoryTitle</a>*@
+                                <ul class="menu-level-2">
+                                    @foreach (var item3 in item2.Product_Categories1)
+                                    {
+                                        <li class="level3"><a href="javascript:void(0)" onclick="selectCategory(null, null, @item3.CategoryId)" title="@item3.CategoryTitle">@item3.CategoryTitle</a></li>
+                                        @*<li class="level3"><a href="/Product/Index?furtherCategoryId=@item3.CategoryId" title="@item3.CategoryTitle">@item3.CategoryTitle</a></li>*@
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                    @*<div class="right-submenu">
+                            <a href="#" title="images"><img class="img-responsive" src="~/Images/Products/Thumb/" alt="Sub-Menu" /></a>
+                        </div>*@
+                    <!-- End RightSubMenu -->
+                </div>
+                <!-- End Dropdow Menu -->
+            </li>
+        }
+
+        @if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() != "fa-IR")
+        {
+            <li class="level1 dropdown">
+                <a title="Brands">@Resources.Resource.Brands</a>
+                <div class="sub-menu sub-menu-v2 dropdown-menu">
+                    <ul class="menu-level-1">
+                        @foreach (var item in ViewBag.Brands)
+                        {
+                            <li class="level2"><a href="javascript:void(0)" onclick="selectBrand(@item.CategoryTitle)" title="@item.CategoryTitle">@item.CategoryTitle</a></li>
+                            @*<li class="level2"><a href="/Product/Index?brands=@item.CategoryTitle" title="@item.CategoryTitle">@item.CategoryTitle</a></li>*@
+                        }
+                    </ul>
+                </div>
+            </li>
+        }
+
+        @*<li class="level1 dropdown">
+                <a href="#" title="AboutUs">@Resources.Resource.AboutUs</a>
+            </li>*@
+    </ul>
+</nav>

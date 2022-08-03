@@ -1,0 +1,26 @@
+﻿@model ECommerceWebsite.Models.Feature_Values
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Resources.Resource.Details</h2>
+
+<div>
+    <h4>@Resources.Resource.FeatureValues</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeatureValue)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FeatureValueId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

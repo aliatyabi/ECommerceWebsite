@@ -1,0 +1,33 @@
+﻿@model IEnumerable<string>
+
+<aside class="widget widget_color">
+    <ul class="product-categories">
+        <li class="hassub active">
+            <h3 class="widget-title">@Resources.Resource.ByColor</h3>
+            @if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+            {
+                <i class="fa fa-caret-left"></i>
+            }
+            else
+            {
+                <i class="fa fa-caret-right"></i>
+            }
+
+            <ul class="children">
+                @foreach (var item in Model)
+                {
+                    @*<li><input class="check" type="checkbox" />@item<i class="@item"></i></li>*@
+                    <li>
+                        <div class="row-fluid">
+                            <div class="ui-checkbox">
+                                <a class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on" style="z-index:0;pointer-events: none; cursor: default;">
+                                    @item
+                                </a><input name="color" type="checkbox" class="colorCheckbox" onchange="filterProducts()" data-cacheval="false" value="@item">
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </li>
+    </ul>
+</aside>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SelectListItem>
+
+<select class="form-control" id="SubCategoriesId" multiple="multiple" name="SubCategoriesId" style="display: none" title=@Resources.Resource.ChooseOneOrMore>
+    <optgroup label="Brand">
+        @foreach (var item in Model)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    </optgroup>
+</select>
+<div class="btn-group bootstrap-select show-tick form-control">
+    <button type="button" id="btnSubCategories" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" data-id="SubCategoriesId" title=@Resources.Resource.ChooseOneOrMore>
+        <span class="filter-option pull-left">@Resources.Resource.ChooseOneOrMore</span>&nbsp;
+        <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu open" id="secondDDL">
+        <ul id="subCategories" class="dropdown-menu inner selectpicker" role="menu">
+            @{var i = 0;}
+            @foreach (var item in Model)
+            {
+                i++;
+                if (i == 1)
+                {
+                    <li id="@item.Value">
+                        <dt>
+                            <span class="text">@Resources.Resource.Brand</span>
+                        </dt>
+                        <a tabindex="0" class="opt" style="" onclick="FillSportsCode(@item.Value)">
+                            <span class="text">@item.Text</span>
+                            <i class="fa fa-check icon-ok check-mark"></i>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li id="@item.Value">
+                        <a tabindex="0" class="opt" style="" onclick="FillSportsCode(@item.Value)">
+                            <span class="text">@item.Text</span>
+                            <i class="fa fa-check icon-ok check-mark"></i>
+                        </a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

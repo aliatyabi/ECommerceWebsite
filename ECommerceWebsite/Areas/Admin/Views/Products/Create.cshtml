@@ -1,0 +1,463 @@
+﻿@model ECommerceWebsite.Models.Products
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Products</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubCategoryId, "SubCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SubCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SubCategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }*@
+
+@section Styles
+{
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui.css" rel="stylesheet" />
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript><link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-noscript.css" rel="stylesheet" /></noscript>
+    <noscript><link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui-noscript.css" rel="stylesheet" /></noscript>
+}
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { @id = "form1", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="main-content">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="top-page clearfix">
+            <div class="page-title pull-left">
+                <i class="icon-custom-left"></i>
+                <h3>
+                    <img class="m-r-20" src="~/Areas/Admin/assets/img/various/clothing.png" alt="clothing"><strong>@Resources.Resource.Create</strong> <strong>@Resources.Resource.Or</strong><strong> @Resources.Resource.EditProduct</strong>
+                </h3>
+                <br>
+            </div>
+
+            <div id="addImage" hidden class="pull-right">
+                <input type="file" id="imageUpload" name="imageUpload" class="filestyle" multiple tabindex="-1" style="position: absolute; clip: rect(0 0 0 0);">
+                <div class="bootstrap-filestyle input-group">
+                    <span class="group-span-filestyle " tabindex="0">
+                        <label for="imageUpload" class="btn btn-primary m-t-10">
+                            <span class="icon-span-filestyle fa fa-plus"></span>
+                            <span class="buttonText"> @Resources.Resource.AddAnImage</span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+
+            @*<div id="addImage" hidden class="pull-right">
+                    <a class="btn btn-primary m-t-10">
+                        <i class="fa fa-plus p-r-10"></i> @Resources.Resource.AddAnImage
+                    </a>
+                </div>*@
+            @*<div id="addImage" hidden class="pull-right">
+                    <i class="fa fa-plus p-r-10"></i> @Resources.Resource.AddAnImage
+                    <input type="file" multiple />
+                </div>*@
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabcordion">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active otherTabs"><a href="#product_general" data-toggle="tab">@Resources.Resource.General</a></li>
+                        <li class="otherTabs"><a href="#product_meta" data-toggle="tab">@Resources.Resource.SEO</a></li>
+                        <li id="images"><a href="#product_images" data-toggle="tab">@Resources.Resource.Images</a></li>
+                        <li id="features" class="otherTabs"><a href="#product_features" data-toggle="tab">@Resources.Resource.Features</a></li>
+                        <li class="otherTabs">
+                            <a href="#product_reviews" data-toggle="tab">
+                                Reviews
+                                <span class="m-l-10 badge badge-primary">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="product_general">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.ProductName <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = @Resources.Resource.ProductName} })
+                                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.Article <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.EditorFor(model => model.Article, new { htmlAttributes = new { @class = "form-control", placeholder = @Resources.Resource.Article } })
+                                            @Html.ValidationMessageFor(model => model.Article, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                            <label class="col-sm-2 control-label">
+                                                Reference <span class="asterisk">*</span>
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" value="BG 547 874 587">
+                                            </div>
+                                        </div>*@
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.LongDescription
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <textarea rows="6" id="Text" name="Text" class="form-control" placeholder=@Resources.Resource.LongDescriptionPlaceHolder></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Resources.Resource.ShortDescription <span class="asterisk">*</span></label>
+                                        <div class="col-sm-7">
+                                            @*<textarea rows="4" id="ShortDescription" name="ShortDescription" class="form-control" placeholder=@Resources.Resource.ShortDescriptionPlaceHolder></textarea>*@
+                                            @Html.TextAreaFor(model => model.ShortDescription, 4, 20, new { @class = "form-control", @placeholder = @Resources.Resource.ShortDescriptionPlaceHolder })
+                                            @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Categories <span class="asterisk">*</span></label>
+                                        <div class="col-sm-3" id="Category">
+                                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple", onchange = "FillGenders()" })
+                                        </div>
+                                        <div class="col-sm-2" id="DivisionDiv">
+
+                                        </div>
+
+                                        <div class="col-sm-2" id="SportsCodeDiv">
+
+                                        </div>
+                                        @*@Html.Partial("_PartialProductSubCategory")*@
+                                        @*<div class="col-sm-3" id="DivisionDiv">
+                                                @Html.DropDownList("ddldivision", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple" })
+                                                <select id="ddldivision" name="ddldivision" class="form-control" multiple="multiple"></select>
+                                            </div>*@
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.Fee <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @*<input type="text" id="Fee" name="Fee" class="form-control" value="250000">*@
+                                            @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.DiscountPercent <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @*<input type="text" id="DiscountPercent" name="DiscountPercent" class="form-control" value="0">*@
+                                            @Html.EditorFor(model => model.DiscountPercent, new { htmlAttributes = new { @class = "form-control",@value = "0" } })
+                                            @Html.ValidationMessageFor(model => model.DiscountPercent, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label m-t-10">
+                                            @Resources.Resource.Status <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="ui-radio">
+                                                        <label for="radio1" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">
+                                                            @Resources.Resource.Online
+                                                        </label>
+                                                        <input id="radio1" type="radio" name="Status" value="1" checked="" data-cacheval="false" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="ui-radio">
+                                                        <label for="radio2" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">
+                                                            @Resources.Resource.Offline
+                                                        </label>
+                                                        <input id="radio2" type="radio" name="Status" value="2" data-cacheval="true">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="ui-radio">
+                                                        <label for="radio3" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on">
+                                                            @Resources.Resource.Draft
+                                                        </label>
+                                                        <input id="radio3" type="radio" name="Status" value="3" data-cacheval="false">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.Comment
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <textarea rows="5" name="Comment" class="form-control valid" placeholder=@Resources.Resource.CommentPlaceHolder></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="product_meta">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.MetaTitle <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" id="metaTitle" name="metaTitle" class="form-control" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.MetaDescription <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7" id="sabr">
+                                            <textarea rows="4" id="metaDescription" name="metaDescription" class="form-control" placeholder="Max 160 characters..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.MetaKeywords
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <textarea rows="6" id="metaKeywords" name="metaKeywords" class="form-control" placeholder=@Resources.Resource.MetaKeywordsPlaceHolder></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.Partial("_PartialCreateProductImages")
+
+                        <div class="tab-pane fade" id="product_features">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.Features <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-3">
+                                            @Html.DropDownList("FeaturesId", null, @Resources.Resource.ChooseOneItem, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-sm-3">                                            
+                                            <select class="form-control" id="FeatureValues" name="FeatureValues">
+                                                <option value="">@Resources.Resource.ChooseOneItem</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a onclick="AddFeature()" class="btn btn-sm btn-success">
+                                                <i class="fa fa-plus"></i> @Resources.Resource.Add
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="showFeatures">
+                                    @Html.Action("ShowFeatures")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="product_reviews">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-tools table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:70px">
+                                                    <strong>Review ID</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>Review Date</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>User / Client</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>Review Content</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>@Resources.Resource.Status</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>@Resources.Resource.Actions</strong>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>03/11/2013</td>
+                                                <td>John Addams</td>
+                                                <td>Very good product. Low price. I like it a lot. Thanks! </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success w-300">Approved</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>02/11/2013</td>
+                                                <td>Fred Aster</td>
+                                                <td>I sell my car. Do you want to buy it?</td>
+                                                <td class="text-center">
+                                                    <span class="label label-danger w-300">Rejected</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>01/11/2013</td>
+                                                <td>Mike Johson</td>
+                                                <td>I like this shirt. Quick delivery. </td>
+                                                <td class="text-center">
+                                                    <span class="label label-info w-300">Pending</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>25/10/2013</td>
+                                                <td>Amanda Taping</td>
+                                                <td>Love it. </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success w-300">Approved</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>20/10/2013</td>
+                                                <td>John Johnson</td>
+                                                <td>Beautiful shirt</td>
+                                                <td class="text-center">
+                                                    <span class="label label-success w-300">Approved</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 m-t-20 m-b-40 align-center">
+                            <a href="~/Admin/Products" class="btn btn-default m-r-10 m-t-10"><i class="fa fa-reply"></i> @Resources.Resource.Cancel</a>
+                            @*<a href="ecommerce_products.html" class="btn btn-danger m-r-10 m-t-10"><i class="fa fa-times"></i> Delete Product</a>*@
+                            @*<a href="ecommerce_products.html" class="btn btn-success m-t-10"><i class="fa fa-check"></i> Save changes</a>*@
+                            <button id="btnSubmit" class="btn btn-success m-t-10" type="submit"><i class="fa fa-check"></i> @Resources.Resource.SaveChanges</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/js/vendor/jquery.ui.widget.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/js/jquery.iframe-transport.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/My Scripts/AddImage.js"></script>
+    <script src="~/Scripts/My Scripts/FillGenders.js"></script>
+    <script src="~/Scripts/My Scripts/GetDivisions.js"></script>
+    <script src="~/Scripts/My Scripts/GetSportsCode.js"></script>
+    <script src="~/Scripts/My Scripts/FillDivisions.js"></script>
+    <script src="~/Scripts/My Scripts/FillSportsCode.js"></script>
+    <script src="~/Scripts/My Scripts/CreateProducts.js"></script>
+    <script src="~/Scripts/My Scripts/RemoveProductImage.js"></script>
+    <script src="~/Scripts/My Scripts/AddProductImage.js"></script>
+    <script src="~/Scripts/My Scripts/AddProductFeature.js"></script>
+}

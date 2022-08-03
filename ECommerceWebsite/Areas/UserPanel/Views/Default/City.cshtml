@@ -1,0 +1,16 @@
+﻿@model ECommerceWebsite.Models.CitiesMetadata
+
+@{
+    Layout = null;
+}
+
+@Html.DropDownList("CityId")
+
+&nbsp;&nbsp;&nbsp;
+@Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

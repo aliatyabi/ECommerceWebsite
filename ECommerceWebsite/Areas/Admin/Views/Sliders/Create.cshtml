@@ -1,0 +1,80 @@
+﻿@model ECommerceWebsite.Models.Sliders
+
+@section Styles{
+    <link href="~/Content/assets/css/jquery-filestyle.min.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Create", "Sliders", FormMethod.Post, new { id = "addFileForm", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="margin-top-none">@Resources.Resource.CropImage</h4>
+                    <div class="croppable-image">
+                        <img src="~/Images/no-image.png" id="imageName" class="img-responsive" alt="image crop">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="SlideTitle" class="control-label">@Resources.Resource.Title</label>
+                        <input type="text" class="form-control" id="slideTitle" name="slideTitle" placeholder=@Resources.Resource.EnterTitle />
+                        @Html.ValidationMessageFor(model => model.SlideTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="file" id="slideImage" name="slideImage">
+                        @*@Html.ValidationMessageFor(model => model.SlideTitle, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="Link" class="control-label">@Resources.Resource.Link</label>
+                        <input type="text" class="form-control" id="Link" name="Link" placeholder=@Resources.Resource.EnterUrl />
+                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <div class="ui-checkbox">
+                            <input data-val="true" data-val-required="The NewTab field is required." id="NewTab" name="NewTab" type="checkbox" value="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <label for="NewTab" class="control-label">@Resources.Resource.NewTab</label>
+                </div>
+                @Html.ValidationMessageFor(model => model.NewTab, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+            <br />
+            <br />
+
+        </div>
+    </div>
+
+    <div class="modal-footer text-center">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> @Resources.Resource.Cancel</button>
+        <button onclick="validate()" type="submit" class="btn btn-success"><i class="fa fa-check"></i> @Resources.Resource.Validate</button>
+    </div>
+}

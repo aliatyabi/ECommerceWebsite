@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ViewModels.ShoppingCart.ShoppingCartViewModel>
+
+@using Utilities.Helpers
+
+<div class="cart hover-menu">
+    <p class="icon-cart hidden-desktop" title=@Resources.Resource.AddToCart>
+        <i class="icon"></i>
+        <span class="cart-count">@Model.Count()</span>
+    </p>
+    <div class="icon-cart ver2" title="Add to cart">
+        <i class="icon"></i>
+        <div class="text align-left">
+            <h3>@Resources.Resource.MyCart</h3>
+            <p id="shopping-cart"><span id="quantity" class="items">@Model.Count()</span><span> @Resources.Resource.Items</span> - <span class="price">ريال </span><span id="price" class="price">@Model.Sum(i => i.Price).ToString("#,0")</span></p>
+        </div>
+    </div>
+    <div class="cart-list list-menu" id="cartList">
+        <ul class="list">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <li>
+                        <a href="/Products/@item.ProductId" title="" class="cart-product-image">
+                            @*<img src="~/Images/Products/Thumb/@item.ImageName" alt="@item.ImageName">*@
+                            @{ var imageName = (string)item.ImageName; }
+                            @Html.DrawWebPImage("", "", "/Images/Products/Thumb/" + imageName, imageName)
+                        </a>
+                        <div class="text">
+                            <p class="product-name">@item.ProductName</p>
+                            <p class="product-price">
+                                @if (item.DiscountPercent != 0)
+                                {
+                                    <span class="price-old">@item.Fee.ToString("#,0") ريال</span>
+                                }
+
+                                @{ var discount = ((double)(100 - item.DiscountPercent) / 100);
+                                <span class="price">@Utilities.Helpers.MathExtensions.Round((item.Fee * discount), -4).ToString("#,0")</span>
+                                }
+
+                                @*<span class="price">@item.Price.ToString("#,0")</span>*@
+                                <span class="price">ريال </span>
+                            <p class="qty">@Resources.Resource.Qty :@item.Quantity</p>
+                        </div>
+                        <a class="close" onclick="RemoveCartItem(@item.ProductId,@item.SizeId)" title="close"><i class="fa fa-times-circle"></i></a>
+                    </li>
+                }
+            }
+        </ul>
+        <div id="loadingImage" style="display:none">
+            <img src="~/Images/loadingImage.gif" alt="loadingImage" />
+        </div>
+        <p class="total"><span class="left">@Resources.Resource.Total:</span> <span class="right price">&nbsp; @Model.Sum(i => i.Price).ToString("#,0") </span><span class="right price">&nbsp; ريال</span></p>
+        <div class="bottom">
+            <a class="link-v1" href="/ShoppingCart" title="viewcart">@Resources.Resource.ViewCart</a>
+            <a class="link-v1 rt" href="/ShoppingCart/Checkout" title="checkout">@Resources.Resource.CheckOut</a>
+        </div>
+    </div>
+</div>

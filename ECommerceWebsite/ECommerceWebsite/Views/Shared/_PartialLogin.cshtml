@@ -1,0 +1,15 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <ul class="list-menu">
+        <li><a href="/Logout" title="USD">LOGOUT</a></li>
+        <li><a href="/Account/Settings" title="VND">SETTINGS</a></li>
+    </ul>
+}
+else
+{
+    <ul class="list-menu">
+        <li><a href="/Login" title="USD">LOGIN</a></li>
+        <li><a href="/Register" title="VND">REGISTER</a></li>
+    </ul>
+}
+

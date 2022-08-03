@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ViewModels.Product.WishListViewModel>
+
+<div class="main-content">
+    <div class="container">
+        <div class="banner-header banner-lbook3 space-30">
+            <img src="assets/images/banner-mansory.jpg" alt="Banner-header">
+            <div class="text">
+                <h3>@Resources.Resource.WishList</h3>
+                <p><a href="#" title="Home">@Resources.Resource.Home</a><i class="fa fa-caret-right"></i>@Resources.Resource.WishList</p>
+            </div>
+        </div>
+    </div>
+    <div class="cart-box-container">
+        <div class="container container-ver2">
+            <div class="box cart-container">
+                <table class="table cart-table space-80">
+                    <thead>
+                        <tr>
+                            <th class="product-photo">@Resources.Resource.ProductName</th>
+                            <th class="produc-name"></th>
+                            <th class="produc-price">@Resources.Resource.Price</th>
+                            <th class="product-quantity">@Resources.Resource.StockStatus</th>
+                            <th class="add-cart">@Resources.Resource.AddToCart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="item_cart">
+                                <td class="product-photo">
+                                    @*<img src="~/Images/Products/Thumb/@item.ImageName" alt="Futurelife">*@
+                                    @{ var imageName = (string)item.ImageName; }
+                                    @Html.DrawWebPImage("", "", "/Images/Products/Thumb/" + imageName, imageName)
+                                </td>
+                                <td class="produc-name"><a href="/Products/@item.ProductId" title="@item.Title">@item.Title</a></td>
+                                <td class="produc-price"><input value="$@item.Price.ToString("#,0")" type="text"></td>
+                                @if (item.Stock > 0)
+                                {
+                                    <td class="product-instock"><span><i class="fa fa-check-circle"></i>@Resources.Resource.InStock</span></td>
+                                }
+                                else
+                                {
+                                    <td class="product-instock"><span class="out"><i class="fa fa-check-circle"></i>@Resources.Resource.OutStock</span></td>
+                                }
+                                <td class="add-cart"><a class="link-v1 lh-50 rt" href="/Products/@item.ProductId" title="Shop now"><i class="fa fa-shopping-cart"></i>@Resources.Resource.ShopNow</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- End container -->
+        </div>
+        <!-- End cat-box-container -->
+    </div>
+</div>
+

@@ -1,0 +1,214 @@
+﻿@model ViewModels.ShoppingCart.CheckoutViewModel
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    @if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+    {
+        <style>
+            .info-order .product-name {
+                text-align: right;
+            }
+
+            .info-order .product-name .name{
+                float:right;
+            }
+
+            .info-order .product-name .total{
+                float:left;
+            }
+
+            .info-order .product-order .left{
+                float:right;
+            }
+
+            .info-order .product-order .right{
+                float:left;
+            }
+        </style>
+    }
+}
+
+<div class="main-content">
+    @section Slider
+    {
+        <div class="container">
+            <div class="banner-header banner-lbook3 space-30">
+                <img src="/assets/images/banner-mansory.jpg" alt="Banner-header">
+                <div class="text">
+                    <h3>@Resources.Resource.AllProducts</h3>
+                    <p><a href="/Product/Index" title="Home">@Resources.Resource.Home</a><i class="fa fa-caret-right"></i>@Resources.Resource.AllProducts</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="container container-ver2 space-padding-tb-30">
+        <div class="row head-cart">
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">01</p>
+                    <h3>@Resources.Resource.ShoppingCart</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">02</p>
+                    <h3>@Resources.Resource.CheckOut</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+            <div class="col-md-4 space-30">
+                <div class="item center">
+                    <p class="icon">03</p>
+                    <h3>@Resources.Resource.OrderCompleted</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+        </div>
+    </div>
+    <!-- End container -->
+    <div class="cart-box-container check-out">
+        <div class="container container-ver2">
+            <div class="row">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @*<div class="col-md-6">
+                                <h3 class="title-brand">BILLING ADDRESS</h3>
+                                <div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputfname" class=" control-label">First Name <span class="color">*</span></label>
+                                        @Html.TextBoxFor(model => model.UserInfo.FirstName, new { @class = "form-control", placeholder = "Enter your first name..." })
+                                        @Html.ValidationMessageFor(model => model.UserInfo.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputlname" class=" control-label">Last Name <span class="color">*</span></label>
+                                        @Html.TextBoxFor(model => model.UserInfo.LastName, new { @class = "form-control", placeholder = "Enter your last name..." })
+                                        @Html.ValidationMessageFor(model => model.UserInfo.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="inputemail" class=" control-label">Email<span class="color">*</span></label>
+                                    @Html.TextBoxFor(model => model.UserInfo.Email, new { @class = "form-control", placeholder = "Enter your email..." })
+                                    @Html.ValidationMessageFor(model => model.UserInfo.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputmobile" class=" control-label">Mobile<span class="color">*</span></label>
+                                        @Html.TextBoxFor(model => model.UserInfo.Mobile, new { @class = "form-control", placeholder = "Enter your mobile number..." })
+                                        @Html.ValidationMessageFor(model => model.UserInfo.Mobile, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputphone" class=" control-label">Telephone<span class="color">*</span></label>
+                                        @Html.TextBoxFor(model => model.UserInfo.Telephone, new { @class = "form-control", placeholder = "Enter your phone..." })
+                                        @Html.ValidationMessageFor(model => model.UserInfo.Telephone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputstreet" class=" control-label">Adress<span class="color">*</span></label>
+                                    @Html.TextAreaFor(model => model.UserInfo.Address, 5, 4, new { @class = "form-control", placeholder = "Enter your address...", style = "resize:none;" })
+                                    @Html.ValidationMessageFor(model => model.UserInfo.Address, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputcountry" class=" control-label">City<span class="color">*</span></label>
+                                    @Html.TextBoxFor(model => model.UserInfo.City, new { @class = "form-control", placeholder = "Enter your city..." })
+                                    @Html.ValidationMessageFor(model => model.UserInfo.City, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+                        <!-- End col-md-8 -->
+                        <div class="col-md-6 col-md-offset-3 space-30">
+                            <div class="box">
+                                <h3 class="title-brand">@Resources.Resource.YourOrder</h3>
+                                <div class="info-order">
+                                    <div class="product-name">
+                                        <ul>
+                                            <li class="head">
+                                                <span class="name">@Resources.Resource.ProductName</span>
+                                                <span class="qty">@Resources.Resource.Qty</span>
+                                                <span class="total">@Resources.Resource.SubTotal</span>
+                                            </li>
+
+                                            @if (Model.ShoppingCart != null)
+                                            {
+                                                foreach (var item in Model.ShoppingCart)
+                                                {
+
+                                                    <li>
+                                                        <span class="name">@item.ProductName</span>
+                                                        <span class="qty">@item.Quantity</span>
+                                                        <span class="total">@item.Price.ToString("#,0")</span>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+                                    <!-- End product-name -->
+                                    <ul class="product-order">
+                                        <li>
+                                            <span class="left">@Resources.Resource.CartSubTotal</span>
+
+                                            @if (Model.ShoppingCart != null)
+                                            {
+                                                <span class="right">@Model.ShoppingCart.Sum(s => s.Price).ToString("#,0") ريال</span>
+                                            }
+                                        </li>
+                                        <li>
+                                            <span class="left">@Resources.Resource.Shipping @Resources.Resource.And @Resources.Resource.Handling</span>
+                                            <span class="right">@Resources.Resource.FreeShipping</span>
+                                        </li>
+                                        <li>
+                                            <span class="left">@Resources.Resource.OrderTotal</span>
+                                            @if (Model.ShoppingCart != null)
+                                            {
+                                                <span class="right brand">@Model.ShoppingCart.Sum(s => s.Price).ToString("#,0") ريال</span>
+                                            }
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- End info-order -->
+                                <div class="payment-order box float-left">
+                                    <ul class="tabs">
+                                        <li class="active">
+                                            @*<i class="icon"></i>*@
+                                            @*<h4>@Resources.Resource.PaymentUsingBankCards</h4>*@
+
+                                            <span class="h4font">@Resources.Resource.PaymentUsingBankCards &nbsp;&nbsp;&nbsp;</span>
+                                            @Html.RadioButton("PaymentMethod", 0, true)
+                                        </li>
+                                        <li>
+                                            @*<i class="icon"></i>*@
+                                            @*<h4>@Resources.Resource.PaymentInPlace</h4>*@
+                                            <span class="h4font">@Resources.Resource.PaymentInPlace &nbsp;&nbsp;&nbsp;</span>
+                                            @Html.RadioButton("PaymentMethod", 1)
+                                        </li>
+                                        @*<li>
+                <i class="icon"></i>
+                <h4>PayPal</h4>
+            </li>
+            <li>
+                <i class="icon"></i>
+                <h4>I've raed and accept the </h4><a href="#" title="Temr &amp; conditions">Temr &amp; conditions</a>
+            </li>*@
+                                    </ul>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        @*<input type="submit" value="Create" class="btn btn-dark btn-rounded" />*@
+                                        <input class="link-v1 box lh-50 rt full" type="submit" value="@Resources.Resource.CheckOut" title="@Resources.Resource.CheckOut" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- End row -->
+        </div>
+        <!-- End container -->
+    </div>
+    <!-- End cat-box-container -->
+</div>

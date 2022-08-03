@@ -1,0 +1,92 @@
+﻿<div class="main-content">
+    @section Slider
+    {
+        <div class="container">
+            <div class="banner-header banner-lbook3 space-30">
+                <img src="/assets/images/banner-mansory.jpg" alt="Banner-header">
+                <div class="text">
+                    <h3>@Resources.Resource.AllProducts</h3>
+                    <p><a href="/Product/Index" title="Home">@Resources.Resource.Home</a><i class="fa fa-caret-right"></i>@Resources.Resource.AllProducts</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="container container-ver2 space-padding-tb-30">
+        <div class="row head-cart">
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">01</p>
+                    <h3>@Resources.Resource.ShoppingCart</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">02</p>
+                    <h3>@Resources.Resource.CheckOut</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+            @if (ViewBag.IsSuccess == true)
+            {
+            <div class="col-md-4 space-30">
+                <div class="item center active">
+                    <p class="icon">03</p>
+                    <h3>@Resources.Resource.OrderCompleted</h3>
+                </div>
+            </div>
+            }
+            else
+            {
+                <div class="col-md-4 space-30">
+                    <div class="item center">
+                        <p class="icon">03</p>
+                        <h3>@Resources.Resource.OrderIsNotCompleted</h3>
+                    </div>
+                </div>
+            }
+            <!-- End col-md-4 -->
+        </div>
+    </div>
+    <!-- End container -->
+    <div class="container container-ver2">
+        <div class="box float-left order-complete center space-50">
+            <div class="icon space-20">
+                @if (ViewBag.IsSuccess == true)
+                {
+                    <img src="~/Content/assets/images/icon-order-complete.png" alt="OrderCompleted" />
+                }
+                else
+                {
+
+                    <img src="~/Content/assets/images/icon-order-Notcomplete.png" alt="OrderNotCompleted" />
+                }
+            </div>
+            @if (ViewBag.IsSuccess == true)
+            {
+                <div class="alert alert-success">
+                    <p class="box center space-50">@Resources.Resource.ThanksForShopping</p>
+                    <p class="box center space-50">@Resources.Resource.RefId @ViewBag.RefId</p>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <p class="box center space-50">@Resources.Resource.IncompleteShopping</p>
+                    <p class="box center space-50">@Resources.Resource.Authority @ViewBag.Authority</p>
+                    @if (ViewBag.Status != null)
+                    {
+                        <p class="box center space-50">@Resources.Resource.StatusCode @ViewBag.Status</p>
+                    }
+                </div>
+            }
+
+            <div class="box">
+                <a class="link-v1 lh-50 margin-right-20 space-20" href="/" title="@Resources.Resource.HomePage">@Resources.Resource.HomePage</a>
+                <a class="link-v1 lh-50 rt space-20" href="/Product/Index" title="@Resources.Resource.ContinusShopping">@Resources.Resource.ContinusShopping</a>
+            </div>
+        </div>
+    </div>
+    <!-- End container -->
+</div>

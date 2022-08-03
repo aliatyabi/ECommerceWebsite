@@ -1,0 +1,26 @@
+﻿@model ECommerceWebsite.Models.SizeGroups
+
+@{
+    ViewBag.Title = @Resources.Resource.Details;
+}
+
+<h2>@Resources.Resource.Details</h2>
+
+<div>
+    <h4>@Resources.Resource.SizeGroups</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(@Resources.Resource.Edit, "Edit", new { id = Model.SizeGroup }) |
+    @Html.ActionLink(@Resources.Resource.BackToNewsList, "Index")
+</p>

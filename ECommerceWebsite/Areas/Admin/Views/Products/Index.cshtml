@@ -1,0 +1,253 @@
+﻿@*@model IEnumerable<ECommerceWebsite.Models.Products>*@
+
+@model PagedList.IPagedList<ECommerceWebsite.Models.Products>
+@using PagedList.Mvc;
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Categories.CategoryTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product_Categories1.CategoryTitle)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Categories.CategoryTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Categories1.CategoryTitle)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+<div id="main-content">
+    <div class="m-b-20 clearfix">
+        <div class="page-title pull-left">
+            <h3 class="pull-left"><strong>@Resources.Resource.ManageProducts</strong></h3>
+        </div>
+        <div class="pull-right">
+            <a href="/Admin/Products/Create" class="btn btn-success m-t-10"><i class="fa fa-plus p-r-10"></i>@Resources.Resource.AddAProduct</a>
+        </div>
+    </div>
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                            <div id="products-table_wrapper" class="dataTables_wrapper form-inline no-footer">
+                                <div class="row m-t-10">
+                                    <div class="col-md-6">
+                                        <div id="products-table_filter" class="dataTables_filter">
+                                            <label>
+                                                @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @placeholder = @Resources.Resource.Search, @class = "form-control" })
+                                                <input type="submit" value="@Resources.Resource.Search" class="btn btn-default DTTT_button" />
+                                                @*<input type="search" id="search" name="search" class="form-control" aria-controls="products-table" placeholder=@Resources.Resource.Search>*@
+                                            </label>
+                                        </div>
+                                    </div><div class="col-md-6"><div class="DTTT_container"><a class="btn btn-default DTTT_button DTTT_button_csv" id="ToolTables_products-table_0"><span>CSV</span><div style="position: absolute; left: 0px; top: 0px; width: 77px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_1" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="77" height="37" name="ZeroClipboard_TableToolsMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=77&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_xls" id="ToolTables_products-table_1"><span>@Resources.Resource.Excel</span><div style="position: absolute; left: 0px; top: 0px; width: 85px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_2" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="85" height="37" name="ZeroClipboard_TableToolsMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=85&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_pdf" id="ToolTables_products-table_2"><span>@Resources.Resource.PDF</span><div style="position: absolute; left: 0px; top: 0px; width: 78px; height: 37px; z-index: 99;"><embed id="ZeroClipboard_TableToolsMovie_3" src="assets/plugins/datatables/swf/copy_csv_xls_pdf.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="78" height="37" name="ZeroClipboard_TableToolsMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=78&amp;height=37" wmode="transparent"></div></a><a class="btn btn-default DTTT_button DTTT_button_print" id="ToolTables_products-table_3" title="View print view"><span>@Resources.Resource.Print</span></a></div></div>
+                                </div>
+                                <table id="products-table" class="table table-tools table-hover dataTable no-footer" role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th style="min-width: 70px; width: 75px;" class="sorting_asc" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="ID
+                                                : activate to sort column ascending" aria-sort="ascending">
+                                                <strong>@Resources.Resource.Id</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                                : activate to sort column ascending" style="width: 196px;">
+                                                <strong>@Resources.Resource.Product</strong>
+                                            </th>
+                                            @*<th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Reference
+                                                    : activate to sort column ascending" style="width: 141px;">
+                                                    <strong>Reference</strong>
+                                                </th>*@
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Article
+                                                : activate to sort column ascending" style="width: 178px;">
+                                                <strong>@Resources.Resource.Article</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Category
+                                                : activate to sort column ascending" style="width: 178px;">
+                                                <strong>@Resources.Resource.Category</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Price
+                                                : activate to sort column ascending" style="width: 77px;">
+                                                <strong>@Resources.Resource.Price</strong>
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Date added
+                                                : activate to sort column ascending" style="width: 143px;">
+                                                <strong>@Resources.Resource.DateAdded</strong>
+                                            </th>
+                                            <th style="width: 140px; text-align: center;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Stock
+                                                ">
+                                                <strong>@Resources.Resource.Stock</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Sales
+                                                " style="width: 131px;">
+                                                <strong>@Resources.Resource.Sales</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Status
+                                                " style="width: 86px;">
+                                                <strong>@Resources.Resource.Status</strong>
+                                            </th>
+                                            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions
+                                                " style="width: 239px;">
+                                                <strong>@Resources.Resource.Actions</strong>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{var i = 1; var odd = true;}
+
+                                        @foreach (var item in Model)
+                                        {
+                                            if (i % 2 == 0) { odd = false; } else { odd = true; }
+
+                                            <tr role="row" class="@(odd ? "odd" : "even")">
+                                                @{i = i + 1;}
+                                                <td class="sorting_1">@item.ProductId</td>
+                                                <td>
+                                                    @item.Title <span class="label bg-red">@Resources.Resource.LowStock</span>
+                                                </td>
+                                                <td>
+                                                    @item.Article
+                                                </td>
+                                                @*<td>BG 588 735 457</td>*@
+                                                <td>@item.Product_Categories.CategoryTitle / @item.Product_Categories1.CategoryTitle / @item.Product_Categories2.CategoryTitle / @item.Product_Categories3.CategoryTitle</td>
+                                                <td>
+                                                    @if (item.DiscountPercent == 0)
+                                                    { <strong>@item.Fee.ToString("#,0")</strong> }
+                                                    else
+                                                    {
+                                                        var dis = ((double)(100 - item.DiscountPercent) / 100);
+                                                        var newFee = (((int)(item.Fee * dis)).ToString("#,0"));
+                                                        <strong>@newFee</strong>
+                                                    }
+                                                </td>
+                                                <td>@item.CreatedDate</td>
+                                                <td class="color-success">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-danger" data-aria-valuetransitiongoal="21" style="width: 21%;" aria-valuenow="21">458</div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="sparkline" data-sparkline-color="#c3a8db" data-sparkline-value="[14,17,16,12,15,16,22,15,14,17,11,18,11,12]"><canvas width="96" height="20" style="display: inline-block; width: 96px; height: 20px; vertical-align: top;"></canvas></div>
+                                                </td>
+                                                <td class="text-center">
+                                                    @{ var cls = ""; var stat = ""; if (item.Status == 1) { cls = "label-success"; stat = @Resources.Resource.Online; }
+                                                     else if (item.Status == 2) { cls = "label-dark"; stat = @Resources.Resource.Offline; }
+                                                     else { cls = "label-danger"; stat = @Resources.Resource.Draft; } }
+                                                    <span class="label @cls w-300">@stat</span>
+                                                </td>
+                                                <td class="text-center ">
+                                                    <a href="/Admin/Products/Edit/@item.ProductId" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                                    <a onclick="deleteProduct(@item.ProductId)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+                                @*<div class="row">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6 align-right">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="products-table_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button previous disabled" aria-controls="products-table" tabindex="0" id="products-table_previous">
+                                                    <a href="#">@Resources.Resource.Previous</a>
+                                                </li>
+                                                <li class="paginate_button active" aria-controls="products-table" tabindex="0">
+                                                    <a href="#">1</a>
+                                                </li>
+                                                <li class="paginate_button " aria-controls="products-table" tabindex="0">
+                                                    <a href="#">2</a>
+                                                </li>
+                                                <li class="paginate_button next" aria-controls="products-table" tabindex="0" id="products-table_next">
+                                                    <a href="#">@Resources.Resource.Next</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+<div class="modal fade" id="modal-responsive" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="modalTitle"></h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/My Scripts/DeleteProduct.js"></script>
+}

@@ -1,0 +1,3 @@
+﻿.ui-checkbox input, .ui-radio input {
+    z-index:2;
+}

@@ -1,0 +1,291 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Product_Categories>
+
+@section Styles
+{
+    <link href="~/Areas/Admin/assets/plugins/jstree/src/themes/default/style.css" rel="stylesheet" />
+}
+
+<div id="main-content">
+
+    <div class="page-title">
+        <i class="icon-custom-left"></i>
+        @*<h3><strong>Tree</strong> view</h3>*@
+        <h3><strong>@Resources.Resource.Product </strong>@Resources.Resource.Categories</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @*<h3 class="panel-title"><strong>@Resources.Resource.Product </strong>@Resources.Resource.Categories</h3>*@
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="tree1" class="jstree jstree-1 jstree-default jstree-default-responsive" role="tree" aria-activedescendant="j1_2">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success" onclick="createCategory()">
+                                <i class="fa fa-plus"></i> @Resources.Resource.Create
+                            </button>
+                            <button class="btn btn-warning" onclick="editCategory()">
+                                <i class="fa fa-pencil"></i> @Resources.Resource.Edit
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteCategory()">
+                                <i class="fa fa-trash-o"></i> @Resources.Resource.Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-responsive" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="modalTitle">@*<strong>Responsive</strong> modal <small>Change screensize to see</small>*@</h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+                @*<div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Name</label>
+                                <input type="text" class="form-control" id="field-1" placeholder="Steve">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Surname</label>
+                                <input type="text" class="form-control" id="field-2" placeholder="Winston">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-3" class="control-label">Address</label>
+                                <input type="text" class="form-control" id="field-3" placeholder="Address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-4" class="control-label">City</label>
+                                <input type="text" class="form-control" id="field-4" placeholder="New York">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-5" class="control-label">Country</label>
+                                <input type="text" class="form-control" id="field-5" placeholder="USA">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-6" class="control-label">Zip</label>
+                                <input type="text" class="form-control" id="field-6" placeholder="24587">
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            @*<div class="modal-footer text-center">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Validate</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/assets/plugins/jstree/dist/jstree.min.js"></script>
+    <script>
+        $(function () {
+
+            $('#tree1').jstree({
+                'core': {
+                    'multiple': false,
+                    'data': {
+                        'url': '/admin/product_categories/nodes',
+                        'data': function (node) {
+                            return { 'id': node.id };
+                        }
+                    },
+                    'themes': {
+                        'variant': 'large'
+                    },
+                    'plugins': ["unique"],
+                }
+            });
+
+
+            //$('#tree1').on('changed.jstree', function (e, data) {
+            //    var i, j, r = [];
+            //    for (i = 0, j = data.selected.length; i < j; i++) {
+            //        r.push(data.instance.get_node(data.selected[i]).text);
+            //    }
+            //    alert('Selected: ' + r.join(', '));
+            //     $('#event_result').html('Selected: ' + r.join(', '));
+            //}).jstree();
+        });
+    </script>
+
+    <script>
+        function createCategory() {
+            var ref = $('#tree1').jstree(true),
+            id = ref.get_selected();
+            if (id[0] == undefined) { id[0] = null; }
+            else { id = id[0]; }
+
+            $("#modal-responsive").modal();
+            $("#modalTitle").html('<strong>@Resources.Resource.CreateCategory</strong>')
+            $("#modalBody").load("/admin/product_categories/create/" + id);
+        }
+
+        function editCategory() {
+            var ref = $('#tree1').jstree(true),
+            id = ref.get_selected();
+            if (id[0] == undefined) { id[0] = null; }
+            else { id = id[0]; }
+
+            $("#modal-responsive").modal();
+            $("#modalTitle").html('<strong>@Resources.Resource.EditCategory</strong>')
+            $("#modalBody").load("/admin/product_categories/edit/" + id);
+        }
+
+        function deleteCategory() {
+            var ref = $('#tree1').jstree(true),
+            id = ref.get_selected();
+            if (id[0] == undefined) { id[0] = null; }
+            else { id = id[0]; }
+
+            $("#modal-responsive").modal();
+            $("#modalTitle").html('<strong>@Resources.Resource.DeleteCategory</strong>')
+            $("#modalBody").load("/admin/product_categories/delete/" + id);
+        }
+
+        function closeModal() {
+            //$("#modal-responsive").modal('hide');
+            $(".close").click();
+        }
+
+    </script>
+
+    @*<script>
+            $('#jstree').jstree({
+                "core": {
+                    "multiple": false,
+                    "check_callback": true,
+                    'data': {
+                        'url': '/admin/product_categories/GetTreeJson',
+                        "type": "POST",
+                        "dataType": "json",
+                        "contentType": "application/json; charset=utf8",
+                        'data': function (node) {
+                            return { 'id': node.id };
+                        }
+                    },
+                    'themes': {
+                        'variant': 'small',
+                        'stripes': true
+                    }
+                },
+                "types": {
+                    "default": {
+                        "icon": '@Url.Content("~/Content/images/bookmark_book_open.png")'
+                    },
+                },
+                "plugins": ["contextmenu", "dnd", "state", "types", "wholerow", "sort", "unique"],
+                //"contextmenu": {
+                //    "items": function (o, cb) {
+                //        var items = $.jstree.defaults.contextmenu.items();
+                //        items["create"].label = "ایجاد زیر شاخه";
+                //        items["rename"].label = "تغییر نام";
+                //        items["remove"].label = "حذف";
+                //        var cpp = items["ccp"];
+                //        cpp.label = "ویرایش";
+                //        var subMenu = cpp["submenu"];
+                //        subMenu["copy"].label = "کپی";
+                //        subMenu["paste"].label = "پیست";
+                //        subMenu["cut"].label = "برش";
+                //        return items;
+                //    }
+                //}
+            });
+        </script>*@
+
+    @*<script>
+            function demo_creates() {
+                $("#modal-responsive").modal();
+                $("#modalTitle").html('<strong>@Resources.Resource.CreateCategory</strong>')
+                $("#modalBody").load("/admin/product_categories/create");
+            };
+
+
+            function demo_create() {
+                var ref = $('#tree1').jstree(true),
+                    sel = ref.get_selected();
+                if (!sel.length) { return false; }
+                sel = sel[0];
+                sel = ref.create_node(sel, { "type": "file" });
+                if (sel) {
+                    ref.edit(sel);
+                }
+            };
+            function demo_rename() {
+                var ref = $('#jstree_demo').jstree(true),
+                    sel = ref.get_selected();
+                if (!sel.length) { return false; }
+                sel = sel[0];
+                ref.edit(sel);
+            };
+            function demo_delete() {
+                var ref = $('#jstree_demo').jstree(true),
+                    sel = ref.get_selected();
+                if (!sel.length) { return false; }
+                ref.delete_node(sel);
+            };
+            $(function () {
+                var to = false;
+                $('#demo_q').keyup(function () {
+                    if (to) { clearTimeout(to); }
+                    to = setTimeout(function () {
+                        var v = $('#demo_q').val();
+                        $('#jstree_demo').jstree(true).search(v);
+                    }, 250);
+                });
+
+                $('#jstree_demo')
+                    .jstree({
+                        "core": {
+                            "animation": 0,
+                            "check_callback": true,
+                            'force_text': true,
+                            "themes": { "stripes": true },
+                            'data': {
+                                'url': function (node) {
+                                    return node.id === '#' ? '/static/3.3.4/assets/ajax_demo_roots.json' : '/static/3.3.4/assets/ajax_demo_children.json';
+                                },
+                                'data': function (node) {
+                                    return { 'id': node.id };
+                                }
+                            }
+                        },
+                        "types": {
+                            "#": { "max_children": 1, "max_depth": 4, "valid_children": ["root"] },
+                            "root": { "icon": "/static/3.3.4/assets/images/tree_icon.png", "valid_children": ["default"] },
+                            "default": { "valid_children": ["default", "file"] },
+                            "file": { "icon": "glyphicon glyphicon-file", "valid_children": [] }
+                        },
+                        "plugins": ["contextmenu", "dnd", "search", "state", "types", "wholerow"]
+                    });
+            });
+        </script>*@
+}

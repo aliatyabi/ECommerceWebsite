@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Feature_Values>
+
+<table class="table table-tools table-hover dataTable no-footer" role="grid">
+    <thead>
+        <tr role="row">
+            <th style="min-width: 70px; width: 75px;" class="sorting_asc" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="ID
+                                                : activate to sort column ascending" aria-sort="ascending">
+                <strong>@Resources.Resource.Id</strong>
+            </th>
+            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                                : activate to sort column ascending" style="width: 196px;">
+                <strong>@Resources.Resource.FeatureValue</strong>
+            </th>
+            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                                : activate to sort column ascending" style="width: 196px;">
+                <strong>@Resources.Resource.FeatureTitle</strong>
+            </th>
+            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions
+                                                " style="width: 239px;">
+                <strong>@Resources.Resource.Actions</strong>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var i = 1; var odd = true;}
+
+        @foreach (var item in Model)
+        {
+            if (i % 2 == 0) { odd = false; } else { odd = true; }
+
+            <tr role="row" class="@(odd ? "odd" : "even")">
+                @{i = i + 1;}
+                <td class="sorting_1">@item.FeatureValueId</td>
+                <td>
+                    @item.FeatureValue
+                </td>
+                <td class="text-center ">
+                    <a onclick="editFeatureValue(@item.FeatureValueId)" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                    <a onclick="deleteFeatureValue(@item.FeatureValueId)" class=" delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

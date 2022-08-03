@@ -1,0 +1,20 @@
+﻿.widget ul.product-categories li a:before {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.widget ul.product-categories li i {
+    right: auto;
+}
+
+.widget .widget-title:after {
+    right: 0;
+}
+
+.fa-caret-right:before {
+    content: "";
+}
+
+.ordering .order-by::after {
+    position: initial;
+}

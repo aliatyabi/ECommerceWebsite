@@ -1,0 +1,31 @@
+﻿@*@model ViewModels.Product.Feature_ValuesViewModel*@
+@model ECommerceWebsite.Models.Feature_Values
+
+<h3>@Resources.Resource.DeleteQuestion</h3>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeatureValue)
+        </dd>
+
+    </dl>
+
+    @using (Ajax.BeginForm("Delete", "Feature_Values", FormMethod.Post, new AjaxOptions { UpdateTargetId = "table", OnSuccess = "closeModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-footer text-center">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">
+                @Resources.Resource.Cancel
+            </button>
+            <button type="submit" class="btn btn-success">
+                @Resources.Resource.OK
+            </button>
+        </div>
+    }
+</div>

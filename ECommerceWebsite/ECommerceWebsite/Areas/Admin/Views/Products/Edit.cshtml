@@ -1,0 +1,1340 @@
+﻿@model ECommerceWebsite.Models.Products
+
+@*@{
+        ViewBag.Title = "Edit";
+    }
+
+    <h2>Edit</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Products</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ProductId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubCategoryId, "SubCategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SubCategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SubCategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ImageName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ImageName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+@section Styles
+{
+    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+    <link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui.css" rel="stylesheet" />
+    <!-- CSS adjustments for browsers with JavaScript disabled -->
+    <noscript><link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-noscript.css" rel="stylesheet" /></noscript>
+    <noscript><link href="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/css/jquery.fileupload-ui-noscript.css" rel="stylesheet" /></noscript>
+}
+
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @id = "form1", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.ProductId)
+    @Html.HiddenFor(model => model.ImageName)
+    @Html.HiddenFor(model => model.SubCategoryId)
+    @Html.HiddenFor(model => model.FurtherSubCategoryId)
+    @Html.HiddenFor(model => model.FurthestSubCategoryId)
+    <div id="main-content">
+        <div class="top-page clearfix">
+            <div class="page-title pull-left">
+                <i class="icon-custom-left"></i>
+                <h3>
+                    <img class="m-r-20" src="~/Areas/Admin/assets/img/various/clothing.png" alt="clothing"><strong>@Resources.Resource.Create</strong> <strong>@Resources.Resource.Or</strong><strong> @Resources.Resource.EditProduct</strong>
+                </h3>
+                <br>
+            </div>
+
+            <div id="addImage" hidden class="pull-right">
+                <input type="file" id="imageUpload" name="imageUpload" class="filestyle" multiple tabindex="-1" style="position: absolute; clip: rect(0 0 0 0);">
+                <div class="bootstrap-filestyle input-group">
+                    <span class="group-span-filestyle " tabindex="0">
+                        <label for="imageUpload" class="btn btn-primary m-t-10">
+                            <span class="icon-span-filestyle fa fa-plus"></span>
+                            <span class="buttonText"> @Resources.Resource.AddAnImage</span>
+                        </label>
+                    </span>
+                </div>
+            </div>
+
+            @*<div id="addImage" hidden class="pull-right">
+                <a class="btn btn-primary m-t-10">
+                <i class="fa fa-plus p-r-10"></i> @Resources.Resource.AddAnImage
+                </a>
+                </div>*@
+            @*<div id="addImage" hidden class="pull-right">
+                <i class="fa fa-plus p-r-10"></i> @Resources.Resource.AddAnImage
+                <input type="file" multiple />
+                </div>*@
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tabcordion">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active otherTabs"><a href="#product_general" data-toggle="tab">@Resources.Resource.General</a></li>
+                        <li class="otherTabs"><a href="#product_meta" data-toggle="tab">@Resources.Resource.SEO</a></li>
+                        <li id="images"><a href="#product_images" data-toggle="tab">@Resources.Resource.Images</a></li>
+                        <li class="otherTabs">
+                            <a href="#product_reviews" data-toggle="tab">
+                                Reviews
+                                <span class="m-l-10 badge badge-primary">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade active in" id="product_general">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Product Name <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = @Resources.Resource.ProductName } })
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                        Reference <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                        <input type="text" class="form-control" value="BG 547 874 587">
+                                        </div>
+                                        </div>*@
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.LongDescription <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.TextAreaFor(model => model.Text, 6, 20, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Resources.Resource.ShortDescription</label>
+                                        <div class="col-sm-7">
+                                            @Html.TextAreaFor(model => model.ShortDescription, 4, 20, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Categories <span class="asterisk">*</span></label>
+                                        <div class="col-sm-3" id="parentCategoryDiv">
+                                            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple", onchange = "FillGenders()" })
+                                            @*<select id="CategoryId" multiple="multiple" name="CategoryId" onchange="FillGenders()" style="display: none" title="Choose one or more">
+                                                    <optgroup label="Brand">
+                                                        @foreach (var item in ViewBag.ParentCategory)
+                                                        {
+                                                            <option value="@item.CategoryId">@item.CategoryTitle</option>
+                                                        }
+                                                    </optgroup>
+                                                    <optgroup id="addedLabel" label="Gender">
+                                                        @foreach (var item in ViewBag.SubCategory)
+                                                        {
+                                                            <option value="@item.CategoryId">@item.CategoryTitle</option>
+                                                        }
+                                                    </optgroup>
+                                                </select>*@
+                                            @*<div class="btn-group bootstrap-select show-tick">
+                                                    <button type="button" class="btn dropdown-toggle selectpicker btn-default" data-toggle="dropdown" id="CategoryId" title="@ViewBag.ParentCategoryTitle, @ViewBag.SubCategoryTitle" aria-expanded="false">
+                                                        <span class="filter-option pull-left">@ViewBag.ParentCategoryTitle, @ViewBag.SubCategoryTitle</span>&nbsp;<span class="caret"></span>
+                                                    </button>
+                                                    <div class="dropdown-menu open">
+                                                        <ul class="dropdown-menu inner selectpicker" role="menu">
+                                                            @{var cls = ""; var dis = "opt"; var cls2 = ""; var dis2 = "opt"; var x = -1; var y = -1; }
+                                                            @foreach (var item in ViewBag.ParentCategory)
+                                                            {
+                                                                x = x + 1;
+                                                                if (item.CategoryId == ViewBag.ParentCategoryId) { cls = "selected"; dis = "opt"; }
+                                                                else { cls = ""; dis = "opt ui-state-disabled"; }
+                                                                <li class=@cls id="@item.CategoryId">
+                                                                    @if (x == 0)
+                                                                    {
+                                                                        <dt><span class="text">Brand</span></dt>
+                                                                    }
+                                                                    <a tabindex="0" id="@item.CategoryId" class="@dis" style="" onclick="FillGenders()">
+                                                                        <span class="text">@item.CategoryTitle</span>
+                                                                        <i class="fa fa-check icon-ok check-mark"></i>
+                                                                    </a>
+                                                                </li>
+                                                            }
+
+                                                            @foreach (var item in ViewBag.SubCategory)
+                                                            {
+                                                                y = y + 1;
+                                                                if (item.CategoryId == ViewBag.SubCategoryId) { cls2 = " selected"; dis2 = "opt"; }
+                                                                else { cls2 = ""; dis2 = "opt ui-state-disabled"; }
+                                                                <li id="@item.CategoryId" class="addedCategory_@y @cls2">
+                                                                    @if (y == 0)
+                                                                    {
+                                                                        <div class="div-contain">
+                                                                            <div class="divider"></div>
+                                                                        </div>
+                                                                        <dt id="addedCategory">
+                                                                            <span class="text">Gender</span>
+                                                                        </dt>
+                                                                    }
+                                                                    <a tabindex="0" id="@item.CategoryId" class="@dis2" style="" onclick="FillGenders()">
+                                                                        <span class="text">@item.CategoryTitle</span>
+                                                                        <i class="fa fa-check icon-ok check-mark"></i>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>*@
+                                            @*@Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple", onchange = "FillGenders()" })*@
+                                            @*<select class="form-control" id="CategoryId" multiple="multiple" name="CategoryId" onchange="FillGenders()" style="display: none" title="Choose one or more">
+                                                    <optgroup label="Brand">
+                                                        @{var x = ""; var y = "";}
+                                                        @foreach (var item in ViewBag.ParentCategory)
+                                                        {
+                                                            if (ViewBag.ParentCategoryId == item.CategoryId)
+                                                            {
+                                                                x = "selected";
+                                                            }
+                                                            else
+                                                            {
+                                                                x = null;
+                                                            }
+                                                            <option value="@item.CategoryId" @x>@item.CategoryTitle</option>
+                                                        }
+                                                    </optgroup>
+                                                    <optgroup id="addedLabel" label="Gender">
+                                                        @foreach (var item in ViewBag.SubCategory)
+                                                        {
+                                                            if (ViewBag.SubCategoryId == item.CategoryId)
+                                                            {
+                                                                y = "selected";
+                                                            }
+                                                            else
+                                                            {
+                                                                y = null;
+                                                            }
+                                                            <option value="@item.CategoryId" @y>@item.CategoryTitle</option>
+                                                        }
+                                                    </optgroup>
+                                                </select>*@
+
+
+                                        </div>
+                                        @*<div class="col-sm-2" id="GendersDiv">
+                                                @Html.DropDownList("SubCategoryId", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple", onchange = "" })
+                                            </div>*@
+
+                                        <div class="col-sm-2" id="DivisionDiv">
+                                            @Html.DropDownList("SubCategoryId", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple", onchange = "FillDivisions()" })
+                                        </div>
+
+                                        <div class="col-sm-2" id="SportsCodeDiv">
+                                            @Html.DropDownList("SubCategoriesId", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple" })
+                                        </div>
+
+                                        @*@Html.Partial("_PartialProductSubCategory")*@
+                                        @*<div class="col-sm-3" id="DivisionDiv">
+                                            @Html.DropDownList("ddldivision", null, htmlAttributes: new { @class = "form-control", title = @Resources.Resource.ChooseOneOrMore, style = "display: none", multiple = "multiple" })
+                                            <select id="ddldivision" name="ddldivision" class="form-control" multiple="multiple"></select>
+                                            </div>*@
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.Fee <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label m-t-10">
+                                            @Resources.Resource.Status <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <div class="row">
+                                                @*<div class="col-md-3">
+                                                    <div class="ui-radio">
+                                                    <label for="radio1" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">
+                                                    Online
+                                                    </label>
+                                                    <input id="radio1" type="radio" name="Status" value="1" checked="" data-cacheval="false" />
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                    <div class="ui-radio">
+                                                    <label for="radio2" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">
+                                                    Offline
+                                                    </label>
+                                                    <input id="radio2" type="radio" name="Status" value="2" data-cacheval="true">
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                    <div class="ui-radio">
+                                                    <label for="radio3" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on">
+                                                    Draft
+                                                    </label>
+                                                    <input id="radio3" type="radio" name="Status" value="3" data-cacheval="false">
+                                                    </div>
+                                                    </div>*@
+                                                @{
+    var online = Model.Status == 1 ? new { @checked = "checked", @id = "radio1" } : null;
+    var offline = Model.Status == 2 ? new { @checked = "checked", @id = "radio2" } : null;
+    var draft = Model.Status == 3 ? new { @checked = "checked", @id = "radio3" } : null;
+                                                }
+
+                                                <div class="col-md-3">
+                                                    <label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left">
+                                                        @Resources.Resource.Online
+                                                        @Html.RadioButtonFor(model => model.Status, "1", online)
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-3">
+
+                                                    <label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left">
+                                                        @Resources.Resource.Offline
+                                                        @Html.RadioButtonFor(model => model.Status, "2", offline)
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left">
+                                                        @Resources.Resource.Draft
+                                                        @Html.RadioButtonFor(model => model.Status, "3", draft)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.Comment
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.TextAreaFor(model => model.Comment, 5, 20, new { @class = "form-control valid" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="product_meta">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Meta Title <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7">
+                                            @Html.EditorFor(model => model.Product_Tags.FirstOrDefault(p => p.ProductId == Model.ProductId).MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            Meta Description <span class="asterisk">*</span>
+                                        </label>
+                                        <div class="col-sm-7" id="sabr">
+                                            @Html.TextAreaFor(model => model.Product_Tags.FirstOrDefault(p => p.ProductId == model.ProductId).MetaDescription, 4, 20, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            @Resources.Resource.MetaKeywords
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <textarea rows="6" id="metaKeywords" name="metaKeywords" class="form-control">@string.Join("-", Model.Product_Tags.Select(t => t.MetaKeyword).ToList())</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*@Html.Partial("_PartialCreateProductImages")*@
+                        <div class="tab-pane fade" id="product_images">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="product-review" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:100px">
+                                                    <strong>Preview</strong>
+                                                </th>
+                                                <th style="min-width:150px">
+                                                    <strong>Label</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>Main image</strong>
+                                                </th>
+
+                                                <th>
+                                                    <strong>Gallery</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Actions</strong>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:20%">
+                                                    <a href="/Areas/Admin/assets/img/gallery/animal1.jpg" class="magnific" title="Nature 1">
+                                                        <img src="~/Images/Products/Original/@Model.ImageName" alt="@Model.ImageName" class="img-responsive">
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control m-t-10" value="@Model.ImageName">
+                                                </td>
+                                                <td>
+                                                    <label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30" style="padding:0em 1em;">
+                                                        <input type="radio" name="product-main" class="mainPic0" checked data-cacheval="false" onclick="PicClick(0)">
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off m-t-30" style="padding:0em 1em;">
+                                                        <input type="radio" name="product-main" class="galleryPic0" data-cacheval="false" onclick="PicClick(0)">
+                                                    </label>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a id="remove0" onclick="remove(0)" class="delete-img btn btn-sm btn-default m-t-10">
+                                                        <i class="fa fa-times-circle"></i> Remove
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                            @{var i = 0;}
+                                            @foreach (var item in Model.Product_Gallery.Where(p => p.ProductId == Model.ProductId).Where(p => p.ImageName != Model.ImageName))
+                                            {
+                                                i = i + 1;
+                                                var name = "product" + i + "-gallery";
+                                                var clsMain = "mainPic" + i;
+                                                var clsGallery = "galleryPic" + i;
+                                                var id = "remove" + i;
+                                                <tr>
+                                                    <td style="width:20%">
+                                                        <a href="/Areas/Admin/assets/img/gallery/animal1.jpg" class="magnific" title="Nature 1">
+                                                            <img src="~/Images/Products/Original/@item.ImageName" alt="@item.ImageName" class="img-responsive">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control m-t-10" value="@item.ImageName">
+                                                    </td>
+                                                    <td>
+                                                        <label class="ui-corner-all ui-btn-inherit ui-btn-icon-left m-t-30" style="padding:0em 1em;">
+                                                            <input type="radio" name=@name class=@clsMain data-cacheval="false" onclick="PicClick(@i)">
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30" style="padding:0em 1em;">
+                                                            <input type="radio" name=@name class=@clsGallery cheked data-cacheval="false" onclick="PicClick(@i)">
+                                                        </label>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a id=@id onclick="remove(@i)" class="delete-img btn btn-sm btn-default m-t-10">
+                                                            <i class="fa fa-times-circle"></i> Remove
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="product_reviews">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-tools table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width:70px">
+                                                    <strong>Review ID</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>Review Date</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>User / Client</strong>
+                                                </th>
+                                                <th>
+                                                    <strong>Review Content</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Status</strong>
+                                                </th>
+                                                <th class="text-center">
+                                                    <strong>Actions</strong>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>03/11/2013</td>
+                                                <td>John Addams</td>
+                                                <td>Very good product. Low price. I like it a lot. Thanks! </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success w-300">Approved</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>02/11/2013</td>
+                                                <td>Fred Aster</td>
+                                                <td>I sell my car. Do you want to buy it?</td>
+                                                <td class="text-center">
+                                                    <span class="label label-danger w-300">Rejected</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>01/11/2013</td>
+                                                <td>Mike Johson</td>
+                                                <td>I like this shirt. Quick delivery. </td>
+                                                <td class="text-center">
+                                                    <span class="label label-info w-300">Pending</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>25/10/2013</td>
+                                                <td>Amanda Taping</td>
+                                                <td>Love it. </td>
+                                                <td class="text-center">
+                                                    <span class="label label-success w-300">Approved</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>20/10/2013</td>
+                                                <td>John Johnson</td>
+                                                <td>Beautiful shirt</td>
+                                                <td class="text-center">
+                                                    <span class="label label-success w-300">Approved</span>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="ecommerce_product_view.html" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> Edit</a>
+                                                    <a href="#" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> Remove</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 m-t-20 m-b-40 align-center">
+                            <a href="ecommerce_products.html" class="btn btn-default m-r-10 m-t-10"><i class="fa fa-reply"></i> Cancel</a>
+                            <a href="ecommerce_products.html" class="btn btn-danger m-r-10 m-t-10"><i class="fa fa-times"></i> Delete Product</a>
+                            @*<a href="ecommerce_products.html" class="btn btn-success m-t-10"><i class="fa fa-check"></i> Save changes</a>*@
+                            <button id="btnSubmit" class="btn btn-success m-t-10" type="submit"><i class="fa fa-check"></i> Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/js/vendor/jquery.ui.widget.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/js/jquery.iframe-transport.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/jQuery-File-Upload-9.18.0/js/jquery.fileupload.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <div>
+        <script>
+            $(function () {
+                $("#images").click(function () {
+                    $("#addImage").show();
+                });
+
+                $(".otherTabs").click(function () {
+                    $("#addImage").hide();
+                });
+            });
+        </script>
+        <script>
+            $(function () {
+                $("#images").click(function () {
+                    //$("input[name *='gallery']").click();
+                    CheckImages();
+                });
+            })
+        </script>
+    </div>
+
+    <div>
+        <script>
+            function FillGenders(x) {
+                // get selected value of dropdownlist
+                var selected = $("#CategoryId").val();
+
+                if(typeof x != 'undefined')
+                {
+                    selected.push(x);
+                }
+
+                if (selected != null)  // if one category selected others will disable and when it deselect genders will remove.
+                {
+                    // if just one item was selected disable other options
+                    if (selected.length == 1) {
+                        $("ul.dropdown-menu li:not(.selected)").each(function (index) {
+                            $("ul.dropdown-menu li:not(.selected) a").addClass("ui-state-disabled");
+                        });
+
+                        // if there is second drop down list then hide it
+                        $("#DivisionDiv").html('');
+                        $("#SportsCodeDiv").html('');
+
+                        // if there is any sub category they will remove
+                        if ($('#addedCategory').length) {
+                            $("dt#addedCategory").remove();
+                            $(".div-contain").remove();
+                            $("li[class*=addedCategory]").removeClass("selected");
+                            $("[class*=addedCategory]").remove();
+                            $("optgroup#addedLabel").remove();
+
+                            // if uncheck parent category then all parent categories will enable
+                            if (!$("li").hasClass("selected")) {
+                                $("ul.dropdown-menu li").each(function (index) {
+                                    $("ul.dropdown-menu li a").removeClass("ui-state-disabled");
+                                });
+
+                                // no item selected
+                                $("#CategoryId").val(null);
+
+                                //change title of drop down list
+                                $("button.selectpicker").prop("title", "@Resources.Resource.ChooseOneOrMore");
+                                $("button.selectpicker span.filter-option").text("@Resources.Resource.ChooseOneOrMore");
+                            }
+
+                            $("[class^=addedCategory]").each(function (index) {
+                                $("a.ui-state-disabled").removeClass("ui-state-disabled");
+                            });
+                        }
+                    }
+
+                    var brandId = selected[0];
+                    var genderId = selected[1];
+                }
+                    // if first sub category uncheck then parent category uncheck and there is no item selected
+                    // then all sub categories will remove
+                else {
+                    $("ul.dropdown-menu li").each(function (index) {
+                        $("ul.dropdown-menu li a").removeClass("ui-state-disabled");
+                    });
+                    var brandId = null;
+                    $("dt#addedCategory").remove();
+                    $(".div-contain").remove();
+                    $("[class^=addedCategory]").remove();
+                }
+
+                // if one sub category is selected
+                if ($('#addedCategory').length) {
+                    $("[class^=addedCategory]").each(function (i, obj) {
+                        if ($(obj).is('#' + genderId)) {
+                            $(obj).addClass('selected');
+                        }
+                    });
+
+                    // disable other sub categories
+                    $("ul.dropdown-menu li[class^=addedCategory]:not(.selected)").each(function (index) {
+                        $("ul.dropdown-menu li[class^=addedCategory]:not(.selected) a").addClass("ui-state-disabled");
+                    });
+                }
+                    // when one parent category is selected then it will show its sub categories
+                else {
+                    $.ajax({
+                        url: '/admin/products/FillGenders',
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { brand: brandId },
+                        async: false,
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        },
+                        success: function (genders) {
+                            if ($("ul.dropdown-menu li").hasClass('selected') && genders.length > 0) {
+                                if ($("select.form-control").find("#addedLabel").length) {
+                                    $("select.form-control").find("#addedLabel").remove();
+                                }
+
+                                $("select.form-control#CategoryId").append(
+                                        '<optgroup id="addedLabel" label="@Resources.Resource.Gender"></optgroup>');
+
+                                $.each(genders, function (i, gender) {
+                                    $("ul.dropdown-menu:not(#subCategory)").append(
+                                                '<li id="' + gender.CategoryId + '" class="addedCategory_' + i + '">' +
+                                                '<a tabindex="0" class="opt" style="" onclick="GetDivisions(' + gender.CategoryId + ')">' +
+                                                    '<span class="text">' + gender.CategoryTitle + '</span>' +
+                                                    '<i class="fa fa-check icon-ok check-mark"></i>' +
+                                                '</a>' +
+                                                '</li>');
+
+                                    $("#addedLabel").append('<option value=' + gender.CategoryId + '>' + gender.CategoryTitle + '</option>');
+                                });
+
+                                // add option label to group of sub categories
+                                $("li.addedCategory_0").prepend(
+                                '<div class="div-contain"><div class="divider"></div></div>' +
+                                '<dt id="addedCategory"><span class="text">@Resources.Resource.Gender</span></dt>');
+                            }
+                        }
+                    });
+                }
+            }
+        </script>
+
+    </div>
+    <div>
+        <script>
+            function GetDivisions(genderId) {
+                FillGenders(genderId);
+                $.ajax({
+                    url: '/admin/products/FillDivisions',
+                    type: "GET",
+                    data: { genderId: genderId },
+                    async: false,
+                    error: function (request, status, error) {
+                        alert(request.responseText);
+                    },
+                    success: function (data) {
+                        if (data != null) {
+                            $("#DivisionDiv").html(data);
+                            $('#DivisionDiv').fadeIn('slow');
+                        }
+                    }
+                });
+
+                $("#DivisionDiv ul.dropdown-menu li:not(.selected) a").removeClass("ui-state-disabled");
+            }
+        </script>
+
+    </div>
+
+    <div>
+        <script>
+            function GetSportsCode(divisionId) {
+                $.ajax({
+                    url: '/admin/products/FillSportsCode',
+                    type: "GET",
+                    data: { divisionId: divisionId },
+                    async: false,
+                    error: function (request, status, error) {
+                        alert(request.responseText);
+                    },
+                    success: function (data) {
+                        if (data != null) {
+                            $("#SportsCodeDiv").html(data);
+                            $('#SportsCodeDiv').fadeIn('slow');
+                        }
+                    }
+                });
+            }
+        </script>
+    </div>
+
+
+
+    <div>
+        <script>
+            function FillDivisions(id) {
+                // prevent close drop down list when some item has been selected.
+                event.stopPropagation();
+                // put tick beside of selected item
+                $("li#" + id).toggleClass("selected", "");
+
+                // if one item selected
+                if ($("li#" + id).hasClass("selected")) {
+                    var selected = $("li#" + id).find("a span").text();
+                    $("#DivisionDiv button span:first-child").html(selected);
+
+                    // Disable other items
+                    $("#DivisionDiv ul.dropdown-menu li").each(function (index) {
+                        $("#DivisionDiv ul.dropdown-menu li:not(#" + id + ") a").addClass("ui-state-disabled");
+                    });
+
+                    $(function () {
+                        GetSportsCode(id);
+                    });
+                }
+                else {
+                    $("#DivisionDiv button span:first-child").html("@Resources.Resource.ChooseOneOrMore");
+
+                    // Enable all items
+                    $("#DivisionDiv ul.dropdown-menu li").each(function (index) {
+                        $("#DivisionDiv ul.dropdown-menu li:not(#" + id + ") a").removeClass("ui-state-disabled");
+                    });
+
+                    $("#SportsCodeDiv").html('');
+                }
+            }
+        </script>
+    </div>
+
+    <div>
+        <script>
+            function FillSportsCode(id) {
+                // prevent close drop down list when some item has been selected.
+                event.stopPropagation();
+                // put tick beside of selected item
+                $("li#" + id).toggleClass("opt selected", "opt");
+
+                // if one item selected
+                if ($("li#" + id).hasClass("selected")) {
+                    var selected = $("li#" + id).find("a span").text();
+                    $("#btnSubCategories span:first-child").html(selected);
+
+                    // Disable other items
+                    $("ul.dropdown-menu#subCategories li").each(function (index) {
+                        $("ul.dropdown-menu#subCategories li:not(#" + id + ") a").addClass("ui-state-disabled");
+                    });
+
+                    $.ajax({
+                        url: '/admin/products/GetSportsCode',
+                        type: "GET",
+                        data: { sportsCodeId: id },
+                        async: false,
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        },
+                        success: function (data) {
+                            if (data != null) {
+                            }
+                        }
+                    });
+                }
+                else {
+                    $("#btnSubCategories span:first-child").html("@Resources.Resource.ChooseOneOrMore");
+
+                    // Enable all items
+                    $("ul.dropdown-menu#subCategories li").each(function (index) {
+                        $("ul.dropdown-menu#subCategories li:not(#" + id + ") a").removeClass("ui-state-disabled");
+                    });
+                }
+            }
+        </script>
+    </div>
+
+    <div>
+        <script>
+            window.onload = function () {
+                    //Check File API support
+                    if (window.File && window.FileList && window.FileReader) {
+                        $('#imageUpload').live("click change", function (event) {
+
+                            var files = event.target.files; //FileList object
+                            var output = $("#product-review").find('tbody');
+
+                            var count = $("#product-review > tbody > tr").length;
+                            for (var i = 0; i < files.length; i++) {
+                                var file = files[i];
+                                //Only pics
+                                // if(!file.type.match('image'))
+                                if (file.type.match('image.*')) {
+                                    if (this.files[0].size < 2097152) {
+                                        // continue;
+                                        var picReader = new FileReader();
+                                        picReader.fileName = file.name;
+                                        if (i == 0 && count == 0) { picReader.tagName = "product-main", picReader.checked = "checked", picReader.id = i }
+                                        else if (i != 0 && count == 0) { picReader.tagName = "product" + i + "-gallery", picReader.checked = "checked", picReader.id = i }
+                                        else if (count != 0) { picReader.tagName = "product" + count + "-gallery", picReader.checked = "checked", picReader.id = count,count++ }
+                                        picReader.addEventListener("load", function (event) {
+                                            var picFile = event.target;
+                                            output.append($('<tr>' +
+                                                        '<td style="width:20%">' +
+                                                            '<a href="/Areas/Admin/assets/img/gallery/animal1.jpg" class="magnific" title="Nature 1">' +
+                                                                '<img src=' + picFile.result + ' alt="' + picFile.fileName + '" class="img-responsive">' +
+                                                            '</a>' +
+                                                        '</td>' +
+                                                        '<td>' +
+                                                            '<input type="text" class="form-control m-t-10" value="' + picFile.fileName + '">' +
+                                                        '</td>' +
+                                                        '<td>' +
+                                                            '<div class=" ui-radio">' +
+                                                            '<label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30"></label>' +
+                                                            '<input type="radio" name="' + picFile.tagName + '" class="mainPic' + picFile.id + '"' + picFile.checked + ' data-cacheval="false" onclick="PicClick(' + picFile.id + ')"></div>' +
+                                                        '</td>' +
+                                                        //'<td>' +
+                                                        //    '<div class=" ui-radio">' +
+                                                        //    '<label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30"></label>' +
+                                                        //    '<input type="radio" name="' + picFile.tagName + '" class="thumbPic' + picFile.id + '"' + picFile.check + ' data-cacheval="false" onclick="PicClick(' + picFile.id + ')"></div>' +
+                                                        //'</td>' +
+                                                        '<td>' +
+                                                            '<div class=" ui-radio">' +
+                                                            '<label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30"></label>' +
+                                                            '<input type="radio" name="' + picFile.tagName + '" class="galleryPic' + picFile.id + '"' + picFile.checked + ' data-cacheval="false" onclick="PicClick(' + picFile.id + ')"></div>' +
+                                                        '</td>' +
+                                                        '<td class="text-center">' +
+                                                            '<a id="remove' + picFile.id + '" onclick="remove(' + picFile.id + ')" class="delete-img btn btn-sm btn-default m-t-10"><i class="fa fa-times-circle"></i> Remove</a>' +
+                                                        '</td>' +
+                                                    '</tr>'));
+                                        });
+                                        //Read the image
+                                        picReader.readAsDataURL(file);
+
+                                    } else {
+                                        alert("Image Size is too big. Minimum size is 2MB.");
+                                        $(this).val("");
+                                    }
+                                } else {
+                                    alert("You can only upload image file.");
+                                    $(this).val("");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        console.log("Your browser does not support File API");
+                    }
+                }       
+        </script>
+        <script>
+            var removedPics = [];
+            function remove(id) {
+                var row = $("#remove" + id).parent().parent();
+                var removedPic = $(row).children().eq(1).find('input').val();
+                row.remove();
+                if (row.find("input[class^='mainPic']").is(":checked")) {
+                    $("#btnSubmit").prop('disabled', true);
+                }
+
+                removedPics.push(removedPic);
+            };
+            // ------------------------------------------------------------------------------------------------------------------------------
+            //$('#imageUpload').on("change", function (event) {
+            //    //alert("change");
+            //    var files = event.target.files; //FileList object
+            //    var output = $("#product-review").find('tbody');
+
+            //    var count = $("#product-review > tbody > tr").length;
+            //    for (var i = 0; i < files.length; i++) {
+            //        var file = files[i];
+            //        //Only pics
+            //        // if(!file.type.match('image'))
+            //        if (file.type.match('image.*')) {
+            //            if (this.files[0].size < 2097152) {
+            //                // continue;
+            //                var picReader = new FileReader();
+            //                picReader.fileName = file.name;
+            //                if (i == 0 && count == 0) { picReader.tagName = "product-main", picReader.checked = "checked", picReader.id = i }
+            //                else if (i != 0 && count == 0) { picReader.tagName = "product" + i + "-gallery", picReader.checked = "checked", picReader.id = i }
+            //                else if (count != 0) { picReader.tagName = "product" + count + "-gallery", picReader.checked = "checked", picReader.id = count, count++; }
+            //                picReader.addEventListener("change", function (event) {
+            //                    var picFile = event.target;
+            //                    output.append($('<tr>' +
+            //                                '<td style="width:20%">' +
+            //                                    '<a href="/Areas/Admin/assets/img/gallery/animal1.jpg" class="magnific" title="Nature 1">' +
+            //                                        '<img src=' + picFile.result + ' alt="' + picFile.fileName + '" class="img-responsive">' +
+            //                                    '</a>' +
+            //                                '</td>' +
+            //                                '<td>' +
+            //                                    '<input type="text" class="form-control m-t-10" value="' + picFile.fileName + '">' +
+            //                                '</td>' +
+            //                                '<td>' +
+            //                                    '<div class=" ui-radio">' +
+            //                                    '<label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30"></label>' +
+            //                                    '<input type="radio" name="' + picFile.tagName + '" class="mainPic' + picFile.id + '"' + picFile.checked + ' data-cacheval="false" onclick="PicClick(' + picFile.id + ')"></div>' +
+            //                                '</td>' +
+            //                                //'<td>' +
+            //                                //    '<div class=" ui-radio">' +
+            //                                //    '<label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30"></label>' +
+            //                                //    '<input type="radio" name="' + picFile.tagName + '" class="thumbPic' + picFile.id + '"' + picFile.check + ' data-cacheval="false" onclick="PicClick(' + picFile.id + ')"></div>' +
+            //                                //'</td>' +
+            //                                '<td>' +
+            //                                    '<div class=" ui-radio">' +
+            //                                    '<label class="ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on m-t-30"></label>' +
+            //                                    '<input type="radio" name="' + picFile.tagName + '" class="galleryPic' + picFile.id + '"' + picFile.checked + ' data-cacheval="false" onclick="PicClick(' + picFile.id + ')"></div>' +
+            //                                '</td>' +
+            //                                '<td class="text-center">' +
+            //                                    '<a id="remove' + picFile.id + '" onclick="remove(' + picFile.id + ')" class="delete-img btn btn-sm btn-default m-t-10"><i class="fa fa-times-circle"></i> Remove</a>' +
+            //                                '</td>' +
+            //                            '</tr>'));
+            //                });
+            //                //Read the image
+            //                picReader.readAsDataURL(file);
+
+            //            } else {
+            //                alert("Image Size is too big. Minimum size is 2MB.");
+            //                $(this).val("");
+            //            }
+            //        } else {
+            //            alert("You can only upload image file.");
+            //            $(this).val("");
+            //        }
+            //    }
+            //    $("#imageUpload").unbind('change');
+            //});
+            // ------------------------------------------------------------------------------------------------------------------------------
+        </script>
+
+        <script>
+            $("#form1").submit(function(event){
+                event.preventDefault();
+
+                //PicClick(0);
+
+                $.ajax({
+                    url: '/admin/products/RemoveImages',
+                    type: "Get",
+                    dataType: "JSON",
+                    traditional: true,
+                    data: { removedPics: removedPics },
+                    async: false,
+                    error: function (request, status, error) {
+                        alert(request.responseText);
+                    },
+                    success: function (data) {
+                        if (data != null) {
+                        }
+                    }
+                });
+
+                $(this).unbind('submit').submit();
+            });
+        </script>
+    </div>
+    <div>
+        <script>
+            function CheckImages(){
+                //Check other images as gallery image
+                $("input[class *='gallery']").each(function (index) {
+                    if(index != 0)
+                    {
+                        $(this).prop('checked','checked');
+                    }
+                });
+            }
+
+            function PicClick(id) {
+                var mainPicCount = 0;
+                //var thumbPicCount = 0;
+
+                // Count how many mainpic are checked
+                $("input[class^=mainPic]").each(function () {
+                    if ($(this).is(":checked")) {
+                        mainPicCount += 1;
+                    }
+                });
+
+                if (mainPicCount == 0) {
+                    $("#btnSubmit").prop('disabled', true);
+                    alert("Main picture must be at least one image");
+                }
+
+                // if mainpic selected are above one then submit button will disabled
+                if (mainPicCount > 1) {
+                    $("#btnSubmit").prop('disabled', true);
+                    alert("Main picture must be one image");
+                }
+                else {
+                    $("#btnSubmit").prop('disabled', false);
+                }
+
+                //// Count how many mainpic are checked
+                //$("input[class^=thumbPic]").each(function () {
+                //    if ($(this).is(":checked")) {
+                //        thumbPicCount += 1;
+                //    }
+                //});
+
+                //// if thumbpic selected are above one then submit button will disabled
+                //if (thumbPicCount > 1) {
+                //    $("#btnSubmit").prop('disabled', true);
+                //    alert("Thumbnail picture must be one image");
+                //}
+                //else {
+                //    $("#btnSubmit").prop('disabled', false);
+                //}
+
+                // if mainpic and thumbpic are equal one then submit button will enabled
+                if (mainPicCount == 1 /*&& thumbPicCount == 1*/) {
+
+                    var mainPicParent;
+                    var mainPicRow;
+                    var mainPicName;
+                    //var thumbPicParent;
+                    //var thumbPicRow;
+                    //var thumbPicName;
+
+                    $("input[class^=mainPic]").each(function () {
+                        if ($(this).is(":checked")) {
+                            mainPicParent = $(this).parents()[2];
+                            mainPicRow = $(mainPicParent).children()[1];
+                            mainPicName = $(mainPicRow).find("input").val();
+                        }
+                    });
+
+                    //$("input[class^=thumbPic]").each(function () {
+                    //    if ($(this).is(":checked")) {
+                    //        var x = 2;
+                    //        thumbPicParent = $(this).parents()[2];
+                    //        thumbPicRow = $(thumbPicParent).children()[1];
+                    //        thumbPicName = $(thumbPicRow).find("input").val();
+                    //    }
+                    //});
+                    //var radioParent = $("input.mainPic" + id).parents()[2];
+                    //var mainPicRow = $(radioParent).children()[1];
+                    //var imageName = $(mainPicRow).find("input").val();
+
+                    $("#btnSubmit").prop('disabled', false);
+
+                    $.ajax({
+                        url: '/admin/products/Images',
+                        type: "Get",
+                        dataType: "JSON",
+                        data: { mainPicName: mainPicName /*, thumbPicName: thumbPicName*/ },
+                        async: false,
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+                    });
+                }
+                else {
+                    $("#btnSubmit").prop('disabled', true);
+                }
+            }
+        </script>
+    </div>
+
+    <div>
+        <script>
+            $("#parentCategoryDiv").on('click',function () {
+                //$("#CategoryId").find(":selected").removeAttr("selected");
+                //var selectedItems = [];
+
+                //$("#CategoryId option:selected").each(function(index){
+                //    selectedItems.push($(this).val());
+                //});
+                var selectedCount = $("#parentCategoryDiv ul.dropdown-menu li.selected").length;
+
+                if(selectedCount > 1)
+                {
+                    $("#parentCategoryDiv ul.dropdown-menu li:not(.selected) a").addClass("ui-state-disabled");
+                }
+
+                $("#CategoryId").children().eq(1).prop('id','addedLabel');
+
+                $("#parentCategoryDiv show-tick ul.dropdown-menu li:not(.selected)").each(function (index) {
+                    if($(this).hasClass("addedCategory_"))
+                    {
+
+                    }
+                    else
+                    {
+                        $("parentCategoryDiv ul.dropdown-menu li:not(.selected) a").addClass("ui-state-disabled");
+                    }
+                });
+
+                var brandCount = @ViewBag.brandCount;
+                var i = 0;
+
+                $("div#parentCategoryDiv div.show-tick div.dropdown-menu ul.selectpicker li").each(function (index) {
+                    if(index > brandCount - 1){
+                        $(this).addClass('addedCategory_' + i);
+                        i++;
+                    }
+                });
+
+                $("li.addedCategory_0 dt").prop('id','addedCategory');
+            });
+
+            //$("#DivisionDiv").click(function(){
+            //    //$("ul.dropdown-menu li:not(.selected) a").addClass("ui-state-disabled");
+
+            //    var x = [];
+            //    $("#FurtherSubCategoryId option").each(function(index){
+            //        x.push($(this).val());
+            //    });
+
+            //    $("#DivisionDiv ul.dropdown-menu li").each(function(index){
+            //        $(this).prop('id',x[index]);
+            //    });
+
+            //    $("#DivisionDiv ul.dropdown-menu li a").each(function(index){
+            //        $(this).attr('onclick','FillDivisions('+x[index]+')');
+            //    });
+            //});
+
+            //$("#DivisionDiv").one('click',function(){
+            //    $("#parentCategoryDiv").click();
+            //    var selectedGender = $("#CategoryId optgroup#addedLabel option:selected").val();
+            //    var selectedDivision = $("#FurtherSubCategoryId option:selected").val();
+            //    var selectedSportsCode = $("#FurthestSubCategoryId option:selected").val();
+
+            //    GetDivisions(selectedGender);
+            //    FillDivisions(selectedDivision);
+            //    GetSportsCode(selectedDivision);
+
+            //    var k = $("#SportsCodeDiv #subCategories li").prop('id',selectedSportsCode);
+            //});
+        </script>
+
+        <script>
+            $("#DivisionDiv").on('click',function(){
+                if(!$("#DivisionDiv ul.dropdown-menu li").hasClass('selected'))
+                {
+                    $("#DivisionDiv ul.dropdown-menu li a").removeClass("ui-state-disabled");
+                }
+                else
+                {
+                    $("#DivisionDiv ul.dropdown-menu li:not(.selected) a").addClass("ui-state-disabled");
+
+                    var x = [];
+                    $("#SubCategoryId option").each(function(index){
+                        x.push($(this).val());
+                    });
+
+                    $("#DivisionDiv ul.dropdown-menu li").each(function(index){
+                        $(this).prop('id',x[index]);
+                    });
+
+                    $("#DivisionDiv ul.dropdown-menu li a").each(function(index){
+                        $(this).attr('onclick','FillDivisions('+x[index]+')');
+                    });
+                }
+            });
+
+            $("#SportsCodeDiv").on('click',function(){
+                if(!$("#SportsCodeDiv ul.dropdown-menu li").hasClass('selected'))
+                {
+                    $("#SportsCodeDiv ul.dropdown-menu li a").removeClass("ui-state-disabled");
+                }
+                else
+                {
+                    $("#SportsCodeDiv ul.dropdown-menu li:not(.selected) a").addClass("ui-state-disabled");
+
+                    var x = [];
+                    $("#SubCategoriesId option").each(function(index){
+                        x.push($(this).val());
+                    });
+
+                    $("#SportsCodeDiv ul.dropdown-menu li").each(function(index){
+                        $(this).prop('id',x[index]);
+                    });
+
+                    $("#SportsCodeDiv ul.dropdown-menu li a").each(function(index){
+                        $(this).attr('onclick','FillSportsCode('+x[index]+')');
+                    });
+                }
+            });
+        </script>
+
+        @*<script>
+                $(function(){
+                    var selectedBrand = $("#CategoryId").children().eq(0).find("option:selected").val();
+                    var selectedGender = $("#CategoryId").children().eq(1).find("option:selected").val();
+                    var selectedBrandandGender = $.merge([selectedBrand], [selectedGender]);
+                    var selectedDivision = $("#FurtherSubCategoryId option:selected").val();
+                    var selectedSportsCode = $("#FurthestSubCategoryId option:selected").val();
+
+                    //parentCategoryDiv.click();
+                    //$("#CategoryId").val(selectedBrandandGender);
+                    $("#FurtherSubCategoryId").val(selectedDivision);
+                    $("#FurthestSubCategoryId").val(selectedSportsCode);
+                    //FillGenders(selectedBrandandGender);
+                    //FillGenders(selectedGender);
+                    //FillDivisions(selectedDivision);
+                    //FillSportsCode(selectedSportsCode);
+                    //GetDivisions(selectedGender);
+                    //GetSportsCode(selectedDivision);
+                });
+
+                //$("#DivisionDiv").one('click',function(){
+                //    var selectedGender = $("#CategoryId").children().eq(1).find("option:selected").val();
+                //    var selectedSportsCode = $("#FurthestSubCategoryId option:selected").val();
+                //    GetDivisions(selectedGender);
+                //    var x = $("#DivisionDiv ul.dropdown-menu li").prop('id',selectedSportsCode);
+                //});
+
+            </script>*@
+    </div>
+}

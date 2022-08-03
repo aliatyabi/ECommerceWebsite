@@ -1,0 +1,132 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Products>
+
+@section Styles{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
+@section Slider
+{
+    <div class="container">
+        <div class="banner-header banner-lbook3 space-30">
+            <img src="/assets/images/banner-mansory.jpg" alt="Banner-header">
+            <div class="text">
+                <h3>all products</h3>
+                <p><a href="#" title="Home">Home</a><i class="fa fa-caret-right"></i>All Products</p>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container">
+    <div id="primary" class="col-xs-12 col-md-9">
+        <div class="wrap-breadcrumb">
+            <div class="ordering">
+                <div class="float-left">
+                    <span class="col active"></span>
+                    <span class="list"></span>
+                    <p class="result-count">Showing 1-12 of 30 relults</p>
+                </div>
+                <div class="float-right">
+                    <form action="#" method="get" class="order-by">
+                        <p>Sort by :</p>
+                        <select class="orderby" name="orderby">
+                            <option>popularity</option>
+                            <option selected="selected">average rating</option>
+                            <option>newness</option>
+                            <option>price: low to high</option>
+                            <option>price: high to low</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="products ver2 grid_full grid_sidebar hover-shadow furniture">
+            @foreach (var item in Model)
+            {
+                <div class="item-inner">
+                    @Html.Partial("_PartialProduct", item)
+                </div>
+            }
+            <!-- End product -->
+        </div>
+        <!-- End product-content products  -->
+        <div class="pagination-container">
+            <nav class="pagination align-right">
+                <a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i></a>
+                <span class="page-numbers current">1</span>
+                <a class="page-numbers" href="#">2</a>
+                <a class="page-numbers" href="#">3</a>
+                <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>
+            </nav>
+        </div>
+        <!-- End pagination-container -->
+    </div>
+    <!-- End Primary -->
+
+    <div id="secondary" class="widget-area col-xs-12 col-md-3">
+        @Html.Action("ShowCategories", "Product")
+
+        @Html.Action("ShowCategoriesByColor", "Product")
+        <aside class="widget widget_by_price">
+            <h3 class="widget-title">By Price</h3>
+            <div class="layout-slider">
+                <span><input id="Slider1" type="text" name="price" value="200;800" style="display: none;"><span class="jslider jslider_plastic"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="f"></i><i class="r"></i><i class="v" style="left: 20%; width: 60%;"></i></div><div class="jslider-pointer" style="left: 20%;"></div><div class="jslider-pointer jslider-pointer-to" style="left: 80%;"></div><div class="jslider-label" style="display: block;"><span>0</span></div><div class="jslider-label jslider-label-to" style="display: block;"><span>1,000</span></div><div class="jslider-value" style="left: 20%; margin-left: -19px; right: auto; visibility: visible;"><span>200</span></div><div class="jslider-value jslider-value-to" style="visibility: visible; left: 80%; margin-left: -19.5px; right: auto;"><span>800</span></div><div class="jslider-scale"></div></td></tr></tbody></table></span></span>
+            </div>
+            <a class="link-v1 space-30" href="#" title="fillter">fillter</a>
+        </aside>
+
+        @Html.Action("ShowCategoriesByBrand", "Product")
+
+        <aside class="widget widget_feature">
+            <h3 class="widget-title">Feature Products</h3>
+            <ul>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="images">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <!-- End Secondary -->
+</div>
+

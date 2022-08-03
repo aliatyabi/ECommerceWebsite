@@ -1,0 +1,13 @@
+﻿<div class="container container-ver2">
+    <h1 class="space-30">@Resources.Resource.AccountActivationLabel</h1>
+
+    @if (ViewBag.IsSuccess != false)
+    {
+        <div class="alert alert-success">@Resources.Resource.ActivationSuccessful</div>
+    }
+    else
+    {
+        <div class="alert alert-warning">@Resources.Resource.ActivationUnsuccessful</div>
+    }
+
+</div>

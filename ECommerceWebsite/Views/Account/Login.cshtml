@@ -1,0 +1,87 @@
+﻿@model ViewModels.LoginViewModel
+
+@if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+{
+    <style>
+        div.sign-in{
+            float:none;
+        }
+    </style>
+}
+<div class="container container-ver2">
+    <div class="page-login box space-50">
+        <div class="row">
+            <div class="col-md-6 sign-in space-30">
+                <h3>@Resources.Resource.SignInLabel</h3>
+                    <p>@Resources.Resource.WelcomeLabel</p>
+                @*<div class="social space-30 box">
+                        <a class="float-left" href="#" title="facebook">
+                            <i class="fa fa-facebook"></i>
+                            @Resources.Resource.SignInWithFacebook
+                        </a>
+                        <a class="float-right" href="#" title="TWITTER">
+                            <i class="fa fa-twitter"></i>
+                            @Resources.Resource.SignInWithTwitter
+                        </a>
+                    </div>*@
+                <!-- End social -->
+                @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                    
+                    if(User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @Resources.Resource.UnAccessiblePage
+                        </div>
+                    }
+
+                        <div class="group box space-20">
+
+                            @Html.LabelFor(model => model.Username, Resources.Resource.Username, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", placeholder = @Resources.Resource.Username } })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="group box">
+                            @Html.LabelFor(model => model.Password, Resources.Resource.Password, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = @Resources.Resource.Password } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="remember">
+                            <input id="remeber" type="checkbox" name="check" value="remeber">
+                            <label for="remeber" class="label-check">@Resources.Resource.RememberMeLabel</label>
+                            <a class="help" href="/ResetPassword" title="Forgot Password">@Resources.Resource.FogotPasswordLabel</a>
+                        </div>
+                        <div class="remember">
+                            <a class="help" href="/Register" title="Register">@Resources.Resource.NotRegistered</a>
+                        </div>
+                        <button type="submit" class="link-v1 rt">@Resources.Resource.LoginButton</button>
+                    }
+                <!-- End form -->
+                <!-- End col-md-6 -->
+
+                <br /><br />
+
+                @*<div class="sigg-to-day box">
+                    <h3>@Resources.Resource.SignUpTodayLabel</h3>
+                    <form class="form-horizontal" method="POST">
+                        <div class="checkbox">
+                            <input id="check1" type="checkbox" name="check" value="check1">
+                            <label class="label-check" for="check1">Speed your way through the checkout.</label>
+                            <input id="check2" type="checkbox" name="check" value="check2">
+                            <label class="label-check" for="check2">Track your orders easily.</label>
+                            <input id="check3" type="checkbox" name="check" value="check3">
+                            <label class="label-check" for="check3">Keep a record of all purchases.</label>
+                        </div>
+                    </form>
+                </div>*@
+            </div>
+            <!-- End col-md-6 -->
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

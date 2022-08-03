@@ -1,0 +1,9 @@
+﻿@model ViewModels.Product.WishListViewModel
+
+@{var cs = "background-color:#bc9e6b";}
+
+@if (!ViewBag.IsFavourite == true)
+{
+    cs = "";
+}
+<a class="link-v1 wish" id="Wishlist" title="Wishlist" href="javascript:void(0)" style="@cs" onclick="AddToWishList(@Model.ProductId)"><i class="icon icon-heart" style="@cs"></i></a>

@@ -1,0 +1,165 @@
+﻿@model PagedList.IPagedList<ECommerceWebsite.Models.Products>
+@using PagedList.Mvc;
+
+@section Styles{
+    <link href="~/Content/assets/css/plugins.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div id="primary" class="col-xs-12 col-md-9">
+        @*<div class="wrap-breadcrumb">
+            <div class="ordering">
+                <div class="float-left">
+                    <span class="col active"></span>
+                    <span class="list"></span>
+                    @{
+                        if (Model.PageNumber == 1)
+                        {
+                            <p class="result-count">Showing 1-@(Model.PageNumber * Model.PageSize) of @ViewBag.NumberOfResults results</p>
+                        }
+                        else
+                        {
+                            <p class="result-count">Showing @((Model.PageNumber - 1) * (Model.PageSize + 1))-@(Model.PageNumber * Model.PageSize) of @ViewBag.NumberOfResults results</p>
+                        }
+                    }
+                </div>
+
+                @Html.CheckBox("color2", new { sortOrder = ViewBag.orderByPrice, currentFilter = ViewBag.currentFilter })
+
+                <p>
+                    Find :
+                    @Html.TextBox("SearchString", ViewBag.currentFilter as string)
+                    <input type="button" onclick="filterProducts()" value="Search" />
+                </p>
+
+                <div class="float-right">
+                    <form action="#" method="get" class="order-by">
+                        <p>Sort by :</p>
+                        <select class="orderby" name="orderby" id="orderby">
+                            <option>popularity</option>
+                            <option selected="selected">average rating</option>
+                            <option>newness</option>
+                            <option>price: low to high</option>
+                            <option>price: high to low</option>
+                        </select>
+                    </form>
+                    <form action="#" method="get" class="order-by">
+                            <p>Sort by :</p>
+                            @Html.ActionLink("sort", "Index", new { sortOrder = ViewBag.orderByPrice, currentFilter = ViewBag.currentFilter })
+                            <select class="orderby" name="orderby" id="color">
+                                <option>popularity</option>
+                                <option selected="selected">average rating</option>
+                                <option>BC1245 ULTIMATE PANTS</option>
+                                <option>CE5817 PRIMEKNIT WOOL TEE</option>
+                                <option>BQ8292 RUN CLIMALITE TEE</option>
+                            </select>
+                        </form>
+                </div>
+            </div>
+        </div>*@
+        <div class="products ver2 grid_full grid_sidebar hover-shadow furniture">
+            <div id="result">
+                @*@foreach (var item in Model)
+                    {
+                        <div class="item-inner">
+                            @Html.Partial("_PartialFilterProducts", item)
+                        </div>
+                    }*@
+
+                @Html.Partial("_PartialFilterProducts", Model)
+            </div>
+            <!-- End product -->
+        </div>
+        <!-- End product-content products  -->
+        <div class="pagination-container">
+            @*<nav class="pagination align-right">*@
+            @*<a class="prev page-numbers" href="#"><i class="fa fa-angle-left"></i></a>
+                <span class="page-numbers current">1</span>
+                <a class="page-numbers" href="#">2</a>
+                <a class="page-numbers" href="#">3</a>
+                <a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a>*@
+            @*</nav>*@
+
+            @Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.currentSort, currentFilter = ViewBag.currentFilter, currentFilterColor = ViewBag.currentFilterColor }))
+        </div>
+        <!-- End pagination-container -->
+    </div>
+    <!-- End Primary -->
+
+    <div id="secondary" class="widget-area col-xs-12 col-md-3">
+        @Html.Action("ShowCategories", "Product")
+
+        @Html.Action("ShowCategoriesByColor", "Product")
+        <aside class="widget widget_by_price">
+            <h3 class="widget-title">@Resources.Resource.ByPrice</h3>
+
+
+            @*<div class="layout-slider">
+                    <input id="Slider1" type="text" name="price" value="200;800" style="display: none;" onchange="filterProducts()">
+                </div>*@
+
+            <input type="text" id="priceSlider" name="priceSlider" value="" />
+
+
+            @*<a class="link-v1 space-30" id="filter" href="" onclick="filterProducts()" title="filter">filter</a>
+                <button type="button" onclick="filterProducts()">test</button>*@
+
+        </aside>
+
+        @Html.Action("ShowCategoriesByBrand", "Product")
+
+        <aside class="widget widget_feature">
+            <h3 class="widget-title">@Resources.Resource.FeatureProducts</h3>
+            <ul>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="images">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+                <li>
+                    <a class="images" href="#" title="images">
+                        <img class="img-responsive" src="/assets/images/products/furniture/1.jpg" alt="">
+                    </a>
+                    <div class="text">
+                        <h2>
+                            <a href="#" title="Butterfly Bar Stool">Butterfly Bar Stool</a>
+                        </h2>
+                        <p><span class="price-old">$700</span><span>$350</span></p>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+    </div>
+    <!-- End Secondary -->
+</div>

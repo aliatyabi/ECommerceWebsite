@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/owl-slider.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/settings.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/vendor/range-price.css" />
+    <link rel="shortcut icon" href="/assets/images/favicon.png" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <title>Catalog Sidebar</title>
+</head>
+<body>
+    <div class="awe-page-loading">
+        <div class="awe-loading-wrapper">
+            <div class="awe-loading-icon">
+                <img src="/assets/images/logo.png" alt="images">
+            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content popup-search">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control control-search" placeholder="Search and hit enter...">
+                        <button class="button_search" type="button">Search</button>
+                    </div><!-- /input-group -->
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- End pushmenu -->
+    <div class="wrappage">
+        <header id="header" class="header-v3">
+            <div id="topbar">
+                <div class="container">
+                    <div class="inner-topbar box">
+                        <div class="float-left">
+                            <p>Call us for <span>free 1800-888-999</span></p>
+                            <p><a href="mailto:Support@yourdomain.com" title="mail">Support@yourdomain.com</a></p>
+                        </div>
+                        <div class="float-right align-right">
+                            <div class="hover-menu">
+                                <a href="#" title="USD">USD</a>
+                                <i class="fa fa-angle-down"></i>
+                                <ul class="list-menu">
+                                    <li><a href="#" title="USD">USD</a></li>
+                                    <li><a href="#" title="VND">VND</a></li>
+                                </ul>
+                            </div>
+                            <!-- End hover-menu -->
+                            <div class="hover-menu">
+                                <a href="#" title="USD">MY ACCOUNT</a>
+                                <i class="fa fa-angle-down"></i>
+                                @Html.Partial("_PartialLogin")
+                            </div>
+                            <!-- End hover-menu -->
+                            <div class="hover-menu">
+                                <a href="#" title="USD">WISHLIST</a>
+                            </div>
+                            <!-- End hover-menu -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End container -->
+            </div>
+            <!-- End topbar -->
+            <div class="header-top">
+                <div class="container">
+                    <div class="box">
+                        <p class="icon-menu-mobile"><i class="fa fa-bars"></i></p>
+                        <div class="logo">
+                            <a href="#" title="Uno">
+                                <img src="/Content//assets/images/logo.png" alt="images">
+                            </a>
+                        </div>
+                        @Html.Partial("_PartialMenu")
+                        <div class="logo-mobile"><a href="#" title="Xanadu"><img src="/Content//assets/images/logo.png" alt="Xanadu-Logo"></a></div>
+
+                        <div class="box-right">
+                            <div class="cart hover-menu">
+                                <p class="icon-cart hidden-desktop" title="Add to cart">
+                                    <i class="icon"></i>
+                                    <span class="cart-count">2</span>
+                                </p>
+                                <div class="icon-cart ver2" title="Add to cart">
+                                    <i class="icon"></i>
+                                    <div class="text align-left">
+                                        <h3>My Cart</h3>
+                                        <p><span class="items">03 items</span> - <span class="price">$450</span></p>
+                                    </div>
+                                </div>
+                                <div class="cart-list list-menu">
+                                    <ul class="list">
+                                        <li>
+                                            <a href="#" title="" class="cart-product-image"><img src="/Content//assets/images/products/1.jpg" alt="Product"></a>
+                                            <div class="text">
+                                                <p class="product-name">Union Bed</p>
+                                                <p class="product-price"><span class="price-old">$700.00</span><span class="price">$350.00</span></p>
+                                                <p class="qty">QTY:01</p>
+                                            </div>
+                                            <a class="close" href="#" title="close"><i class="fa fa-times-circle"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#" title="" class="cart-product-image"><img src="/Content//assets/images/products/1.jpg" alt="Product"></a>
+                                            <div class="text">
+                                                <p class="product-name">Union Bed</p>
+                                                <p class="product-price"><span class="price-old">$700.00</span><span class="price">$350.00</span></p>
+                                                <p class="qty">QTY:01</p>
+                                            </div>
+                                            <a class="close" href="#" title="close"><i class="fa fa-times-circle"></i></a>
+                                        </li>
+                                    </ul>
+                                    <p class="total"><span class="left">Total:</span> <span class="right">$1121.98</span></p>
+                                    <div class="bottom">
+                                        <a class="link-v1" href="#" title="viewcart">View Cart</a>
+                                        <a class="link-v1 rt" href="#" title="checkout">Check out</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search dropdown" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                <i class="icon"></i>
+                            </div>
+                        </div>
+                        <!--Menu-->
+
+                    </div>
+                </div>
+                <!-- End container -->
+            </div>
+            <!-- End header-top -->
+        </header>
+        <!-- /header -->
+        @RenderSection("Slider",false)
+        <!-- End Banner Grid -->
+        @RenderBody()
+        <div class="container">
+            <div class="newsletter-bottom center">
+                <div class="items">
+                    <img class="img-responsive" src="/assets/images/newsletter-bottom.jpg" alt="Newsllter">
+                    <div class="text">
+                        <h3>Sign Up Special Promotions</h3>
+                        <p>Get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <form action="#" method="get" accept-charset="utf-8">
+                            <input type="text" onblur="if (this.value == '') {this.value = 'Enter your email...';}" onfocus="if(this.value != '') {this.value = '';}" value="Enter your email..." class="input-text required-entry validate-email" title="Sign up for our newsletter" id="newsletter" name="email">
+                            <button class="button button1 hover-white" title="Subscribe" type="submit">Join<i class="link-icon-white"></i></button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End newsletter -->
+        <footer id="footer" class="footer-v1">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="logo-footer">
+                        <a href="#" title="Logo">
+                            <img src="/assets/images/logo.png" alt="Logo">
+                        </a>
+                        <p>&copy; Xanadu 2016 | Site by EngoCreative</p>
+                    </div>
+                    <div class="menu-footer">
+                        <ul>
+                            <li><a href="#" title="About Us">About Us</a></li>
+                            <li><a href="#" title="Advertise">Advertise</a></li>
+                            <li><a href="#" title="Press">Press</a></li>
+                            <li><a href="#" title="Contact Us">Contact Us</a></li>
+                            <li><a href="#" title="Store">Store</a></li>
+                            <li><a href="#" title="Careers">Careers</a></li>
+                        </ul>
+                    </div>
+                    <!-- End menu-footer -->
+                    <div class="social">
+                        <a class="active" title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                        <a title="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                        <a title="youtube" href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a title="google plus" href="#"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                    <!-- End social -->
+                </div>
+                <!-- End footer-top -->
+            </div>
+            <!-- End container -->
+        </footer>
+    </div>
+    <!-- End wrappage -->
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="/assets/js/engo-plugins.js"></script>
+    <script type="text/javascript" src="/assets/js/price-range.js"></script>
+    <script type="text/javascript">
+        jQuery("#Slider1").slider({
+            from: 0,
+            to: 1000,
+            step: 100,
+            smooth: true,
+            round: 0,
+            skin: "plastic"
+        });
+    </script>
+    <script type="text/javascript" src="/assets/js/store.js"></script>
+</body>
+</html>

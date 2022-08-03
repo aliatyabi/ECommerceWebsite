@@ -1,0 +1,130 @@
+﻿@model ViewModels.Invoice.InvoiceItemsViewModel
+
+@section Styles{
+    <link href="~/Areas/Admin/assets/css/MyCss.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Create", "Invoice", FormMethod.Post, new { @class = "form-horizontal", @id = "invoiceForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="main-content">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="top-page clearfix">
+            <div class="page-title pull-left">
+                <i class="icon-custom-left"></i>
+                <h3>
+                    <img class="m-r-20" src="~/Areas/Admin/assets/img/various/clothing.png" alt="clothing"><strong>@Resources.Resource.Add</strong> <strong>@Resources.Resource.Or</strong><strong> @Resources.Resource.EditInvoice</strong>
+                </h3>
+                <br>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-panes">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                @Resources.Resource.TransactionType <span class="asterisk">*</span>
+                                @Html.ValidationMessageFor(model => model.TransactionType, "", new { @class = "text-danger" })
+                            </label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(model => model.TransactionType, null, @Resources.Resource.ChooseOneItem, htmlAttributes: new { @class = "form-control", data_live_search = "true" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border-style:inset;" />
+                <div id="invoiceContents">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                @Resources.Resource.Quantity <span class="asterisk">*</span>
+                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                            </label>
+                            <div class="col-sm-2">
+                                @Html.EditorFor(model => model.Quantity)
+                            </div>
+                            <label class="col-sm-2 control-label">
+                                @Resources.Resource.Fee <span class="asterisk">*</span>
+                                @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                            </label>
+                            <div class="col-sm-2">
+                                @Html.EditorFor(model => model.Fee)
+                            </div>
+                            <label class="col-sm-2 control-label">
+                                @Resources.Resource.DiscountFee <span class="asterisk">*</span>
+                                @Html.ValidationMessageFor(model => model.DiscountFee, "", new { @class = "text-danger" })
+                            </label>
+                            <div class="col-sm-2">
+                                @Html.EditorFor(model => model.DiscountFee)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                @Resources.Resource.Product <span class="asterisk">*</span>
+                                @*@Html.ValidationMessageFor(model => model.ProductId, @Resources.Resource.ProductRequired, new { @class = "text-danger" })*@
+                            </label>
+                            <div class="col-sm-2">
+                                @Html.DropDownListFor(model => model.ProductId, null, @Resources.Resource.ChooseOneItem, htmlAttributes: new { @class = "form-control", data_live_search = "true", @onchange = "FillSizes()" })
+                            </div>
+                            <label class="col-sm-2 control-label">
+                                @Resources.Resource.Size <span class="asterisk">*</span>
+                                @*@Html.ValidationMessageFor(model => model.SizeId, @Resources.Resource.SizeRequired, new { @class = "text-danger" })*@
+                            </label>
+                            <div class="col-sm-2" id="Sizes">
+                                @Html.DropDownListFor(model => model.SizeId, null, @Resources.Resource.ChooseOneItem, htmlAttributes: new { @class = "form-control", data_live_search = "true" })
+                            </div>
+                            <div class="col-sm-4">
+                                <a id="addItems" onclick="AddInvoiceItem()" class="btn btn-block btn-success">
+                                    <i class="fa fa-plus"></i> @Resources.Resource.Add
+                                </a>
+                                <a id="clearFields" onclick="ClearAll()" class="btn btn-block btn-danger">
+                                    <i class="fa fa-reply"></i> @Resources.Resource.Clear
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-4">
+                                <img id="productImage" class="img-thumbnail" src="~/Images/no-image.png" alt="no-Image" style="width:150px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div id="ShowInvoiceItems">
+                                @Html.Action("ShowInvoiceItems")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 m-t-20 m-b-40 align-center">
+                        <a href="~/Admin/Invoice" class="btn btn-default m-r-10 m-t-10"><i class="fa fa-reply"></i> @Resources.Resource.Cancel</a>
+                        <button id="btnSubmit" class="btn btn-success m-t-10" type="submit" onclick="DisableValidator()"><i class="fa fa-check"></i> @Resources.Resource.SaveChanges</button>
+                    </div>
+                </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/My Scripts/CreateInvoice.js"></script>
+}
+
+
+

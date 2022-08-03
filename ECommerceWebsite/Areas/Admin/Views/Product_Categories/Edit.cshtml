@@ -1,0 +1,32 @@
+﻿@model ECommerceWebsite.Models.Product_Categories
+
+@using (Ajax.BeginForm("Edit", "Product_Categories", FormMethod.Post,
+    new AjaxOptions()
+    {
+        UpdateTargetId = "tree1",
+        OnSuccess = "closeModal"
+    }, new { @id = "categoryForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ParentId)
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CategoryId)
+
+        <div class="form-group">
+            <label for="CategoryTitle" class="control-label col-md-2">@Resources.Resource.CategoryTitle</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CategoryTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CategoryTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="modal-footer text-center">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">
+                @Resources.Resource.Cancel
+            </button>
+            <input type="button" class="btn btn-success" value="@Resources.Resource.Edit" onclick="$('#categoryForm').submit();" />
+        </div>
+    </div>
+}

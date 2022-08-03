@@ -1,0 +1,261 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Sliders>
+
+@section Styles
+{
+    <link href="~/Content/Site.css" rel="stylesheet" />
+}
+
+<div id="main-content">
+    <div class="panel-content">
+        <div class="row media-manager">
+            <ul class="media-header">
+                <li>
+                    <a href="#" class="c-dark filter active" data-filter="all">
+                        <strong>All</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="filter" data-filter=".cat-image"><i class="glyphicon glyphicon-camera"></i> Images</a>
+                </li>
+                <li>
+                    <a href="#" class="filter" data-filter=".cat-film"><i class="glyphicon glyphicon-film"></i> Videos</a>
+                </li>
+                <li>
+                    <a href="#" class="filter" data-filter=".cat-music"><i class="glyphicon glyphicon-music"></i> Audios</a>
+                </li>
+                <li>
+                    <a href="#" class="filter" data-filter=".cat-doc"><i class="glyphicon glyphicon-folder-open"></i> Documents</a>
+                </li>
+                <li class="pull-right">
+                    <a href="#" onclick="createSlider()" data-toggle="modal" data-target="#addFile"><i class="fa fa-cloud-download c-white"></i> Upload Files</a>
+                </li>
+            </ul>
+            <div class="margin-bottom-30"></div>
+            <div class="col-sm-9">
+                <div class="gallery row" id="MixItUp1C10F8">
+                    @foreach (var item in Model)
+                    {
+                        <div class="mix cat-image col-xs-6 col-sm-4 col-md-3" style="display: block;">
+                            <div class="btn-group media-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu media-menu" role="menu">
+                                    <li>
+                                        <a href="#" onclick="editSlider(@item.SlideId)" data-toggle="modal" data-target="#addFile"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-download"></i> @Resources.Resource.Download</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-trash-o"></i> @Resources.Resource.Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="thmb">
+                                        <div class="thmb-prev">
+                                            @if (item.Image != null)
+                                            {
+                                                <img src="~/Images/Sliders/Original/@item.Image" class="img-responsive" alt="@item.Image">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Images/no-image.png" class="img-responsive" alt="no-image.png">
+                                            }
+                                        </div>
+                                        <h5 class="media-title"><a href="">@item.SlideTitle</a></h5>
+                                        <small class="text-muted pull-left">@item.ClickCount</small>
+                                        <small class="text-muted pull-right">@item.Link</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-sm-3 media-menu">
+                <div class="m-b-10">
+                    <strong>FOLDERS</strong>
+                    <a href="#" class="pull-right c-gray w-600">+ ADD NEW</a>
+                </div>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default" data-toggle="collapse" data-parent="#accordion">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <span class="glyphicon glyphicon-camera">
+                                </span>Pictures
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Holydays</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Party</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Works</a>  <span class="label label-success">8</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Children</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" data-toggle="collapse" data-parent="#accordion">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <span class="glyphicon glyphicon-film">
+                                </span>Videos
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body force-table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Clips</a>  <span class="label label-success">20</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Works</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Holydays</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Others</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" data-toggle="collapse" data-parent="#accordion">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <span class="glyphicon glyphicon-folder-open">
+                                </span>Documents
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body force-table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Projects</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Invoices</a>  <span class="label label-info">5</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">Legal</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="http://www.jquery2dotnet.com">CV</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Begin Modal-->
+<div class="modal fade" id="addFile" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel"><strong>@Resources.Resource.Add</strong> @Resources.Resource.AFile</h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            @*<div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i> Validate</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!--End Modal-->
+@section Scripts
+{
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/Areas/admin/assets/plugins/modal/js/classie.js"></script>
+    <script src="/Areas/admin/assets/plugins/modal/js/modalEffects.js"></script>
+    <script src="~/Scripts/bootstrap-filestyle.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#slideTitle').change(function (e) {
+                var fileName = e.target.files[0].name;
+                alert('The file "' + fileName + '" has been selected.');
+            });
+        });
+    </script>
+
+    <script>
+        function createSlider() {
+            $.ajax({
+                url: "/Admin/Sliders/Create",
+                type: "Get",
+                data: {}
+            }).done(function (result) {
+                //$("#addFile").modal('show');
+                $("#modalBody").html(result);
+            });
+        }
+    </script>
+
+
+
+    <script>
+        function editSlider(id) {
+            $.ajax({
+                url: "/Admin/Sliders/Edit/" + id,
+                type: "Get",
+                data: {}
+            }).done(function (result) {
+                //$("#addFile").modal('show');
+                $("#modalBody").html(result);
+            });
+        }
+    </script>
+}

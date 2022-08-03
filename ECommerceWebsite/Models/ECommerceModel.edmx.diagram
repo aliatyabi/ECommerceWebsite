@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0d5018d10e3f45f792ac1ccb3d1b9226" Name="Diagram1">
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Cities" Width="1.5" PointX="10" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Feature_Values" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Features" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.InvoiceItems" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Invoices" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.News" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Product_Categories" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Product_Gallery" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Product_Reviews" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Product_Sizes" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Product_Tags" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Products" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Products_Features" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Roles" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.SizeGroups" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Sliders" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.States" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Stock" Width="1.5" PointX="8.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.User_Favourites" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Users" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.UsersInformation" Width="1.5" PointX="5.625" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceWebsiteModel.Warehouses" Width="1.5" PointX="6" PointY="17.75" IsExpanded="true" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Cities_States" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Feature_Values_Features" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Products_Features_Feature_Values" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_InvoiceItems_Invoices1" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_InvoiceItems_Product_Sizes" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_InvoiceItems_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Invoices_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Categories_Product_Categories1" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Products_Product_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Products_Product_Categories1" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Products_Product_Categories2" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Products_Product_Categories3" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Gallery_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Reviews_Product_Reviews1" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Reviews_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Reviews_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Sizes_SizeGroups1" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Stock_Product_Sizes" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Product_Tags_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Products_Features_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Stock_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_User_Favourites_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Users_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_Stock_Warehouses" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_User_Favourites_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_UsersInformation_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_UsersInformation_Cities" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_UsersInformation_States" />
+        <AssociationConnector Association="ECommerceWebsiteModel.FK_UsersInformation_UsersInformation" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

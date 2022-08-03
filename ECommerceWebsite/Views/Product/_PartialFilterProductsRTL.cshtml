@@ -1,0 +1,78 @@
+﻿@*@model IEnumerable<ECommerceWebsite.Models.Products>*@
+
+@model PagedList.IPagedList<ECommerceWebsite.Models.Products>
+
+@using PagedList.Mvc;
+
+<div id="result">
+    <div class="wrap-breadcrumb">
+        <div class="ordering">
+            <div class="float-left">
+                @*<span class="col active"></span>
+                <span class="list"></span>*@
+                @{
+                    if (Model.PageNumber == 1)
+                    {
+                        <p class="result-count">@Resources.Resource.Showing 1 - @(Model.PageNumber * Model.PageSize) @Resources.Resource.Product @Resources.Resource.Of @ViewBag.NumberOfResults</p>
+                    }
+                    else
+                    {
+                        <p class="result-count">@Resources.Resource.Showing @((Model.PageNumber - 1) * (Model.PageSize + 1)) - @(Model.PageNumber * Model.PageSize) @Resources.Resource.Product @Resources.Resource.Of @ViewBag.NumberOfResults</p>
+                    }
+                }
+            </div>
+
+            @*<p>
+                Find :
+                @Html.TextBox("Search", ViewBag.currentFilter as string)
+                <input type="button" onclick="filterProducts()" value="Search" />
+            </p>*@
+
+            <div class="float-right">
+                <form method="get" class="order-by">
+                    <p>@Resources.Resource.SortBy</p>
+                    <select class="orderby" name="orderby" id="orderby" onchange="filterProducts()">
+                        <option id="opt1" @(ViewBag.CurrentSort == "opt1" ? "selected" : "")>@Resources.Resource.Popularity</option>
+                        <option id="opt2" @(ViewBag.CurrentSort == "opt2" ? "selected" : "")>@Resources.Resource.Bestselling</option>
+                        <option id="opt3" @(ViewBag.CurrentSort == "opt3" ? "selected" : "")>@Resources.Resource.Newness</option>
+                        <option id="opt4" @(ViewBag.CurrentSort == "opt4" ? "selected" : "")>@Resources.Resource.PriceLowToHigh</option>
+                        <option id="opt5" @(ViewBag.CurrentSort == "opt5" ? "selected" : "")>@Resources.Resource.PriceHighToLow</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <label class="switch">
+        <input type="checkbox" id="inStock" @(ViewBag.Checked ? "checked" : "") onchange="filterProducts()">
+        <span class="slider round"></span>
+    </label>
+    <label>@Resources.Resource.ShowAvailableProducts</label>
+
+    <div class="products ver2 grid_full grid_sidebar hover-shadow furniture">
+        @foreach (var item in Model)
+        {
+            <div class="item-inner">
+                @Html.Partial("_PartialProduct", item)
+            </div>
+        }
+    </div>
+
+    <div class="pagination-container">
+        @Resources.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) @Resources.Resource.Of @Model.PageCount
+        <div id="myPager">
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <li class="@(i == Model.PageNumber ? "active" : "")">
+                        <a href="javascript:void(0)" onclick="filterProducts(@i)">@i</a>
+                    </li>
+                }
+            </ul>
+
+            @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, search = ViewBag.CurrentSearch, colors = ViewBag.Colors, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice }))*@
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/My Scripts/ShowSizes.js"></script>

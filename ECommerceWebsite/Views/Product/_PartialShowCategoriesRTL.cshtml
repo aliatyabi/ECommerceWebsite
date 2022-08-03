@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Product_Categories>
+
+<aside class="widget widget_product_categories">
+    <h3 class="widget-title">@Resources.Resource.Categories</h3>
+    <ul class="product-categories">
+        @*@foreach (var item in Model.Where(c => c.ParentId == null))
+            {
+                <li class="hassub">
+                    <a href="/Category/@item.CategoryId/@item.CategoryTitle" title="@item.CategoryTitle">@item.CategoryTitle</a><i class="fa fa-caret-right"></i>
+                    <ul class="children">
+                        @foreach (var item2 in item.Product_Categories1)
+                        {
+                            <li><a href="/SubCategory/@item2.CategoryId/@item2.CategoryTitle" title="@item2.CategoryTitle">@item2.CategoryTitle</a><i class="fa fa-caret-right"></i></li>
+                        }
+                    </ul>
+                </li>
+            }
+            <li><a href="#" title="All Product">@Resources.Resource.AllProducts</a></li>*@
+
+        @foreach (var item in Model.Where(c => c.ParentId == null)) 
+        {
+            <li class="hassub">
+                <a id="category_@item.CategoryId" href="javascript:void(0)" onclick="selectCategory(@item.CategoryId, null, null)">@item.CategoryTitle</a>
+                <i class="fa fa-caret-left"></i>
+                <ul class="children">
+                    @foreach (var item2 in item.Product_Categories1)
+                    {
+                        <li>
+                            <a id="subcategory_@item2.CategoryId" href="javascript:void(0)" onclick="selectCategory(null, @item2.CategoryId, null)">@item2.CategoryTitle</a>
+                            <i class="fa fa-caret-left"></i>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+
+        <li><a href="/Product/Index" title="All Product">@Resources.Resource.AllProducts</a></li>
+    </ul>
+</aside>

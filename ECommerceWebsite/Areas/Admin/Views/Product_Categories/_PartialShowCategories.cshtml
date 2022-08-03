@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Product_Categories>
+
+@foreach (var item in Model)
+{
+    <ul class="jstree-container-ul">
+        <li role="treeitem" aria-expanded="true" id="@item.CategoryId" class="jstree-node  jstree-open" aria-selected="false">
+            <i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon"></i>@item.CategoryTitle</a>
+            @foreach (var item2 in item.Product_Categories1)
+            {
+                <ul role="group" class="jstree-children">
+                    <li role="treeitem" aria-expanded="true" id="@item2.CategoryId" class="jstree-node  jstree-open" aria-selected="false">
+                        <i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon"></i>@item2.CategoryTitle</a>
+                        @foreach (var item3 in item2.Product_Categories1)
+                        {
+                            <ul role="group" class="jstree-children">
+                                <li role="treeitem" aria-expanded="true" id="@item3.CategoryId" class="jstree-node  jstree-open jstree-last">
+                                    <i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon"></i>@item3.CategoryTitle</a>
+                                    <ul role="group" class="jstree-children">
+                                        <li role="treeitem" id="37" class="jstree-node  jstree-leaf jstree-last" aria-selected="false"><i class="jstree-icon jstree-ocl"></i><a class="jstree-anchor" href="#"><i class="jstree-icon jstree-themeicon"></i>@item3.Product_Categories2.CategoryTitle</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        }
+                    </li>
+                </ul>
+            }
+        </li>
+    </ul>
+}

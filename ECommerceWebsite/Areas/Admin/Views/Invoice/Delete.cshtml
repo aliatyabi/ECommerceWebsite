@@ -1,0 +1,80 @@
+﻿@model ECommerceWebsite.Models.Invoices
+
+<h3>@Resources.Resource.DeleteQuestion</h3>
+<hr />
+<div>
+    <table class="table table-tools table-hover dataTable no-footer" role="grid">
+        <thead>
+            <tr role="row">
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="ID
+                                                : activate to sort column ascending" aria-sort="ascending">
+                    <strong>@Html.DisplayNameFor(model => model.InvoiceId)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                                : activate to sort column ascending">
+                    <strong>@Html.DisplayNameFor(model => model.TransactionType)</strong>
+                </th>
+
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                            : activate to sort column ascending">
+                    <strong>@Html.DisplayNameFor(model => model.Quantity)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Category
+                                            : activate to sort column ascending">
+                    <strong>@Html.DisplayNameFor(model => model.InvoiceDate)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Price
+                                            : activate to sort column ascending">
+                    <strong>@Html.DisplayNameFor(model => model.UserId)</strong>
+                </th>
+                <th tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Date added
+                                            : activate to sort column ascending">
+                    <strong>@Html.DisplayNameFor(model => model.InvoiceAmount)</strong>
+                </th>
+                <th style="text-align: center;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Stock">
+                    <strong>@Html.DisplayNameFor(model => model.Discount)</strong>
+                </th>
+                <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Status">
+                    <strong>@Html.DisplayNameFor(model => model.InvoiceNetAmount)</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr role="row">
+                <td>@Model.InvoiceId</td>
+                <td>
+                    @{
+                        var type = "";
+                        if (Model.TransactionType == 1) { type = @Resources.Resource.Purchase; }
+                        if (Model.TransactionType == 2) { type = @Resources.Resource.Sale; }
+                        if (Model.TransactionType == 3) { type = @Resources.Resource.ReturnOfSales; }
+                        if (Model.TransactionType == 4) { type = @Resources.Resource.BackFromThePurchase; }
+                    }
+                    <strong>@type</strong>
+                    </td>
+                    <td>@Model.Quantity.ToString("#,0")</td>
+                    <td>@Model.InvoiceDate</td>
+                    <td><strong>@Model.UserId</strong></td>
+                    <td>@Model.InvoiceAmount.ToString("#,0")</td>
+                    <td class="text-center">@Model.Discount.ToString("#,0")</td>
+                    <td class="text-center">@Model.InvoiceNetAmount.ToString("#,0")</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-footer text-center">
+                <button type="submit" class="btn btn-default" data-dismiss="modal">
+                    @Resources.Resource.Cancel
+                </button>
+                <button type="submit" class="btn btn-success">
+                    @Resources.Resource.OK
+                </button>
+            </div>
+        }
+    </div>

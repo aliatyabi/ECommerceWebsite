@@ -1,0 +1,134 @@
+﻿@model ECommerceWebsite.Models.Sliders
+
+<ul class="media-header">
+    <li>
+        <a href="#" class="c-dark filter active" data-filter="all">
+            <strong>All</strong>
+        </a>
+    </li>
+    <li>
+        <a href="#" class="filter" data-filter=".cat-image"><i class="glyphicon glyphicon-camera"></i> Images</a>
+    </li>
+    <li>
+        <a href="#" class="filter" data-filter=".cat-film"><i class="glyphicon glyphicon-film"></i> Videos</a>
+    </li>
+    <li>
+        <a href="#" class="filter" data-filter=".cat-music"><i class="glyphicon glyphicon-music"></i> Audios</a>
+    </li>
+    <li>
+        <a href="#" class="filter" data-filter=".cat-doc"><i class="glyphicon glyphicon-folder-open"></i> Documents</a>
+    </li>
+    <li class="pull-right">
+        <a href="#" data-toggle="modal" data-target="#add-file"><i class="fa fa-cloud-download c-white"></i> Upload Files</a>
+    </li>
+</ul>
+<div class="margin-bottom-30"></div>
+
+@using (Ajax.BeginForm("Create", "Sliders", new AjaxOptions() { HttpMethod = "POST" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade" id="add-file" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel"><strong>Add</strong> a file</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="margin-top-none">Crop Image</h4>
+                                    <div class="croppable-image">
+                                        <img src="http://demo.neontheme.com/assets/images/sample-crop.jpg" class="img-responsive" alt="image crop">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(model => model.SlideId)
+
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="field-1" class="control-label">@Resources.Resource.Title</label>
+                                        <input type="text" class="form-control" id="field-1" placeholder="Enter file title">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select class="form-control">
+                                        <option>@Resources.Resource.Image</option>
+                                        <option>@Resources.Resource.Video</option>
+                                        <option>@Resources.Resource.Document</option>
+                                        <option>@Resources.Resource.Music</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @*<label for="field-1" class="control-label"></label>*@
+                                        @Html.LabelFor(model => model.NewTab, new { @class = "control-label" })
+                                        <div>
+                                            @Html.EditorFor(model => model.NewTab)
+                                            @*@Html.ValidationMessageFor(model => model.NewTab, "", new { @class = "text-danger" })*@
+                                        </div>
+                                        @*<textarea class="form-control autogrow" id="field-2" placeholder="Enter file description" style="min-height: 120px; overflow: hidden; word-wrap: break-word; resize: horizontal; height: 120px;"></textarea>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="field-2" class="control-label">@Resources.Resource.Url</label>
+                                        <input type="text" class="form-control" id="field-2" placeholder="@Resources.Resource.EnterUrl">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="file" class="filestyle" data-buttonname="btn btn-sm btn-primary" data-buttontext="@Resources.Resource.ChooseImage" />
+                                        @*<label><a class="btn btn-sm btn-primary"><i class="fa fa-folder-open"><input type="file" style="display:none" />  @Resources.Resource.ChooseImage</i></a></label>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                    <button type="submit" id="submitForm" class="btn btn-success" data-dismiss="modal"><i class="fa fa-check"></i> Validate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+    $(function(){
+        $('#submitForm').on('click',function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/Areas/Admin/Views/Sliders/Create.cshtml",
+                data: $('#add-file').serialize(),
+                success: function (data) {
+                    alert('successful');
+                }
+            });
+        });
+    });
+</script>
+}

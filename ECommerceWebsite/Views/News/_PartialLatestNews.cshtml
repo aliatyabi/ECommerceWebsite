@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.News>
+
+<div class="col-md-6 col-sm-6 float-right align-left ">
+    <div class="home3-latest-news box">
+        <h2>@Resources.Resource.LatestNews</h2>
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <div class="date float-left">
+                    <p class="day">@item.CreatedDate.Day</p>
+                    <p class="month">@item.CreatedDate.ToString("MMMM")</p>
+                </div>
+                <div class="text">
+                    <a class="title" href="#" title="title">@item.Title</a>
+                    <p>@item.ShortDescription</p>
+                    @*<a class="read-more">Read more</a>*@
+                </div>
+            </div>
+        <!-- End item -->
+        }        
+    </div>
+    <!-- End latest -->
+</div>

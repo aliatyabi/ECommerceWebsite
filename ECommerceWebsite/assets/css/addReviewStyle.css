@@ -1,0 +1,23 @@
+﻿#customer button.button-v1 {
+  font: 700 16px/48px "Roboto Condensed";
+  color: #fff;
+  background: #bc9e6b;
+  border: 1px solid #bc9e6b;
+  text-transform: uppercase;
+  width: 180px;
+  transition: all 0.3s ease 0s;
+  float: right;
+}
+
+#customer button.button-v1:hover {
+  background: #fff;
+  color: #bc9e6b;
+}
+
+select#SizeId option {
+    color: #1a1a1a;
+}
+
+select#SizeId option:disabled {
+    color: #999999;
+}

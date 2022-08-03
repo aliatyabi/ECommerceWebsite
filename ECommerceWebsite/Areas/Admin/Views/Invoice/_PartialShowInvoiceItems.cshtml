@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ViewModels.Invoice.InvoiceItemsViewModel>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-tools table-hover">
+            <thead>
+                <tr>
+                    <th style="width:15%;">
+                        <strong>@Resources.Resource.ProductName</strong>
+                    </th>
+                    <th>
+                        <strong>@Resources.Resource.Image</strong>
+                    </th>
+                    <th>
+                        <strong>@Resources.Resource.Quantity</strong>
+                    </th>
+                    <th>
+                        <strong>@Resources.Resource.Fee</strong>
+                    </th>
+                    <th>
+                        <strong>@Resources.Resource.DiscountFee</strong>
+                    </th>
+                    <th>
+                        <strong>@Resources.Resource.Price</strong>
+                    </th>
+                    <th>
+                        <strong>@Resources.Resource.Size</strong>
+                    </th>
+                    <th class="text-center">
+                        <strong>@Resources.Resource.Actions</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style="text-align:center;">@item.ProductName</td>
+                        <td><img id="productImage" class="img-thumbnail" src="~/Images/Products/Thumb/@item.ImageName" alt="@item.ImageName" style="width:100px;" /></td>
+                        <td>&nbsp;&nbsp;&nbsp;@item.Quantity.ToString("#,0")</td>
+                        <td>@item.Fee.ToString("#,0")</td>
+                        <td>&nbsp;&nbsp;&nbsp;@item.DiscountFee.ToString("#,0")</td>
+                        @{string price = (item.Quantity * item.DiscountFee).ToString("#,0");}
+                        <td>@price</td>
+                        <td>&nbsp;&nbsp;&nbsp;@item.Size</td>
+                        <td class="text-center">
+                            <a onclick="DeleteInvoiceItem(@item.Id)" class="delete btn btn-sm btn-default"><i class="fa fa-times-circle"></i> @Resources.Resource.Remove</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

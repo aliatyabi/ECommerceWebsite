@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Warehouses>
+
+<table id="products-table" class="table table-tools table-hover dataTable no-footer" role="grid">
+    <thead>
+        <tr role="row">
+            <th style="min-width: 70px; width: 85px;" class="sorting_asc" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="ID
+                                                : activate to sort column ascending" aria-sort="ascending">
+                <strong>@Resources.Resource.Id</strong>
+            </th>
+            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Product
+                                                : activate to sort column ascending" style="width: 230px;">
+                <strong>@Resources.Resource.WarehouseName</strong>
+            </th>
+            <th class="sorting" tabindex="0" aria-controls="products-table" rowspan="1" colspan="1" aria-label="Date added
+                                                : activate to sort column ascending">
+                <strong>@Resources.Resource.DateAdded</strong>
+            </th>
+            <th style="width: 140px; text-align: center;" class="sorting_disabled" rowspan="1" colspan="1" aria-label="Stock">
+                <strong>@Resources.Resource.Stock</strong>
+            </th>
+            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Status">
+                <strong>@Resources.Resource.Status</strong>
+            </th>
+            <th class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="Actions">
+                <strong>@Resources.Resource.Actions</strong>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var i = 1; var odd = true;}
+
+        @foreach (var item in Model)
+        {
+            if (i % 2 == 0) { odd = false; } else { odd = true; }
+
+            <tr role="row" class="@(odd ? "odd" : "even")">
+                @{i = i + 1;}
+                <td class="sorting_1">@item.WarehouseId</td>
+                <td>
+                    @item.WarehouseName <span class="label bg-red">@Resources.Resource.LowStock</span>
+                </td>
+                <td>@item.CreatedDate</td>
+                <td class="color-success">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger" data-aria-valuetransitiongoal="21" style="width: 21%;" aria-valuenow="21">@item.Stock</div>
+                    </div>
+                </td>
+                @*<td class="text-center">
+                    <div class="sparkline" data-sparkline-color="#c3a8db" data-sparkline-value="[14,17,16,12,15,16,22,15,14,17,11,18,11,12]"><canvas width="96" height="20" style="display: inline-block; width: 96px; height: 20px; vertical-align: top;"></canvas></div>
+                </td>*@
+                <td class="text-center">
+                    @{ var cls = ""; var stat = ""; if (item.Status == 1) { cls = "label-success"; stat = @Resources.Resource.Online; }
+                     else if (item.Status == 2) { cls = "label-dark"; stat = @Resources.Resource.Offline; }
+                     else { cls = "label-danger"; stat = @Resources.Resource.Draft; } }
+                    <span class="label @cls w-300">@stat</span>
+                </td>
+                <td class="text-center ">
+                    <a onclick="EditWarehouse(@item.WarehouseId)" class="edit btn btn-sm btn-default"><i class="fa fa-pencil"></i> @Resources.Resource.Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

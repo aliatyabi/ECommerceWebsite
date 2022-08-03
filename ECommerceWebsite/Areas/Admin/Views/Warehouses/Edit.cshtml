@@ -1,0 +1,69 @@
+﻿@model ECommerceWebsite.Models.Warehouses
+
+@using (Ajax.BeginForm("Edit", "Warehouses", FormMethod.Post,
+    new AjaxOptions()
+    {
+        UpdateTargetId = "warehouseList",
+        OnSuccess = "closeModal"
+    }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.WarehouseId)
+        @Html.HiddenFor(model => model.Stock1)
+        @Html.HiddenFor(model => model.CreatedDate)
+        <div class="form-group">
+            <label for="WarehouseName" class="control-label col-md-2">@Resources.Resource.WarehouseName</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WarehouseName, new { htmlAttributes = new { @class = "form-control", @placeholder = Resources.Resource.WarehouseName } })
+                @Html.ValidationMessageFor(model => model.WarehouseName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @{
+            var x = ""; var y = ""; var m = ""; var n = ""; 
+            if (Model.Status == 1) { x = "ui-radio-on"; y = "checked='checked'"; m = "ui-radio-off"; n = ""; }
+            if (Model.Status == 2) { x = "ui-radio-off"; y = ""; m = "ui-radio-on"; n = "checked='checked'"; }
+            
+        }
+
+        <div class="form-group">
+            <label for="Status" class="control-label col-md-2">@Resources.Resource.Status</label>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="ui-radio">
+                            <label for="radio1" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left @x">
+                                @Resources.Resource.Active
+                            </label>
+                            <input id="radio1" type="radio" name="Status" value="1" @y data-cacheval="false" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="ui-radio">
+                            <label for="radio2" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left @m">
+                                @Resources.Resource.InActive
+                            </label>
+                            <input id="radio2" type="radio" name="Status" value="2" @n data-cacheval="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer text-center">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">
+                @Resources.Resource.Cancel
+            </button>
+            <button type="submit" class="btn btn-success">
+                @Resources.Resource.Edit
+            </button>
+        </div>
+    </div>
+}
+
+
+

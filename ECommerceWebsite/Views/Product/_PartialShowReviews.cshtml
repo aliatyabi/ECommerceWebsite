@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ECommerceWebsite.Models.Product_Reviews>
+
+<div class="box border">
+    <h3>@Resources.Resource.Reviews (@Model.Count())</h3>
+    @foreach (var item in Model.Where(p => p.ParentId == null))
+    {
+        <div class="col-md-12">
+            <div class="form-group">
+                <h3 class=" control-label">@Resources.Resource.WrittenBy @item.Users.Username @Resources.Resource.At @item.CreatedDate</h3>
+                <div class="col-md-10">
+                    <p>
+                        @item.ReviewText
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" onclick="ReplyReview(@item.ProductId,@item.ReviewId)" class="btn-sm btn-link"><i class="fa fa-reply"></i> @Resources.Resource.Reply</button>
+                </div>
+            </div>
+            <div id="Review_@(item.ReviewId)"></div>
+        </div>
+
+        if (System.Threading.Thread.CurrentThread.CurrentCulture.ToString() == "fa-IR")
+        {
+            foreach (var item2 in item.Product_Reviews1)
+            {
+                <div class="col-md-12" style="margin-left:-50px">
+                    <div class="form-group">
+                        <h3 class=" control-label">@Resources.Resource.WrittenBy @item2.Users.Username @Resources.Resource.At @item2.CreatedDate</h3>
+                        <div class="col-md-10">
+                            <p>
+                                @item2.ReviewText
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            foreach (var item2 in item.Product_Reviews1)
+            {
+                <div class="col-md-12" style="margin-left:50px">
+                    <div class="form-group">
+                        <h3 class=" control-label">@Resources.Resource.WrittenBy @item2.Users.Username @Resources.Resource.At @item2.CreatedDate</h3>
+                        <div class="col-md-10">
+                            <p>
+                                @item2.ReviewText
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>

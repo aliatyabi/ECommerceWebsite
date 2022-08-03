@@ -1,0 +1,29 @@
+﻿.ui-btn-icon-left:after {
+    left: 0px;
+    right: -10px;
+}
+
+.ui-checkbox input, .ui-radio input {
+    left: 0px;
+    right: -10px;
+}
+
+div.ui-checkbox .ui-btn {
+    text-align: right;
+}
+
+.product-price-old {
+    margin-top: -60px !important;
+}
+
+.h4font {
+    font: 600 18px/20px "yekan";
+}
+
+.info-order .product-name .head .qty, .info-order .product-name .head .total{
+    font: 700 16px/50px "yekan" !important;
+}
+
+.irs{
+    direction: ltr !important;
+}
